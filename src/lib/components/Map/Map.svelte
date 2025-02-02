@@ -59,7 +59,7 @@
 		position: absolute;
 		top: 10px;
 		right: 10px;
-		padding: var(--spacing-small);
+		padding: 7px 8px;
 		border: none;
 		border-radius: var(--border-radius-medium);
 		font-size: var(--font-size-small);
@@ -80,5 +80,10 @@
 
 	:global(html, body) {
 		height: 100%;
+	}
+
+	:global(.maplibregl-ctrl-geolocate, .maplibregl-ctrl-group) {
+    	border-radius: var(--border-radius-medium) !important;
+		padding: 2px !important;
 	}
 </style>

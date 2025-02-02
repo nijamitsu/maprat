@@ -1,7 +1,4 @@
 <script>
-	import { onMount } from 'svelte';
-	import { checkUrlParameter } from '$lib/utils/urlStorage';
-
 	import '../app.css';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
@@ -13,10 +10,6 @@
 
 	/** @type {Props} */
 	let { children } = $props();
-
-	onMount( () => {
-		checkUrlParameter('cid');
-	});
 </script>
 
 <svelte:head>

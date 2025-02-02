@@ -93,8 +93,8 @@ const loadFromLocalStorage = (key) => {
 	}
 };
 
-export const getSavedCities = () => {
-	return loadFromLocalStorage(DEFAULT_STORAGE_KEY) || [];
+export const getSavedCities = (storageKey = DEFAULT_STORAGE_KEY) => {
+    return loadFromLocalStorage(storageKey) || [];
 };
 
 export const saveToLocalStorage = (key, data) => {

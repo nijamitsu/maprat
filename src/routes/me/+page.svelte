@@ -1,36 +1,35 @@
 <script>
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 
 	// Internal utilities
 	import { getSavedCities } from '$lib/utils/storage';
+	import { checkUrlParameter } from '$lib/utils/urlStorage';
 
 	// Internal components
 	import Map from '$lib/components/Map/Map.svelte';
 	import ProgressBar from '$lib/components/ProgressBar.svelte';
-	import WelcomeCopy from '$lib/components/WelcomeCopy.svelte';
-	import CitySearch from '$lib/components/CitySearch/CitySearch.svelte';
 	import SavedCities from '$lib/components/CitySearch/SavedCities.svelte';
 
 	let savedCities = $state([]);
-	let searchTerm = $state('');
-
 	let isInitialized = $state(false);
 
 	onMount(async () => {
-		savedCities = getSavedCities();
+		savedCities = await checkUrlParameter('cid');
+		if (!savedCities || (Array.isArray(savedCities) && savedCities.length === 0)) {
+			goto('/'); // Redirect to home page
+			return;
+		}
 		isInitialized = true;
 	});
+	
 </script>
 {#if isInitialized}
 	<section class="main-wrapper">
 		<Map {savedCities} />
 		<ProgressBar {savedCities} />
 		<section class="citysearch-savedcities-wrapper">
-			{#if !savedCities.length}
-				<WelcomeCopy />
-			{/if}
 			<div class="citysearch-savedcities">
-				<CitySearch bind:savedCities {searchTerm} />
 				{#if savedCities.length}
 					<SavedCities bind:savedCities />
 				{/if}
