@@ -89,7 +89,7 @@ function processStaticCities(cities, cityIds) {
 export function buildCityShareUrl(cityIds) {
     // Get the current origin and pathname from window.location
     const origin = browser ? window.location.origin : '';
-    const pathname = browser ? window.location.pathname : '/me/';
+    const pathname = '/me/';
     
     // Convert array of IDs to hyphen-separated string
     const cityIdsString = cityIds.join('-');

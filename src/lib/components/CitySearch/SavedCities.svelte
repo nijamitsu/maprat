@@ -185,13 +185,14 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 5px 0 0 0;
+		padding-top: var(--spacing-medium);
 	}
 
 	.clear-all-button, .share-travel-history-button {
 		border: none;
 		background: none;
 		color: var(--color-primary);
+		padding: 0;
 	}
 
 	.share-travel-history-button {
