@@ -57,8 +57,8 @@
 	.project-button {
 		display: block;
 		position: absolute;
-		top: 10px;
-		right: 10px;
+		bottom: 10px;
+		left: 10px;
 		padding: 7px 8px;
 		border: none;
 		border-radius: var(--border-radius-medium);

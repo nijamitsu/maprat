@@ -1,6 +1,6 @@
 import { browser } from '$app/environment';
 import { get } from 'svelte/store';
-import { getSavedCities, saveToLocalStorage, generateChecksum } from './storage';
+import { saveToLocalStorage, generateChecksum } from './storage';
 
 import { createJsonLoader } from './createJsonLoader';
 
@@ -16,25 +16,13 @@ const staticCityData = createJsonLoader('/cities15000.json', [
 export async function checkUrlParameter(parameter) {
     if (browser) {
         if (getUrlParameter(parameter)) {
-            const meSavedCities = getSavedCities('meSavedCities');
-
-            // if (!meSavedCities || meSavedCities.length === 0) {
                 const cid = parseUrlParameter(parameter);
-
                 try {
-                    const filteredCities = await filterStaticCities(cid);
-                    
-                    // Save the filtered cities to localStorage
-                    /*if (filteredCities.length > 0) {
-                        saveToLocalStorage('meSavedCities', filteredCities);
-                    }*/
-                    
-                    return filteredCities;
+                    return await filterStaticCities(cid);
                 } catch (error) {
                     console.error('Error filtering cities:', error);
                     return [];
                 }
-            // }
         }
     }
     return [];
@@ -51,11 +39,9 @@ const parseUrlParameter = (parameter) => {
 }
 
 export async function filterStaticCities(cityIds) {
-    // Wait for staticCityData to load
     const cityDataStore = get(staticCityData);
     
     if (cityDataStore.isLoading) {
-        // Wait for data to be loaded
         return new Promise((resolve) => {
             const unsubscribe = staticCityData.subscribe(($cityData) => {
                 if (!$cityData.isLoading) {
@@ -82,7 +68,6 @@ function processStaticCities(cities, cityIds) {
     cityIds.forEach(id => {
         const city = citiesMap.get(id);
         if (city) {
-            // Transform the city data into the desired format
             const transformedCity = {
                 name: city.name,
                 id: city.id,
@@ -99,4 +84,17 @@ function processStaticCities(cities, cityIds) {
     });
 
     return filteredCities;
+}
+
+export function buildCityShareUrl(cityIds) {
+    // Base URL - can be configured for different environments
+    const baseUrl = 'http://localhost:5173/me/';
+    
+    // Convert array of IDs to hyphen-separated string
+    const cityIdsString = cityIds.join('-');
+    
+    // Construct the final URL with the query parameter
+    const shareUrl = `${baseUrl}?cid=${cityIdsString}`;
+    
+    return shareUrl;
 }

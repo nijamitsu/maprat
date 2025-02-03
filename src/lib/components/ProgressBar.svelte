@@ -31,7 +31,7 @@
 	.progress-container {
 		width: 100%;
 		height: 1px;
-		background-color: #303134;
+		background-color: #1f1f20;
 		overflow: hidden;
 		position: relative;
 	}

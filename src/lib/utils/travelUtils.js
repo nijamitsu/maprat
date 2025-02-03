@@ -1,3 +1,5 @@
+import { getSavedCities } from './storage';
+
 export function countVisitedUniqueCountries(savedCities) {
 	return new Set(savedCities.map((city) => city.countryIso)).size;
 }

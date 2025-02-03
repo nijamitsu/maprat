@@ -39,6 +39,8 @@
 {/if}
 
 <style>
+
+	
 	.main-wrapper {
 		flex: 1;
 	}

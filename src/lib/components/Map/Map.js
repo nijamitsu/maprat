@@ -12,7 +12,7 @@ export default class MapManager {
 		this.config = {
 			map: {
 				style: '/edited-positron.json',
-				zoom: 1,
+				zoom: 0.5,
 				minZoom: 0,
 				center: [30, 40],
 				canvasContextAttributes: { antialias: true }
@@ -37,16 +37,6 @@ export default class MapManager {
 			this.map.keyboard.disable();
 			this.map.touchZoomRotate.disableRotation();
 			this.map.touchPitch.disable();
-
-			this.map.addControl(
-				new maplibregl.GeolocateControl({
-					positionOptions: {
-						enableHighAccuracy: true
-					},
-					trackUserLocation: true
-				}),
-				'top-left'
-			);
 
 			return new Promise((resolve) => {
 				this.map.on('style.load', () => {

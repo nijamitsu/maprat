@@ -10,6 +10,7 @@
 		formatDistance
 	} from '$lib/utils/travelUtils';
 	import { removeCity, clearAllSavedCities } from '$lib/utils/storage';
+	import { buildCityShareUrl } from '$lib/utils/urlStorage';
 	import { generateFlagEmoji } from '$lib/utils/generateFlagEmoji';
 
 	// Internal components
@@ -50,6 +51,21 @@
 			expandedCountries = [...expandedCountries, countryIso];
 		}
 	}
+
+	function handleShareTravelHistory() {
+		const cityIds = savedCities.map(city => city.id);
+		const shareUrl = buildCityShareUrl(cityIds);
+		
+		// Optional: Copy to clipboard
+		navigator.clipboard.writeText(shareUrl)
+			.then(() => {
+				alert('Share URL copied to clipboard!');
+			})
+			.catch(err => {
+				console.error('Failed to copy URL:', err);
+				alert('Share URL: ' + shareUrl);
+			});
+	}
 </script>
 
 <div class="saved-cities-wrapper">
@@ -72,7 +88,7 @@
 		</p>
 		<p>
 			{#if totalDistance > 0}
-				{formatDistance(totalDistance)} km traveled*
+				{formatDistance(totalDistance)} km traveled
 			{/if}
 		</p>
 	</div>
@@ -114,13 +130,16 @@
 		</div>
 		<div class="clear-all-wrapper">
 			<button class="clear-all-button" onclick={handleClearAllCities}>Clear all</button>
+			<button class="share-travel-history-button" onclick={handleShareTravelHistory}>Share travel history</button>
 		</div>
 	</div>
 	<div>
-		<p class="travel-history-notice">
-			Currently, your travel history is stored only in your browser. <!-- Save it now to protect your
-			adventures. -->
-		</p>
+		<!--
+			<p class="travel-history-notice">
+				Currently, your travel history is stored only in your browser. Save it now to protect your
+				adventures.
+			</p>
+		-->
 	</div>
 </div>
 
@@ -161,25 +180,48 @@
 		text-align: left;
 	}
 
-	.travel-history-notice {
-		text-align: left;
-		font-size: var(--font-size-small);
-	}
-
 	/* 3. Button Styles */
 	.clear-all-wrapper {
-		text-align: right;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		padding: 5px 0 0 0;
 	}
 
-	.clear-all-button {
+	.clear-all-button, .share-travel-history-button {
 		border: none;
 		background: none;
 		color: var(--color-primary);
 	}
 
-	.clear-all-button:hover {
+	.share-travel-history-button {
+		background: var(--gradient-primary);
+		background-size: 300% 100%;
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		animation: gradientBG 6s linear infinite;
+	}
+
+	.share-travel-history-button:hover {
 		text-decoration: underline;
+		animation-play-state: paused;
+	}
+
+	.clear-all-button:hover, .share-travel-history-button:hover {
+		text-decoration: underline;
+	}
+
+	@keyframes gradientBG {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
 	}
 
 	.see-more-button {
