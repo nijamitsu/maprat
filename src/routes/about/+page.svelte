@@ -29,21 +29,19 @@
 	}
 
     .about-section {
-		max-width: var(--max-width-container);
-		margin: 0 auto;
-		margin-top: 2rem;
-		padding-top: var(--spacing-large);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+      max-width: var(--max-width-container);
+      margin: 0 auto;
+      margin-top: 2rem;
+      padding: var(--spacing-large) 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .about-div {
-
-		width: 100%;
-		max-width: var(--max-width-element);
-		margin-bottom: var(--spacing-large);
-
+      width: 100%;
+      max-width: var(--max-width-element);
+      margin-bottom: var(--spacing-large);
     }
 </style>
