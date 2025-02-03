@@ -87,14 +87,15 @@ function processStaticCities(cities, cityIds) {
 }
 
 export function buildCityShareUrl(cityIds) {
-    // Base URL - can be configured for different environments
-    const baseUrl = 'http://localhost:5173/me/';
+    // Get the current origin and pathname from window.location
+    const origin = browser ? window.location.origin : '';
+    const pathname = browser ? window.location.pathname : '/me/';
     
     // Convert array of IDs to hyphen-separated string
     const cityIdsString = cityIds.join('-');
     
     // Construct the final URL with the query parameter
-    const shareUrl = `${baseUrl}?cid=${cityIdsString}`;
+    const shareUrl = `${origin}${pathname}?cid=${cityIdsString}`;
     
     return shareUrl;
 }
