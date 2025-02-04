@@ -1,6 +1,6 @@
 <footer>
 	<div class="footer-text-wrapper">
-		<p class="footer-text">&copy; {new Date().getFullYear()} Maprat. All rights reserved. 🐀</p>
+		<p class="footer-text">&copy; {new Date().getFullYear()} Maprat. All rights reserved.</p>
 	</div>
 </footer>
 

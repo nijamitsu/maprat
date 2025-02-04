@@ -1,6 +1,7 @@
 <script>
 	// Svelte built-ins
 	import { flip } from 'svelte/animate';
+	import { page } from '$app/stores';
 
 	// Internal utilities
 	import {
@@ -18,6 +19,7 @@
 
 	let { savedCities = $bindable() } = $props();
 	let expandedCountries = $state([]);
+	let currentRoute = $page.route.id;
 
 	let visitedUniqueCountries = $derived(countVisitedUniqueCountries(savedCities));
 	let visitedWorldPercentage = $derived(calculateWorldPercentage(visitedUniqueCountries));
@@ -71,7 +73,11 @@
 <div class="saved-cities-wrapper">
 	<div class="percentage-counter">
 		<h3>
-			You've seen
+			{#if currentRoute !== '/me'}
+				You've seen
+			{:else}	
+				They've seen	
+			{/if}
 			{#key visitedWorldPercentage}
 				<span class="percentage-wrapper">
 					{#each String(visitedWorldPercentage).split('') as digit}
@@ -128,18 +134,12 @@
 				{/each}
 			</ul>
 		</div>
-		<div class="clear-all-wrapper">
-			<button class="clear-all-button" onclick={handleClearAllCities}>Clear all</button>
-			<button class="share-travel-history-button" onclick={handleShareTravelHistory}>Share travel history</button>
-		</div>
-	</div>
-	<div>
-		<!--
-			<p class="travel-history-notice">
-				Currently, your travel history is stored only in your browser. Save it now to protect your
-				adventures.
-			</p>
-		-->
+		{#if currentRoute !== '/me'}
+			<div class="clear-all-wrapper">
+				<button class="clear-all-button" onclick={handleClearAllCities}>Clear all</button>
+				<button class="share-travel-history-button" onclick={handleShareTravelHistory}>Share</button>
+			</div>
+		{/if}
 	</div>
 </div>
 

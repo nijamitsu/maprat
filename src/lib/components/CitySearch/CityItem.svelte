@@ -1,7 +1,10 @@
 <script>
+	import { page } from '$app/stores';
+
 	let { savedCity, removeCityEvent, children } = $props();
 
 	let isRemoveButtonVisible = $state(false);
+	let currentRoute = $page.route.id;
 
 	function clickOutside(node) {
 		const handleClick = (event) => {
@@ -20,13 +23,18 @@
 	}
 
 	function handleItemClick() {
-		isRemoveButtonVisible = !isRemoveButtonVisible;
+		if (currentRoute !== '/me') { 
+			isRemoveButtonVisible = !isRemoveButtonVisible;
+		}
 	}
 </script>
 
 <li class:active={isRemoveButtonVisible} use:clickOutside>
 	<article>
-		<button class="saved-city-item-button" onclick={handleItemClick}>
+		<button class="saved-city-item-button"
+		onclick={handleItemClick}
+		disabled={currentRoute === '/me'}
+		>
 			{@render children()}
 		</button>
 		{#if isRemoveButtonVisible}
@@ -74,6 +82,10 @@
 		height: 100%;
 		padding-left: var(--spacing-medium);
 	}
+
+	.saved-city-item-button:disabled {
+        cursor: default;
+    }
 
 	.remove-button {
 		width: var(--spacing-large);

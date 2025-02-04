@@ -12,7 +12,7 @@ export default class MapManager {
 		this.config = {
 			map: {
 				style: '/edited-positron.json',
-				zoom: 0.5,
+				zoom: 1,
 				minZoom: 0,
 				center: [30, 40],
 				canvasContextAttributes: { antialias: true }
