@@ -16,7 +16,7 @@
             That's why I created this website—to make it easy to save and share your travel history.
             It's made for travelers, wanderers, globetrotters, nomads whatever you want to call them.<br><br>
 
-            Have fun using it!<br><br>
+            Enjoy!<br><br>
 
             -H
         </div>

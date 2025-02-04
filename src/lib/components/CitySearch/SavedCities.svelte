@@ -61,7 +61,7 @@
 		// Optional: Copy to clipboard
 		navigator.clipboard.writeText(shareUrl)
 			.then(() => {
-				alert('Share URL copied to clipboard!');
+				alert('Success! Travel history link copied to clipboard.');
 			})
 			.catch(err => {
 				console.error('Failed to copy URL:', err);
