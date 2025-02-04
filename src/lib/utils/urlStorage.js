@@ -5,12 +5,13 @@ import { saveToLocalStorage, generateChecksum } from './storage';
 import { createJsonLoader } from './createJsonLoader';
 
 const staticCityData = createJsonLoader('/cities15000.json', [
-    'id',
-    'name',
-    'countryIso',
-    'timezone',
-    'latitude',
-    'longitude'
+	'id',
+	'name',
+	'countryIso',
+	'timezone',
+	'latitude',
+	'longitude',
+	'stateCode'
 ]);
 
 export async function checkUrlParameter(parameter) {
@@ -75,7 +76,8 @@ function processStaticCities(cities, cityIds) {
                 coordinates: {
                     latitude: city.latitude,
                     longitude: city.longitude
-                }
+                },
+                stateCode: city.stateCode
             };
             filteredCities.push(transformedCity);
         } else {
