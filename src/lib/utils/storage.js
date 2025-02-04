@@ -9,7 +9,8 @@ const staticCityData = createJsonLoader('/cities15000.json', [
 	'countryIso',
 	'timezone',
 	'latitude',
-	'longitude'
+	'longitude',
+	'stateCode'
 ]);
 
 /*
@@ -112,16 +113,16 @@ export const saveToLocalStorage = (key, data) => {
 	}
 };
 
-export async function saveCity({ name, id, countryIso, coordinates, timezone }, options = {}) {
+export async function saveCity({ name, id, countryIso, coordinates, timezone, stateCode }, options = {}) {
 	const { storageKey = DEFAULT_STORAGE_KEY, onSave } = options;
 
 	try {
-		if (onSave) return await onSave({ name, id, countryIso, coordinates, timezone });
+		if (onSave) return await onSave({ name, id, countryIso, coordinates, timezone, stateCode });
 
 		const cities = loadFromLocalStorage(storageKey) || [];
 		if (cities.some((city) => city.id === id)) return false;
 
-		cities.push({ name, id, countryIso, coordinates, timezone });
+		cities.push({ name, id, countryIso, coordinates, timezone, stateCode });
 		return saveToLocalStorage(storageKey, cities);
 	} catch (error) {
 		console.error('Error saving city:', error);

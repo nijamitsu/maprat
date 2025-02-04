@@ -118,7 +118,7 @@
 							{#each citiesInCountry.slice(0, expandedCountries.includes(countryIso) ? undefined : 5) as savedCity (savedCity.id)}
 								<div animate:flip={{ duration: 300 }}>
 									<CityItem {savedCity} removeCityEvent={() => handleRemoveCity(savedCity.id)}>
-										{savedCity.name}
+										{savedCity.name}{savedCity.countryIso === "US" ? `, ${savedCity.stateCode}` : ''}
 									</CityItem>
 								</div>
 							{/each}

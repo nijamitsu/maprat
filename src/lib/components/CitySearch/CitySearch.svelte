@@ -22,7 +22,8 @@
 			coordinates: {
 				latitude: city.latitude,
 				longitude: city.longitude
-			}
+			},
+			stateCode: city.stateCode
 		};
 
 		const success = await saveCity(cityData);
@@ -76,7 +77,7 @@
 					{#if data?.id}
 						<li>
 							<button class="city-item-button" onclick={() => handleSaveCity(data)}>
-								{data.name}
+								{data.name}{data.countryIso === "US" ? `, ${data.stateCode}` : ''}
 								{generateFlagEmoji(data.countryIso)}
 							</button>
 						</li>

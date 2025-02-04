@@ -4,13 +4,9 @@
 <section class="main-wrapper">
     <section class="about-section">
         <div class="about-div">
-            Travel. The act of carrying your body from one place to another.
-            The bearer and the load, the subject and the object, are the same thing.
-            We may have heard those who deeply romanticize travel say things like: <br><br>
-
-            <i>"Travel feels less like a desire for progress that pushes you forward and more like gravity that prevents you from staying.
+            <i>Travel feels less like a desire for progress that pushes you forward and more like gravity that prevents you from staying.
             A call to adventure, to the unknown, and not only to see someone specific or to visit a particular place.
-            An act performed purely for its own sake, serving no other purpose, existing solely for itself, like an essence."</i><br><br>
+            An act performed purely for its own sake, serving no other purpose, existing solely for itself, like an essence.</i><br><br>
 
             I often find myself asking people about the places they've visited around the world, but I rarely get a clear answer.
             That's why I created this website—to make it easy to save and share your travel history.
