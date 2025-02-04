@@ -16,6 +16,8 @@
             That's why I created this website—to make it easy to save and share your travel history.
             It's made for travelers, wanderers, globetrotters, nomads whatever you want to call them.<br><br>
 
+            Have fun using it!<br><br>
+
             -H
         </div>
     </section>    
@@ -25,17 +27,13 @@
 .main-wrapper {
     flex: 1;
     display: flex;
-    align-items: center;
+
 }
 
 .about-section {
     max-width: var(--max-width-container);
     margin: 0 auto;
-    padding: var(--spacing-large) 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    padding: 100px 10px 20px 10px;
 }
 
 .about-div {
