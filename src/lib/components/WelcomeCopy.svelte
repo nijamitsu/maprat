@@ -1,5 +1,5 @@
 <div class="welcome-copy">
-	<h2>Discover how much of <br /> the world you've seen.</h2>
+	<h1>Discover how much of <br /> the world you've seen.</h1>
 </div>
 
 <style>
@@ -7,9 +7,9 @@
 		margin-bottom: var(--spacing-large);
 	}
 
-	.welcome-copy h2 {
+	.welcome-copy h1 {
 		font-size: clamp(1rem, 2vw + 1rem, var(--font-size-large));
 		color: var(--color-primary);
-		font-weight: bold;
+
 	}
 </style>

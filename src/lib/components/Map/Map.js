@@ -18,7 +18,7 @@ export default class MapManager {
 				canvasContextAttributes: { antialias: true }
 			},
 			marker: {
-				scale: 0.6,
+				scale: 0.4,
 				color: '#fc95c5',
 				transparency: 0.1,
 				opacityWhenCovered: 0.01
