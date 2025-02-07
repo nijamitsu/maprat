@@ -3,8 +3,10 @@
 
     <div class="header-text-wrapper">
         <div class="left"><a class="rat-home-link" href="/">Maprat</a></div>
-        <div class="right"><a href="/about">🐀</a></div>
-        
+        <div class="right">
+            <a href="/passport">Passport</a>
+            <a href="/about">🐀</a>
+        </div>
     </div>
     
 </header>
@@ -20,14 +22,26 @@
         z-index: 1000;
     }
 
-    a {
-        text-decoration: none;
-    }
-
 	.header-text-wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
 	}
+
+    .right {
+        display: flex;
+        gap: 20px;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        transition: opacity var(--transition-standard);
+        opacity: 0.8;
+    }
+
+    a:hover {
+        opacity: 1;
+    }
 
 </style>

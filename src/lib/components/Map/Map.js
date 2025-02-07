@@ -8,6 +8,7 @@ export default class MapManager {
 		this.isInitialLoad = true;
 		this.previousCitiesCount = 0;
 		this.geojson_file_path = 'ne_110m_admin_0_countries.json';
+		this.minZoomForMarkers = 4;
 
 		this.config = {
 			map: {
@@ -18,7 +19,7 @@ export default class MapManager {
 				canvasContextAttributes: { antialias: true }
 			},
 			marker: {
-				scale: 0.4,
+				scale: 0.6,
 				color: '#fc95c5',
 				transparency: 0.1,
 				opacityWhenCovered: 0.01
@@ -38,6 +39,10 @@ export default class MapManager {
 			this.map.touchZoomRotate.disableRotation();
 			this.map.touchPitch.disable();
 
+			this.map.on('zoom', () => {
+				this.updateMarkersVisibility();
+			});
+
 			return new Promise((resolve) => {
 				this.map.on('style.load', () => {
 					this.map.setProjection({ type: 'globe' });
@@ -53,6 +58,16 @@ export default class MapManager {
 			console.error('Failed to initialize map:', error);
 			throw error;
 		}
+	}
+
+	updateMarkersVisibility() {
+		if (!this.map) return;
+		
+		const currentZoom = this.map.getZoom();
+		this.markers.forEach(marker => {
+			const markerElement = marker.getElement();
+			markerElement.style.display = currentZoom >= this.minZoomForMarkers ? 'block' : 'none';
+		});
 	}
 
 	savedCitiesUpdated(savedCities) {
@@ -71,12 +86,19 @@ export default class MapManager {
 		this.previousCitiesCount = currentCount;
 		this.updateMarkers(savedCities);
 		this.updateVisitedBorders(savedCities);
+		this.updateMarkersVisibility();
 	}
 
 	createMarker(city) {
-		return new maplibregl.Marker(this.config.marker)
+		const marker = new maplibregl.Marker(this.config.marker)
 			.setLngLat([city.coordinates.longitude, city.coordinates.latitude])
 			.addTo(this.map);
+		
+		// Set initial visibility based on current zoom
+		const markerElement = marker.getElement();
+		markerElement.style.display = this.map.getZoom() >= this.minZoomForMarkers ? 'block' : 'none';
+		
+		return marker;
 	}
 
 	updateMarkers(savedCities) {

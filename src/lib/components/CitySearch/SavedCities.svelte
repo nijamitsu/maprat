@@ -205,7 +205,6 @@
 	}
 
 	.share-travel-history-button:hover {
-		text-decoration: underline;
 		animation-play-state: paused;
 	}
 

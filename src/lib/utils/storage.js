@@ -13,6 +13,11 @@ const staticCityData = createJsonLoader('/cities15000.json', [
 	'stateCode'
 ]);
 
+const staticData = createJsonLoader('/countryInfo.json', [
+	'ISO',
+	'Country'
+]);
+
 /*
  * checks if localStorage tempered in the dev tools
  */
@@ -36,6 +41,12 @@ const isValidChecksum = (data, checksum) => {
 /* */
 
 staticCityData.subscribe(({ data, isLoading, error }) => {
+	if (!isLoading && data && !error && browser) {
+		validateAndCleanStorage();
+	}
+});
+
+staticData.subscribe(({ data, isLoading, error }) => {
 	if (!isLoading && data && !error && browser) {
 		validateAndCleanStorage();
 	}
@@ -225,4 +236,50 @@ function normalizeText(text) {
 		.toLowerCase()
 		.normalize('NFD')
 		.replace(/[\u0300-\u036f]/g, '');
+}
+
+/* dynamic jsonfilter function. consider using this for filterCities too */
+export function filterJsonData(searchTerm, fieldName) {
+    const storeValue = get(staticData);
+    
+    if (!storeValue.data || storeValue.isLoading || storeValue.error) {
+        return [];
+    }
+    
+    if (!searchTerm.trim()) {
+        return [];
+    }
+    
+    const normalizedSearchTerm = normalizeText(searchTerm);
+    
+    const filterLogic = (data) => {
+        const fieldValue = data[fieldName];
+        if (!fieldValue) return false;
+        
+        const normalizedFieldValue = normalizeText(fieldValue);
+        const valueWithoutThe = normalizedFieldValue.replace(/^the\s+/, '');
+        const words = valueWithoutThe.split(' ');
+        
+        return normalizedSearchTerm.length <= 1
+            ? (normalizedFieldValue.startsWith(normalizedSearchTerm) ||
+               valueWithoutThe.startsWith(normalizedSearchTerm))
+            : (normalizedFieldValue.startsWith(normalizedSearchTerm) ||
+               valueWithoutThe.startsWith(normalizedSearchTerm) ||
+               words.some((word) => word.startsWith(normalizedSearchTerm)));
+    };
+    
+    const sortLogic = (a, b) => {
+        const aValue = normalizeText(a[fieldName]);
+        const bValue = normalizeText(b[fieldName]);
+        
+        const aStarts = aValue.startsWith(normalizedSearchTerm);
+        const bStarts = bValue.startsWith(normalizedSearchTerm);
+        
+        if (aStarts && !bStarts) return -1;
+        if (!aStarts && bStarts) return 1;
+        
+        return aValue.localeCompare(bValue);
+    };
+    
+    return storeValue.data.filter(filterLogic).sort(sortLogic).slice(0, 7);
 }
