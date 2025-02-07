@@ -235,7 +235,8 @@ function normalizeText(text) {
 	return text
 		.toLowerCase()
 		.normalize('NFD')
-		.replace(/[\u0300-\u036f]/g, '');
+		.replace(/[\u0300-\u036f]/g, '')
+		.replace(/\./g, '');
 }
 
 /* dynamic jsonfilter function. consider using this for filterCities too */

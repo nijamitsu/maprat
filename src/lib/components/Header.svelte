@@ -2,10 +2,10 @@
 <header>
 
     <div class="header-text-wrapper">
-        <div class="left"><a class="rat-home-link" href="/">Maprat</a></div>
+        <div class="left"><a class="rat-home-link" href="/">Maprat 🐀</a></div>
         <div class="right">
             <a href="/passport">Passport</a>
-            <a href="/about">🐀</a>
+            <a href="/about">About</a>
         </div>
     </div>
     

@@ -24,12 +24,6 @@
     "Population": 96286
   },
   {
-    "ISO": "AI",
-    "Country": "Anguilla",
-    "Area(in sq km)": 102,
-    "Population": 13254
-  },
-  {
     "ISO": "AL",
     "Country": "Albania",
     "Area(in sq km)": 28748,
@@ -58,12 +52,6 @@
     "Country": "Argentina",
     "Area(in sq km)": 2766890,
     "Population": 44494502
-  },
-  {
-    "ISO": "AS",
-    "Country": "American Samoa",
-    "Area(in sq km)": 199,
-    "Population": 55465
   },
   {
     "ISO": "AT",
@@ -142,12 +130,6 @@
     "Country": "Benin",
     "Area(in sq km)": 112620,
     "Population": 11485048
-  },
-  {
-    "ISO": "BM",
-    "Country": "Bermuda",
-    "Area(in sq km)": 53,
-    "Population": 63968
   },
   {
     "ISO": "BN",
@@ -408,22 +390,10 @@
     "Population": 883483
   },
   {
-    "ISO": "FK",
-    "Country": "Falkland Islands",
-    "Area(in sq km)": 12173,
-    "Population": 2638
-  },
-  {
     "ISO": "FM",
     "Country": "Micronesia",
     "Area(in sq km)": 702,
     "Population": 112640
-  },
-  {
-    "ISO": "FO",
-    "Country": "Faroe Islands",
-    "Area(in sq km)": 1399,
-    "Population": 48497
   },
   {
     "ISO": "FR",
@@ -468,18 +438,6 @@
     "Population": 29767108
   },
   {
-    "ISO": "GI",
-    "Country": "Gibraltar",
-    "Area(in sq km)": 6.5,
-    "Population": 33718
-  },
-  {
-    "ISO": "GL",
-    "Country": "Greenland",
-    "Area(in sq km)": 2166086,
-    "Population": 56025
-  },
-  {
     "ISO": "GM",
     "Country": "Gambia",
     "Area(in sq km)": 11300,
@@ -520,12 +478,6 @@
     "Country": "Guatemala",
     "Area(in sq km)": 108890,
     "Population": 17247807
-  },
-  {
-    "ISO": "GU",
-    "Country": "Guam",
-    "Area(in sq km)": 549,
-    "Population": 165768
   },
   {
     "ISO": "GW",
@@ -604,12 +556,6 @@
     "Country": "India",
     "Area(in sq km)": 3287590,
     "Population": 1352617328
-  },
-  {
-    "ISO": "IO",
-    "Country": "British Indian Ocean Territory",
-    "Area(in sq km)": 60,
-    "Population": 4000
   },
   {
     "ISO": "IQ",
@@ -718,12 +664,6 @@
     "Country": "Kuwait",
     "Area(in sq km)": 17820,
     "Population": 4137309
-  },
-  {
-    "ISO": "KY",
-    "Country": "Cayman Islands",
-    "Area(in sq km)": 262,
-    "Population": 64174
   },
   {
     "ISO": "KZ",
@@ -864,12 +804,6 @@
     "Population": 631636
   },
   {
-    "ISO": "MP",
-    "Country": "Northern Mariana Islands",
-    "Area(in sq km)": 477,
-    "Population": 56882
-  },
-  {
     "ISO": "MQ",
     "Country": "Martinique",
     "Area(in sq km)": 1100,
@@ -880,12 +814,6 @@
     "Country": "Mauritania",
     "Area(in sq km)": 1030700,
     "Population": 4403319
-  },
-  {
-    "ISO": "MS",
-    "Country": "Montserrat",
-    "Area(in sq km)": 102,
-    "Population": 9341
   },
   {
     "ISO": "MT",
@@ -1054,12 +982,6 @@
     "Country": "Pitcairn",
     "Area(in sq km)": 47,
     "Population": 46
-  },
-  {
-    "ISO": "PR",
-    "Country": "Puerto Rico",
-    "Area(in sq km)": 9104,
-    "Population": 3195153
   },
   {
     "ISO": "PS",
@@ -1242,12 +1164,6 @@
     "Population": 1136191
   },
   {
-    "ISO": "TC",
-    "Country": "Turks and Caicos Islands",
-    "Area(in sq km)": 430,
-    "Population": 37665
-  },
-  {
     "ISO": "TD",
     "Country": "Chad",
     "Area(in sq km)": 1284000,
@@ -1392,18 +1308,6 @@
     "Population": 28870195
   },
   {
-    "ISO": "VG",
-    "Country": "British Virgin Islands",
-    "Area(in sq km)": 153,
-    "Population": 29802
-  },
-  {
-    "ISO": "VI",
-    "Country": "U.S. Virgin Islands",
-    "Area(in sq km)": 352,
-    "Population": 106977
-  },
-  {
     "ISO": "VN",
     "Country": "Vietnam",
     "Area(in sq km)": 329560,
@@ -1428,12 +1332,6 @@
     "Population": 28498687
   },
   {
-    "ISO": "YT",
-    "Country": "Mayotte",
-    "Area(in sq km)": 374,
-    "Population": 279471
-  },
-  {
     "ISO": "ZA",
     "Country": "South Africa",
     "Area(in sq km)": 1219912,
@@ -1456,11 +1354,5 @@
     "Country": "Serbia and Montenegro",
     "Area(in sq km)": 102350,
     "Population": 10829175
-  },
-  {
-    "ISO": "AN",
-    "Country": "Netherlands Antilles",
-    "Area(in sq km)": 960,
-    "Population": 300000
   }
 ]
