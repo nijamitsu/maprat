@@ -1,6 +1,10 @@
 <script>
 
 </script>
+<svelte:head>
+	<title>About - Maprat</title>
+</svelte:head>
+
 <section class="main-wrapper">
     <section class="about-section">
         <div class="about-div">

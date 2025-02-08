@@ -13,8 +13,8 @@
 </script>
 
 <svelte:head>
-	<title>Maprat: Discover how much of the world you've seen</title>
-	<meta name="description" content="Discover how much of the world you've seen." />
+	<title>Maprat: Track the countries you've visited and share your travel history</title>
+	<meta name="description" content="Track the countries and cities you've visited, share your travel history with friends." />
 
 	<!-- Google Fonts for Josefin Sans and Libre Baskerville -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />

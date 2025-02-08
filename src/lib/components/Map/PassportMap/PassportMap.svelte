@@ -1,7 +1,12 @@
 <script>
+	// Svelte built-ins
 	import { onMount } from 'svelte';
-	import 'maplibre-gl/dist/maplibre-gl.css';
+
+	// Component utilites
 	import MapManager from './PassportMap';
+
+	// External utilites
+	import 'maplibre-gl/dist/maplibre-gl.css';
 
 	let mapContainer;
 	let mapManager = $state();
