@@ -283,3 +283,34 @@ export function filterJsonData(searchTerm, fieldName) {
     
     return storeValue.data.filter(filterLogic).sort(sortLogic).slice(0, 7);
 }
+
+export function getMatchingData(jsonData, options = {}) {
+    if (!jsonData) {
+        throw new Error('JSON data not provided');
+    }
+
+    const { fieldName, matchValue } = options;
+
+    // If no field name is provided, return all data
+    if (!fieldName) {
+        return jsonData;
+    }
+
+    const matchingEntry = jsonData.find(entry => entry[fieldName] === matchValue);
+    if (!matchingEntry) {
+        throw new Error(`No data found for ${fieldName}: ${matchValue}`);
+    }
+
+    // Convert the matching entry into a structured format
+    const resultData = Object.entries(matchingEntry).reduce((acc, [key, value]) => {
+        if (key !== fieldName) {
+            acc[key] = {
+                value,
+                isMatchingField: key === matchValue
+            };
+        }
+        return acc;
+    }, {});
+
+    return resultData;
+}

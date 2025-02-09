@@ -150,7 +150,6 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		margin-top: var(--spacing-xl);
 		gap: var(--spacing-large);
 	}

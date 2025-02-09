@@ -1,69 +1,91 @@
 import maplibregl from 'maplibre-gl';
-
 import { createJsonLoader } from '$lib/utils/createJsonLoader';
+import { getMatchingData } from '$lib/utils/storage';
 
 export default class MapManager {
-	constructor() {
-		this.map = null;
-		this.geojson_file_path = 'ne_110m_admin_0_countries.json';
-		this.countriesGeoJSON = null;
-		this.visaStatusColors = {
-            'passportCountry': '#A020F0',
+    constructor() {
+        this.map = null;
+        this.countriesGeoJSON = null;
+        this.visaMatrixData = null;
+        this.visaStatusColors = {
+            'passportCountry': 'gray', // purple
             'visa free': '#4CAF50',    // green
             'e-visa': '#2196F3',       // blue
             'visa on arrival': '#2196F3',       // blue
-			'eta': '#FFC107', // yellow
+            'eta': '#FFC107', // yellow
             'visa required': 'red', // red
             'number': '#4CAF50',       // green
-			'no admission': 'red', // red
+            'no admission': 'red', // red
             'default': '#000'
         };
 
-		this.config = {
-			map: {
-				style: '/passport-positron.json',
-				zoom: 1,
-				minZoom: 0,
-				maxZoom: 4,
-				center: [30, 40],
-				canvasContextAttributes: { antialias: true }
-			},
-			polygon: {
-				fill_opacity: 0.7
-			}
-		};
-	}
+        this.config = {
+            map: {
+                style: '/passport-positron.json',
+                zoom: 1,
+                minZoom: 0,
+                maxZoom: 4,
+                center: [30, 40],
+                canvasContextAttributes: { antialias: true }
+            },
+            polygon: {
+                fill_opacity: 0.7
+            }
+        };
 
-	async init(mapContainer) {
-		try {
-			this.map = new maplibregl.Map({
-				container: mapContainer,
-				...this.config.map
-			});
+        // Create JSON loaders
+        this.geoJsonLoader = createJsonLoader('ne_110m_admin_0_countries.json');
+        this.visaMatrixLoader = createJsonLoader('passport-index-matrix-iso2.json');
+    }
 
-			this.map.dragRotate.disable();
-			this.map.keyboard.disable();
-			this.map.touchZoomRotate.disableRotation();
-			this.map.touchPitch.disable();
+    async init(mapContainer) {
+        try {
+            this.map = new maplibregl.Map({
+                container: mapContainer,
+                ...this.config.map
+            });
+
+            this.map.dragRotate.disable();
+            this.map.keyboard.disable();
+            this.map.touchZoomRotate.disableRotation();
+            this.map.touchPitch.disable();
 
             this.map.on('style.load', () => {
                 this.map.setProjection({ type: 'globe' });
             });
 
-			// Load GeoJSON data during initialization
-			const response = await fetch(this.geojson_file_path);
-			this.countriesGeoJSON = await response.json();
+            // Subscribe to GeoJSON loader
+            this.geoJsonUnsubscribe = this.geoJsonLoader.subscribe(({ data, error }) => {
+                if (error) {
+                    console.error('Failed to load GeoJSON:', error);
+                    throw error;
+                }
+                if (data) {
+                    this.countriesGeoJSON = data;
+                }
+            });
 
-			return new Promise((resolve) => {
-                this.map.once('load', () => { // beware this once may create problems
+            // Subscribe to visa matrix loader
+            this.visaMatrixUnsubscribe = this.visaMatrixLoader.subscribe(({ data, error }) => {
+                if (error) {
+                    console.error('Failed to load visa matrix:', error);
+                    throw error;
+                }
+                if (data) {
+                    this.visaMatrixData = data;
+                }
+            });
+
+            return new Promise((resolve) => {
+                this.map.once('load', () => {
                     resolve(this.map);
                 });
             });
-		} catch (error) {
-			console.error('Failed to initialize map:', error);
-			throw error;
-		}
-	}
+        } catch (error) {
+            console.error('Failed to initialize map:', error);
+            throw error;
+        }
+    }
 
     getColorForVisaStatus(status, isPassportCountry = false) {
         if (isPassportCountry) {
@@ -75,83 +97,74 @@ export default class MapManager {
         return this.visaStatusColors[status] || this.visaStatusColors.default;
     }
 
-    async loadCountryPolygons(passportIso) {
-        if (!this.map || !passportIso || !this.countriesGeoJSON) {
-            throw new Error('Required parameters missing');
-        }
-
-        try {
-            // Load visa matrix data
-            const visaMatrixLoader = createJsonLoader('passport-index-matrix-iso2.json');
-            const visaMatrixData = await new Promise(resolve => {
-                visaMatrixLoader.subscribe(({ data }) => {
-                    if (data) resolve(data);
-                });
-            });
-
-            // Find the passport entry
-            const passportEntry = visaMatrixData.find(entry => entry.Passport === passportIso);
-            if (!passportEntry) {
-                throw new Error(`No visa data found for passport: ${passportIso}`);
+        async loadCountryPolygons(passportIso) {
+            if (!this.map || !passportIso || !this.countriesGeoJSON) {
+                throw new Error('Required parameters missing');
             }
-
-            // Process each country's visa status
-            Object.entries(passportEntry).forEach(([countryIso, visaStatus]) => {
-                if (countryIso === 'Passport') return; // Skip the Passport field
-
-                const sourceId = `${countryIso}-source`;
-                
-                // Remove existing layers and sources if they exist
-                const layerId = `${countryIso}-layer`;
-                if (this.map.getLayer(layerId)) {
-                    this.map.removeLayer(layerId);
-                }
-                if (this.map.getSource(sourceId)) {
-                    this.map.removeSource(sourceId);
-                }
-
-                // Find the country feature in GeoJSON
-                const countryFeature = this.countriesGeoJSON.features.find(
-                    (feature) => feature.properties.ISO_A2_EH === countryIso
-                );
-
-                if (countryFeature) {
-                    // Determine the fill color
-                    const fillColor = this.getColorForVisaStatus(visaStatus, passportIso === countryIso);
-
-                    // Add source for the country
-                    this.map.addSource(sourceId, {
-                        type: 'geojson',
-                        data: {
-                            type: 'Feature',
-                            geometry: countryFeature.geometry,
-                            properties: {
-                                ...countryFeature.properties,
-                                visaStatus
-                            }
-                        }
-                    });
-
-                    // Add visual layer for the country
-                    this.map.addLayer(
-                        {
-                            id: layerId,
-                            type: 'fill',
-                            source: sourceId,
-                            paint: {
-                                'fill-color': fillColor,
-                                'fill-opacity': this.config.polygon.fill_opacity
-                            }
-                        },
-                        'water' // Render below water layer
+    
+            try {
+                const matchedData = getMatchingData(this.visaMatrixData, {
+                    fieldName: 'Passport',
+                    matchValue: passportIso
+                });
+    
+                // Process each country's visa status
+                Object.entries(matchedData).forEach(([countryIso, data]) => {
+                    const sourceId = `${countryIso}-source`;
+                    const layerId = `${countryIso}-layer`;
+    
+                    // Remove existing layers and sources if they exist
+                    if (this.map.getLayer(layerId)) {
+                        this.map.removeLayer(layerId);
+                    }
+                    if (this.map.getSource(sourceId)) {
+                        this.map.removeSource(sourceId);
+                    }
+    
+                    // Find the country feature in GeoJSON
+                    const countryFeature = this.countriesGeoJSON.features.find(
+                        (feature) => feature.properties.ISO_A2_EH === countryIso
                     );
-                }
-            });
-        } catch (error) {
-            console.error('Error loading country polygons:', error);
-            throw error;
+    
+                    if (countryFeature) {
+                        const fillColor = this.getColorForVisaStatus(
+                            data.value,
+                            countryIso === passportIso
+                        );
+    
+                        // Add source for the country
+                        this.map.addSource(sourceId, {
+                            type: 'geojson',
+                            data: {
+                                type: 'Feature',
+                                geometry: countryFeature.geometry,
+                                properties: {
+                                    ...countryFeature.properties,
+                                    visaStatus: data.value
+                                }
+                            }
+                        });
+    
+                        // Add visual layer for the country
+                        this.map.addLayer(
+                            {
+                                id: layerId,
+                                type: 'fill',
+                                source: sourceId,
+                                paint: {
+                                    'fill-color': fillColor,
+                                    'fill-opacity': this.config.polygon.fill_opacity
+                                }
+                            },
+                            'water'
+                        );
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading country polygons:', error);
+                throw error;
+            }
         }
-    }
 
     removeAllCountryPolygons() {
         const layers = this.map.getStyle().layers;
@@ -171,5 +184,13 @@ export default class MapManager {
             }
         });
     }
-}
 
+    destroy() {
+        if (this.geoJsonUnsubscribe) {
+            this.geoJsonUnsubscribe();
+        }
+        if (this.visaMatrixUnsubscribe) {
+            this.visaMatrixUnsubscribe();
+        }
+    }
+}

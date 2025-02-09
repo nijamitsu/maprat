@@ -5,6 +5,7 @@
 	// Internal components
 	import PassportMap from '$lib/components/Map/PassportMap/PassportMap.svelte';
 	import CountrySearch from '$lib/components/CountrySearch/CountrySearch.svelte';
+	import SelectedCountry from '$lib/components/CountrySearch/SelectedCountry.svelte';
 
 	let isInitialized = $state(false);
 	let selectedCountryIso = $state('');
@@ -22,6 +23,7 @@
 {#if isInitialized}
 	<section class="main-wrapper">
 		<PassportMap {selectedCountryIso} />
+		<div class="divider"></div>
 		<section class="main-container">
 			{#if !selectedCountryIso.length}
 				<div class="welcome-copy">
@@ -30,6 +32,9 @@
 			{/if}
 			<div class="countrysearch-savedcountry">
 				<CountrySearch bind:selectedCountryIso />
+				{#if selectedCountryIso.length}
+					<SelectedCountry {selectedCountryIso} />
+				{/if}
 			</div>
 		</section>
 	</section>
@@ -68,5 +73,11 @@
 		font-size: clamp(1rem, 2vw + 1rem, var(--font-size-large));
 		color: var(--color-primary);
 
+	}
+
+	.divider {
+		width: 100%;
+		height: 1px;
+		background-color: #1f1f20;
 	}
 </style>
