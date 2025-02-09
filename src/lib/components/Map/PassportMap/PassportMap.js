@@ -2,21 +2,30 @@ import maplibregl from 'maplibre-gl';
 import { createJsonLoader } from '$lib/utils/createJsonLoader';
 import { getMatchingData } from '$lib/utils/storage';
 
+const COLORS = {
+    GREEN: '#5bc980',
+    YELLOW: '#e9d875',
+    BLUE: '#559dd6',
+    RED: '#c6335f',
+    GRAY: '#808080',
+    BLACK: '#000000'
+};
+
 export default class MapManager {
     constructor() {
         this.map = null;
         this.countriesGeoJSON = null;
         this.visaMatrixData = null;
         this.visaStatusColors = {
-            'passportCountry': 'gray', // purple
-            'visa free': '#4CAF50',    // green
-            'e-visa': '#2196F3',       // blue
-            'visa on arrival': '#2196F3',       // blue
-            'eta': '#FFC107', // yellow
-            'visa required': 'red', // red
-            'number': '#4CAF50',       // green
-            'no admission': 'red', // red
-            'default': '#000'
+            'passportCountry': COLORS.GRAY,
+            'visa free': COLORS.GREEN,
+            'eta': COLORS.BLUE,
+            'number': COLORS.GREEN,
+            'e-visa': COLORS.YELLOW,
+            'visa on arrival': COLORS.BLUE,
+            'visa required': COLORS.RED,
+            'no admission': COLORS.RED,
+            'default': COLORS.BLACK
         };
 
         this.config = {

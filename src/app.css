@@ -76,10 +76,10 @@ ul {
     --color-light-gray: #f8f9fa;
     --color-hover-gray: #eaeff4;
 
-    --color-green: #4CAF50;
-    --color-blue: #2196F3;
-    --color-yellow: #FFC107;
-    --color-red: red;
+    --color-green: #5bc980;
+    --color-blue: #559dd6;
+    --color-yellow: #e9d875;
+    --color-red: #c6335f;
 
     /* Breakpoints */
     --breakpoint-mobile: 768px;

@@ -19,10 +19,12 @@
         [VISA_REQUIREMENTS.REQUIRED]: 'text-red'
     };
 
-    let { selectedCountryIso } = $props();
+    let { selectedCountryData } = $props();
     let visaMatrixData = $state();
     let matchedData = $state();
     let selectedFilter = $state('all');
+
+    let hasSelectedCountry = $derived(Boolean(selectedCountryData?.ISO));
 
     const visaMatrixLoader = createJsonLoader('passport-index-matrix-iso2.json');
 
@@ -37,10 +39,10 @@
     });
 
     $effect(() => {
-        if (visaMatrixData && selectedCountryIso) {
+        if (visaMatrixData && hasSelectedCountry) {
             matchedData = getMatchingData(visaMatrixData, {
                 fieldName: 'Passport',
-                matchValue: selectedCountryIso
+                matchValue: selectedCountryData.ISO
             });
             selectedFilter = 'all';
         }
@@ -130,7 +132,7 @@ function isVisaMatch(visaValue, filterValue) {
     <div class="selected-country-container">
         <header>
             <h2 class="selected-country-title">
-                {selectedCountryIso} {generateFlagEmoji(selectedCountryIso)}
+                {selectedCountryData.Country} {generateFlagEmoji(selectedCountryData.ISO)}
             </h2>
         </header>
         <div class="selected-country-body">
@@ -150,7 +152,7 @@ function isVisaMatch(visaValue, filterValue) {
                 {#each Object.entries(matchedData) as [countryIso, data]}
                     {#if data.value !== -1 && isVisaMatch(data.value, selectedFilter)}
                         <div class="visa-row">
-                            <div class="country-code">{countryIso} {generateFlagEmoji(countryIso)}</div>
+                            <div class="country-name">{countryIso} {generateFlagEmoji(countryIso)}</div>
                             <div class="visa-requirement {getVisaRequirementColorClass(data.value)}">
                                 {getVisaText(data.value)}
                             </div>
@@ -271,7 +273,7 @@ function isVisaMatch(visaValue, filterValue) {
         padding: var(--spacing-medium);
     }
 
-    .country-code {
+    .country-name {
         text-align: left;
     }
 

@@ -291,7 +291,6 @@ export function getMatchingData(jsonData, options = {}) {
 
     const { fieldName, matchValue } = options;
 
-    // If no field name is provided, return all data
     if (!fieldName) {
         return jsonData;
     }
@@ -301,13 +300,9 @@ export function getMatchingData(jsonData, options = {}) {
         throw new Error(`No data found for ${fieldName}: ${matchValue}`);
     }
 
-    // Convert the matching entry into a structured format
     const resultData = Object.entries(matchingEntry).reduce((acc, [key, value]) => {
         if (key !== fieldName) {
-            acc[key] = {
-                value,
-                isMatchingField: key === matchValue
-            };
+            acc[key] = { value };
         }
         return acc;
     }, {});

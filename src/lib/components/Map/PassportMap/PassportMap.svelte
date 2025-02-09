@@ -12,7 +12,7 @@
 	let mapManager = $state();
 	let projectionType = $state('globe');
 
-	let { selectedCountryIso } = $props();
+	let { selectedCountryData } = $props();
 
 	function toggleProjection() {
 		projectionType = projectionType === 'globe' ? 'mercator' : 'globe';
@@ -22,9 +22,9 @@
 	}
 
 	$effect(() => {
-		if (mapManager && mapManager.map && selectedCountryIso) {
+		if (mapManager && mapManager.map && selectedCountryData.ISO) {
 			mapManager.removeAllCountryPolygons();
-			mapManager.loadCountryPolygons(selectedCountryIso);
+			mapManager.loadCountryPolygons(selectedCountryData.ISO);
 		}
 	});
 

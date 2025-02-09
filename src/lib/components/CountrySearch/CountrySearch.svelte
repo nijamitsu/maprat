@@ -7,7 +7,7 @@
 	// Internal elements
 	import SearchIcon from '$lib/elements/SearchIcon.svelte';
 
-	let { selectedCountryIso = $bindable() } = $props();
+	let { selectedCountryData = $bindable() } = $props();
 	let searchTerm = $state('');
 
 	function handleClose() {
@@ -15,7 +15,7 @@
 	}
 
 	async function handleCountrySelect(data) {
-		selectedCountryIso = data.ISO;
+		selectedCountryData = data
 		searchTerm = '';
 	}
 
