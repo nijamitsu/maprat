@@ -283,8 +283,10 @@ function sortCountries(countryEntries) {
         width: 100%;
         border: none;
         outline: none;
+        margin: 0;
         background-color: var(--color-gray);
         padding: var(--spacing-small) var(--spacing-medium) var(--spacing-small) var(--spacing-medium);
+        border-radius: 0;
         border-top-left-radius: var(--border-radius-medium);
         border-top-right-radius: var(--border-radius-medium);
         font-size: var(--font-size-small);
@@ -307,6 +309,7 @@ function sortCountries(countryEntries) {
     .color-legend-wrapper button {
         height: 30px;
         width: 25%;
+        margin: 0;
         border: none;
         display: flex;
         align-items: center;
