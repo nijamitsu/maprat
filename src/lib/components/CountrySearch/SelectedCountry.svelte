@@ -24,6 +24,7 @@
     let matchedData = $state();
     let selectedFilter = $state('all');
     let countryInfoData = $state({});
+    let countryFilterText = $state('');
 
     let hasSelectedCountry = $derived(Boolean(selectedCountryData?.ISO));
 
@@ -138,6 +139,51 @@ function isVisaMatch(visaValue, filterValue) {
             return false;
     }
 }
+
+let normalizedFilterText = $derived(normalizeText(countryFilterText));
+
+function isCountryMatch(countryIso) {
+    if (!countryFilterText) return true;
+    
+    const countryName = countryInfoData[countryIso] || '';
+    const normalizedCountryName = normalizeText(countryName);
+    const nameWithoutThe = normalizedCountryName.replace(/^the\s+/, '');
+    const words = nameWithoutThe.split(' ');
+    
+    return normalizedFilterText.length <= 1
+        ? (normalizedCountryName.startsWith(normalizedFilterText) ||
+           nameWithoutThe.startsWith(normalizedFilterText))
+        : (normalizedCountryName.startsWith(normalizedFilterText) ||
+           nameWithoutThe.startsWith(normalizedFilterText) ||
+           words.some((word) => word.startsWith(normalizedFilterText)));
+}
+
+function sortCountries(countryEntries) {
+    return countryEntries.sort(([isoA, _a], [isoB, _b]) => {
+        const aName = normalizeText(countryInfoData[isoA] || '');
+        const bName = normalizeText(countryInfoData[isoB] || '');
+        
+        const aStarts = aName.startsWith(normalizedFilterText);
+        const bStarts = bName.startsWith(normalizedFilterText);
+        
+        if (aStarts && !bStarts) return -1;
+        if (!aStarts && bStarts) return 1;
+        
+        return aName.localeCompare(bName);
+    });
+}
+
+    // Handle filter input changes
+    function handleFilterInput(event) {
+        countryFilterText = event.target.value;
+    }
+
+    function normalizeText(text) {
+        return text
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+    }
 </script>
 
 <div class="selected-country-wrapper">
@@ -150,24 +196,43 @@ function isVisaMatch(visaValue, filterValue) {
                 Population: {selectedCountryData.Population.toLocaleString()}
             </div>
         </header>
-        <div class="color-legend-wrapper">
-            {#each ['green', 'blue', 'yellow', 'red'] as color, i}
-                <button 
-                    class="bg-{color} {selectedFilter === ['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i] ? 'selected' : ''}"
-                    value={['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i]}
-                    onclick={() => handleFilterClick(['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i])}
-                >
-                    {[green, blue, yellow, red][i]}
-                </button>
-            {/each}
+
+
+
+        <div class="visa-country-filter">
+            <input
+                type="search"
+                class="visa-country-filter-input"
+                placeholder="Filter countries"
+                autocorrect="off"
+                autocapitalize="off"
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Filter countries"
+                oninput={handleFilterInput}
+            >
+
+            <div class="color-legend-wrapper">
+                {#each ['green', 'blue', 'yellow', 'red'] as color, i}
+                    <button 
+                        class="bg-{color} {selectedFilter === ['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i] ? 'selected' : ''}"
+                        value={['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i]}
+                        onclick={() => handleFilterClick(['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i])}
+                    >
+                        {[green, blue, yellow, red][i]}
+                    </button>
+                {/each}
+            </div>
         </div>
+
+
+
+
         <div class="selected-country-body">
-
-
                 <div class="country-visa-info">
                     {#if matchedData}
-                        {#each Object.entries(matchedData) as [countryIso, data]}
-                            {#if data.value !== -1 && isVisaMatch(data.value, selectedFilter)}
+                        {#each sortCountries(Object.entries(matchedData)) as [countryIso, data]}
+                            {#if data.value !== -1 && isVisaMatch(data.value, selectedFilter) && isCountryMatch(countryIso)}
                                 <div class="visa-row">
                                     <div class="country-name">
                                         {countryInfoData[countryIso]} {generateFlagEmoji(countryIso)}
@@ -201,14 +266,28 @@ function isVisaMatch(visaValue, filterValue) {
 
     header {
         background-color: #303134;
-        border-top-right-radius: var(--border-radius-medium);
-        border-top-left-radius: var(--border-radius-medium);
+        border-radius: var(--border-radius-medium);
         text-align: left;
         padding: var(--spacing-medium);
     }
 
     h2 {
         font-size: 1.2rem;
+    }
+
+    .visa-country-filter {
+        margin-top: var(--spacing-large);
+    }
+
+    .visa-country-filter-input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background-color: var(--color-gray);
+        padding: var(--spacing-small) var(--spacing-medium) var(--spacing-small) var(--spacing-medium);
+        border-top-left-radius: var(--border-radius-medium);
+        border-top-right-radius: var(--border-radius-medium);
+        font-size: var(--font-size-small);
     }
 
     .selected-country-body {
@@ -314,4 +393,9 @@ function isVisaMatch(visaValue, filterValue) {
         transition: transform var(--transition-standard);
         z-index: 1000 !important;
     }
+
+    .visa-country-filter-input::-webkit-search-cancel-button {
+		-webkit-appearance: none;
+		appearance: none;
+	}
 </style>
