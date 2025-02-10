@@ -253,7 +253,6 @@ function sortCountries(countryEntries) {
 
 <style>
     .selected-country-wrapper {
-		position: relative;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
@@ -301,13 +300,14 @@ function sortCountries(countryEntries) {
 
     .color-legend-wrapper {
         width: 100%;
+        height: 35px;
         display: flex;
         flex: 1;
         align-items: center;
     }
 
     .color-legend-wrapper button {
-        height: 30px;
+        height: 100%;
         width: 25%;
         margin: 0;
         border: none;
@@ -317,6 +317,7 @@ function sortCountries(countryEntries) {
         padding: 0;
         opacity: 0.95;
         transition: transform var(--transition-standard);
+        font-size: var(--font-size-small);
     }
 
     .color-legend-wrapper button:first-child {
