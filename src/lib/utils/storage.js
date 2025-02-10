@@ -15,7 +15,8 @@ const staticCityData = createJsonLoader('/cities15000.json', [
 
 const staticData = createJsonLoader('/countryInfo.json', [
 	'ISO',
-	'Country'
+	'Country',
+	'Population'
 ]);
 
 /*

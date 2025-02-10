@@ -10,9 +10,7 @@
 	let isInitialized = $state(false);
 	let selectedCountryData = $state({});
 
-	let hasSelectedCountry = $derived(Boolean(selectedCountryData?.ISO));
-
-	$inspect(selectedCountryData);		
+	let hasSelectedCountry = $derived(Boolean(selectedCountryData?.ISO));	
 
 	onMount(async () => {
 		isInitialized = true;

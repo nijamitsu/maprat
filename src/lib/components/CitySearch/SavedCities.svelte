@@ -171,7 +171,6 @@
 
 	/* 2. Typography & Text Styles */
 	.saved-cities-wrapper h3 {
-		font-weight: bold;
 		font-size: 1.2rem;
 	}
 

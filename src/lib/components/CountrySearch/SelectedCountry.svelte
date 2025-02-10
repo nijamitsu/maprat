@@ -23,10 +23,12 @@
     let visaMatrixData = $state();
     let matchedData = $state();
     let selectedFilter = $state('all');
+    let countryInfoData = $state({});
 
     let hasSelectedCountry = $derived(Boolean(selectedCountryData?.ISO));
 
     const visaMatrixLoader = createJsonLoader('passport-index-matrix-iso2.json');
+    const countryInfoLoader = createJsonLoader('countryInfo.json');
 
     visaMatrixLoader.subscribe(({ data, error }) => {
         if (error) {
@@ -35,6 +37,20 @@
         }
         if (data) {
             visaMatrixData = data;
+        }
+    });
+
+    countryInfoLoader.subscribe(({ data, error }) => {
+        if (error) {
+            console.error('Failed to load country info:', error);
+            throw error;
+        }
+        if (data) {
+            // Create a mapping of ISO codes to country names
+            countryInfoData = data.reduce((acc, country) => {
+                acc[country.ISO] = country.Country;
+                return acc;
+            }, {});
         }
     });
 
@@ -78,16 +94,12 @@
             .length
     );
 
-
-
     function getVisaRequirementColorClass(value) {
         if (typeof value === 'number' && value >= 7 && value <= 360) {
             return visaColorMap["visa free"];
         }
         return visaColorMap[value] || '';
     }
-
-
 
     function getVisaText(value) {
         if (value === VISA_REQUIREMENTS.FREE || (Number.isFinite(value) && value >= 7 && value <= 360)) {
@@ -134,33 +146,41 @@ function isVisaMatch(visaValue, filterValue) {
             <h2 class="selected-country-title">
                 {selectedCountryData.Country} {generateFlagEmoji(selectedCountryData.ISO)}
             </h2>
+            <div>
+                Population: {selectedCountryData.Population.toLocaleString()}
+            </div>
         </header>
+        <div class="color-legend-wrapper">
+            {#each ['green', 'blue', 'yellow', 'red'] as color, i}
+                <button 
+                    class="bg-{color} {selectedFilter === ['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i] ? 'selected' : ''}"
+                    value={['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i]}
+                    onclick={() => handleFilterClick(['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i])}
+                >
+                    {[green, blue, yellow, red][i]}
+                </button>
+            {/each}
+        </div>
         <div class="selected-country-body">
-            <div class="color-legend-wrapper">
-                {#each ['green', 'blue', 'yellow', 'red'] as color, i}
-                    <button 
-                        class="bg-{color} {selectedFilter === ['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i] ? 'selected' : ''}"
-                        value={['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i]}
-                        onclick={() => handleFilterClick(['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i])}
-                    >
-                        {[green, blue, yellow, red][i]}
-                    </button>
-                {/each}
-            </div>
-            <div class="country-visa-info">
-                {#if matchedData}
-                {#each Object.entries(matchedData) as [countryIso, data]}
-                    {#if data.value !== -1 && isVisaMatch(data.value, selectedFilter)}
-                        <div class="visa-row">
-                            <div class="country-name">{countryIso} {generateFlagEmoji(countryIso)}</div>
-                            <div class="visa-requirement {getVisaRequirementColorClass(data.value)}">
-                                {getVisaText(data.value)}
-                            </div>
-                        </div>
+
+
+                <div class="country-visa-info">
+                    {#if matchedData}
+                        {#each Object.entries(matchedData) as [countryIso, data]}
+                            {#if data.value !== -1 && isVisaMatch(data.value, selectedFilter)}
+                                <div class="visa-row">
+                                    <div class="country-name">
+                                        {countryInfoData[countryIso]} {generateFlagEmoji(countryIso)}
+                                    </div>
+                                    <div class="visa-requirement {getVisaRequirementColorClass(data.value)}">
+                                        {getVisaText(data.value)}
+                                    </div>
+                                </div>
+                            {/if}
+                        {/each}
                     {/if}
-                {/each}
-            {/if}
-            </div>
+                </div>
+
         </div>
     </div>
     
@@ -180,10 +200,19 @@ function isVisaMatch(visaValue, filterValue) {
 	}
 
     header {
+        background-color: #303134;
+        border-top-right-radius: var(--border-radius-medium);
+        border-top-left-radius: var(--border-radius-medium);
         text-align: left;
+        padding: var(--spacing-medium);
+    }
+
+    h2 {
+        font-size: 1.2rem;
     }
 
     .selected-country-body {
+        margin-top: var(--spacing-medium);
         display: flex;
         flex-direction: column;
         gap: var(--spacing-large);
@@ -209,12 +238,10 @@ function isVisaMatch(visaValue, filterValue) {
     }
 
     .color-legend-wrapper button:first-child {
-        border-top-left-radius: var(--border-radius-medium);
         border-bottom-left-radius: var(--border-radius-medium);
     }
 
     .color-legend-wrapper button:last-child {
-        border-top-right-radius: var(--border-radius-medium);
         border-bottom-right-radius: var(--border-radius-medium);
     }
 
@@ -283,7 +310,7 @@ function isVisaMatch(visaValue, filterValue) {
 
     .selected {
         opacity: 1 !important;
-        transform: scale(1.05);
+        transform: scale(1.1);
         transition: transform var(--transition-standard);
         z-index: 1000 !important;
     }
