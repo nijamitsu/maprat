@@ -51,7 +51,7 @@
 	.citysearch-savedcities-wrapper {
 		max-width: var(--max-width-container);
 		margin: 0 auto;
-		margin-top: 2rem;
+		margin-top: var(--spacing-large);
 		padding: 0 20px;
 		display: flex;
 		flex-direction: column;

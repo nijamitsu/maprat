@@ -28,6 +28,30 @@
 
     let hasSelectedCountry = $derived(Boolean(selectedCountryData?.ISO));
 
+    function isVisaMatch(value, filter) {
+        if (filter === 'all') return true;
+        
+        if (filter === 'visa free') {
+            return value === VISA_REQUIREMENTS.FREE || 
+                   (typeof value === 'number' && value >= 7 && value <= 360);
+        }
+        
+        if (filter === 'visa on arrival & e-visa') {
+            return value === VISA_REQUIREMENTS.ON_ARRIVAL || 
+                   value === VISA_REQUIREMENTS.ETA;
+        }
+        
+        if (filter === 'eta') {
+            return value === VISA_REQUIREMENTS.E_VISA;
+        }
+        
+        if (filter === 'visa required') {
+            return value === VISA_REQUIREMENTS.REQUIRED;
+        }
+        
+        return false;
+    }
+
     const visaMatrixLoader = createJsonLoader('passport-index-matrix-iso2.json');
     const countryInfoLoader = createJsonLoader('countryInfo.json');
 
@@ -118,60 +142,38 @@
         return '';
     }
 
-function handleFilterClick(value) {
-    selectedFilter = selectedFilter === value ? 'all' : value;
-}
+    let normalizedFilterText = $derived(normalizeText(countryFilterText));
 
-function isVisaMatch(visaValue, filterValue) {
-    if (filterValue === 'all') return true;
-    
-    switch(filterValue) {
-        case 'visa free':
-            return visaValue === 'visa free' || 
-                   (Number.isFinite(visaValue) && visaValue >= 7 && visaValue <= 360);
-        case 'visa on arrival & e-visa':
-            return visaValue === 'visa on arrival' || visaValue === 'eta';
-        case 'eta':
-            return visaValue === 'e-visa';
-        case 'visa required':
-            return visaValue === 'visa required';
-        default:
-            return false;
+    function isCountryMatch(countryIso) {
+        if (!countryFilterText) return true;
+        
+        const countryName = countryInfoData[countryIso] || '';
+        const normalizedCountryName = normalizeText(countryName);
+        const nameWithoutThe = normalizedCountryName.replace(/^the\s+/, '');
+        const words = nameWithoutThe.split(' ');
+        
+        return normalizedFilterText.length <= 1
+            ? (normalizedCountryName.startsWith(normalizedFilterText) ||
+            nameWithoutThe.startsWith(normalizedFilterText))
+            : (normalizedCountryName.startsWith(normalizedFilterText) ||
+            nameWithoutThe.startsWith(normalizedFilterText) ||
+            words.some((word) => word.startsWith(normalizedFilterText)));
     }
-}
 
-let normalizedFilterText = $derived(normalizeText(countryFilterText));
-
-function isCountryMatch(countryIso) {
-    if (!countryFilterText) return true;
-    
-    const countryName = countryInfoData[countryIso] || '';
-    const normalizedCountryName = normalizeText(countryName);
-    const nameWithoutThe = normalizedCountryName.replace(/^the\s+/, '');
-    const words = nameWithoutThe.split(' ');
-    
-    return normalizedFilterText.length <= 1
-        ? (normalizedCountryName.startsWith(normalizedFilterText) ||
-           nameWithoutThe.startsWith(normalizedFilterText))
-        : (normalizedCountryName.startsWith(normalizedFilterText) ||
-           nameWithoutThe.startsWith(normalizedFilterText) ||
-           words.some((word) => word.startsWith(normalizedFilterText)));
-}
-
-function sortCountries(countryEntries) {
-    return countryEntries.sort(([isoA, _a], [isoB, _b]) => {
-        const aName = normalizeText(countryInfoData[isoA] || '');
-        const bName = normalizeText(countryInfoData[isoB] || '');
-        
-        const aStarts = aName.startsWith(normalizedFilterText);
-        const bStarts = bName.startsWith(normalizedFilterText);
-        
-        if (aStarts && !bStarts) return -1;
-        if (!aStarts && bStarts) return 1;
-        
-        return aName.localeCompare(bName);
-    });
-}
+    function sortCountries(countryEntries) {
+        return countryEntries.sort(([isoA, _a], [isoB, _b]) => {
+            const aName = normalizeText(countryInfoData[isoA] || '');
+            const bName = normalizeText(countryInfoData[isoB] || '');
+            
+            const aStarts = aName.startsWith(normalizedFilterText);
+            const bStarts = bName.startsWith(normalizedFilterText);
+            
+            if (aStarts && !bStarts) return -1;
+            if (!aStarts && bStarts) return 1;
+            
+            return aName.localeCompare(bName);
+        });
+    }
 
     // Handle filter input changes
     function handleFilterInput(event) {
@@ -184,6 +186,17 @@ function sortCountries(countryEntries) {
             .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '');
     }
+
+  const filterOptions = [
+    { color: 'green', value: 'visa free', label: 'visa free' },
+    { color: 'blue', value: 'visa on arrival & e-visa', label: 'visa on arrival & e-visa' },
+    { color: 'yellow', value: 'eta', label: 'eta' },
+    { color: 'red', value: 'visa required', label: 'visa required' }
+  ];
+
+  function handleFilterClick(value) {
+    selectedFilter = selectedFilter === value ? 'all' : value;
+  }
 </script>
 
 <div class="selected-country-wrapper">
@@ -194,6 +207,9 @@ function sortCountries(countryEntries) {
             </h2>
             <div>
                 Population: {selectedCountryData.Population.toLocaleString()}
+            </div>
+            <div>
+                Currency: {selectedCountryData.CurrencyName}
             </div>
         </header>
 
@@ -213,15 +229,15 @@ function sortCountries(countryEntries) {
             >
 
             <div class="color-legend-wrapper">
-                {#each ['green', 'blue', 'yellow', 'red'] as color, i}
-                    <button 
-                        class="bg-{color} {selectedFilter === ['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i] ? 'selected' : ''}"
-                        value={['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i]}
-                        onclick={() => handleFilterClick(['visa free', 'visa on arrival & e-visa', 'eta', 'visa required'][i])}
-                    >
-                        {[green, blue, yellow, red][i]}
-                    </button>
-                {/each}
+              {#each filterOptions as option, i}
+                <button
+                  class="bg-{option.color} {selectedFilter === option.value ? 'selected' : ''}"
+                  value={option.value}
+                  onclick={() => handleFilterClick(option.value)}
+                >
+                  {[green, blue, yellow, red][i]}
+                </button>
+              {/each}
             </div>
         </div>
 
@@ -256,7 +272,7 @@ function sortCountries(countryEntries) {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		margin-top: var(--spacing-xl);
+		margin-top: var(--spacing-large);
 	}
 
     .selected-country-container {

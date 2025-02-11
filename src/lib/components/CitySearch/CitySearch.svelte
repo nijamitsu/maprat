@@ -171,6 +171,7 @@
 		align-items: center;
 		transition: transform var(--transition-standard);
 		color: var(--color-primary);
+		text-align: left;
 	}
 
 	:global(.city-item-button.highlighted) {

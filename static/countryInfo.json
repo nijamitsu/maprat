@@ -1,1352 +1,2462 @@
 [
   {
     "ISO": "AD",
+    "ISO3": "AND",
     "Country": "Andorra",
+    "Capital": "Andorra la Vella",
     "Area(in sq km)": 468,
-    "Population": 77006
+    "Population": 77006,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "ca"
   },
   {
     "ISO": "AE",
+    "ISO3": "ARE",
     "Country": "United Arab Emirates",
+    "Capital": "Abu Dhabi",
     "Area(in sq km)": 82880,
-    "Population": 9630959
+    "Population": 9630959,
+    "Continent": "AS",
+    "CurrencyCode": "AED",
+    "CurrencyName": "Dirham",
+    "Languages": "ar-AE,fa,en,hi,ur"
   },
   {
     "ISO": "AF",
+    "ISO3": "AFG",
     "Country": "Afghanistan",
+    "Capital": "Kabul",
     "Area(in sq km)": 647500,
-    "Population": 37172386
+    "Population": 37172386,
+    "Continent": "AS",
+    "CurrencyCode": "AFN",
+    "CurrencyName": "Afghani",
+    "Languages": "fa-AF,ps,uz-AF,tk"
   },
   {
     "ISO": "AG",
+    "ISO3": "ATG",
     "Country": "Antigua and Barbuda",
+    "Capital": "St. John's",
     "Area(in sq km)": 443,
-    "Population": 96286
+    "Population": 96286,
+    "Continent": "NA",
+    "CurrencyCode": "XCD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-AG"
   },
   {
     "ISO": "AL",
+    "ISO3": "ALB",
     "Country": "Albania",
+    "Capital": "Tirana",
     "Area(in sq km)": 28748,
-    "Population": 2866376
+    "Population": 2866376,
+    "Continent": "EU",
+    "CurrencyCode": "ALL",
+    "CurrencyName": "Lek",
+    "Languages": "sq,el"
   },
   {
     "ISO": "AM",
+    "ISO3": "ARM",
     "Country": "Armenia",
+    "Capital": "Yerevan",
     "Area(in sq km)": 29800,
-    "Population": 2991200
+    "Population": 2991200,
+    "Continent": "AS",
+    "CurrencyCode": "AMD",
+    "CurrencyName": "Dram",
+    "Languages": "hy"
   },
   {
     "ISO": "AO",
+    "ISO3": "AGO",
     "Country": "Angola",
+    "Capital": "Luanda",
     "Area(in sq km)": 1246700,
-    "Population": 30809762
+    "Population": 30809762,
+    "Continent": "AF",
+    "CurrencyCode": "AOA",
+    "CurrencyName": "Kwanza",
+    "Languages": "pt-AO"
   },
   {
     "ISO": "AQ",
+    "ISO3": "ATA",
     "Country": "Antarctica",
+    "Capital": "",
     "Area(in sq km)": 14000000,
-    "Population": 0
+    "Population": 0,
+    "Continent": "AN",
+    "CurrencyCode": "",
+    "CurrencyName": "",
+    "Languages": ""
   },
   {
     "ISO": "AR",
+    "ISO3": "ARG",
     "Country": "Argentina",
+    "Capital": "Buenos Aires",
     "Area(in sq km)": 2766890,
-    "Population": 44494502
+    "Population": 44494502,
+    "Continent": "SA",
+    "CurrencyCode": "ARS",
+    "CurrencyName": "Peso",
+    "Languages": "es-AR,en,it,de,fr,gn"
   },
   {
     "ISO": "AT",
+    "ISO3": "AUT",
     "Country": "Austria",
+    "Capital": "Vienna",
     "Area(in sq km)": 83858,
-    "Population": 8847037
+    "Population": 8847037,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "de-AT,hr,hu,sl"
   },
   {
     "ISO": "AU",
+    "ISO3": "AUS",
     "Country": "Australia",
+    "Capital": "Canberra",
     "Area(in sq km)": 7686850,
-    "Population": 24992369
-  },
-  {
-    "ISO": "AW",
-    "Country": "Aruba",
-    "Area(in sq km)": 193,
-    "Population": 105845
+    "Population": 24992369,
+    "Continent": "OC",
+    "CurrencyCode": "AUD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-AU"
   },
   {
     "ISO": "AZ",
+    "ISO3": "AZE",
     "Country": "Azerbaijan",
+    "Capital": "Baku",
     "Area(in sq km)": 86600,
-    "Population": 9942334
+    "Population": 9942334,
+    "Continent": "AS",
+    "CurrencyCode": "AZN",
+    "CurrencyName": "Manat",
+    "Languages": "az,ru,hy"
   },
   {
     "ISO": "BA",
+    "ISO3": "BIH",
     "Country": "Bosnia and Herzegovina",
+    "Capital": "Sarajevo",
     "Area(in sq km)": 51129,
-    "Population": 3323929
+    "Population": 3323929,
+    "Continent": "EU",
+    "CurrencyCode": "BAM",
+    "CurrencyName": "Marka",
+    "Languages": "bs,hr-BA,sr-BA"
   },
   {
     "ISO": "BB",
+    "ISO3": "BRB",
     "Country": "Barbados",
+    "Capital": "Bridgetown",
     "Area(in sq km)": 431,
-    "Population": 286641
+    "Population": 286641,
+    "Continent": "NA",
+    "CurrencyCode": "BBD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-BB"
   },
   {
     "ISO": "BD",
+    "ISO3": "BGD",
     "Country": "Bangladesh",
+    "Capital": "Dhaka",
     "Area(in sq km)": 144000,
-    "Population": 161356039
+    "Population": 161356039,
+    "Continent": "AS",
+    "CurrencyCode": "BDT",
+    "CurrencyName": "Taka",
+    "Languages": "bn-BD,en"
   },
   {
     "ISO": "BE",
+    "ISO3": "BEL",
     "Country": "Belgium",
+    "Capital": "Brussels",
     "Area(in sq km)": 30510,
-    "Population": 11422068
+    "Population": 11422068,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "nl-BE,fr-BE,de-BE"
   },
   {
     "ISO": "BF",
+    "ISO3": "BFA",
     "Country": "Burkina Faso",
+    "Capital": "Ouagadougou",
     "Area(in sq km)": 274200,
-    "Population": 19751535
+    "Population": 19751535,
+    "Continent": "AF",
+    "CurrencyCode": "XOF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-BF,mos"
   },
   {
     "ISO": "BG",
+    "ISO3": "BGR",
     "Country": "Bulgaria",
+    "Capital": "Sofia",
     "Area(in sq km)": 110910,
-    "Population": 7000039
+    "Population": 7000039,
+    "Continent": "EU",
+    "CurrencyCode": "BGN",
+    "CurrencyName": "Lev",
+    "Languages": "bg,tr-BG,rom"
   },
   {
     "ISO": "BH",
+    "ISO3": "BHR",
     "Country": "Bahrain",
+    "Capital": "Manama",
     "Area(in sq km)": 665,
-    "Population": 1569439
+    "Population": 1569439,
+    "Continent": "AS",
+    "CurrencyCode": "BHD",
+    "CurrencyName": "Dinar",
+    "Languages": "ar-BH,en,fa,ur"
   },
   {
     "ISO": "BI",
+    "ISO3": "BDI",
     "Country": "Burundi",
+    "Capital": "Gitega",
     "Area(in sq km)": 27830,
-    "Population": 11175378
+    "Population": 11175378,
+    "Continent": "AF",
+    "CurrencyCode": "BIF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-BI,rn"
   },
   {
     "ISO": "BJ",
+    "ISO3": "BEN",
     "Country": "Benin",
+    "Capital": "Porto-Novo",
     "Area(in sq km)": 112620,
-    "Population": 11485048
+    "Population": 11485048,
+    "Continent": "AF",
+    "CurrencyCode": "XOF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-BJ"
   },
   {
     "ISO": "BN",
+    "ISO3": "BRN",
     "Country": "Brunei",
+    "Capital": "Bandar Seri Begawan",
     "Area(in sq km)": 5770,
-    "Population": 428962
+    "Population": 428962,
+    "Continent": "AS",
+    "CurrencyCode": "BND",
+    "CurrencyName": "Dollar",
+    "Languages": "ms-BN,en-BN"
   },
   {
     "ISO": "BO",
+    "ISO3": "BOL",
     "Country": "Bolivia",
+    "Capital": "Sucre",
     "Area(in sq km)": 1098580,
-    "Population": 11353142
-  },
-  {
-    "ISO": "BQ",
-    "Country": "Bonaire, Saint Eustatius and Saba",
-    "Area(in sq km)": 328,
-    "Population": 18012
+    "Population": 11353142,
+    "Continent": "SA",
+    "CurrencyCode": "BOB",
+    "CurrencyName": "Boliviano",
+    "Languages": "es-BO,qu,ay"
   },
   {
     "ISO": "BR",
+    "ISO3": "BRA",
     "Country": "Brazil",
+    "Capital": "Brasilia",
     "Area(in sq km)": 8511965,
-    "Population": 209469333
+    "Population": 209469333,
+    "Continent": "SA",
+    "CurrencyCode": "BRL",
+    "CurrencyName": "Real",
+    "Languages": "pt-BR,es,en,fr"
   },
   {
     "ISO": "BS",
+    "ISO3": "BHS",
     "Country": "Bahamas",
+    "Capital": "Nassau",
     "Area(in sq km)": 13940,
-    "Population": 385640
+    "Population": 385640,
+    "Continent": "NA",
+    "CurrencyCode": "BSD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-BS"
   },
   {
     "ISO": "BT",
+    "ISO3": "BTN",
     "Country": "Bhutan",
+    "Capital": "Thimphu",
     "Area(in sq km)": 47000,
-    "Population": 754394
+    "Population": 754394,
+    "Continent": "AS",
+    "CurrencyCode": "BTN",
+    "CurrencyName": "Ngultrum",
+    "Languages": "dz"
   },
   {
     "ISO": "BV",
+    "ISO3": "BVT",
     "Country": "Bouvet Island",
+    "Capital": "",
     "Area(in sq km)": 49,
-    "Population": 0
+    "Population": 0,
+    "Continent": "AN",
+    "CurrencyCode": "NOK",
+    "CurrencyName": "Krone",
+    "Languages": ""
   },
   {
     "ISO": "BW",
+    "ISO3": "BWA",
     "Country": "Botswana",
+    "Capital": "Gaborone",
     "Area(in sq km)": 600370,
-    "Population": 2254126
+    "Population": 2254126,
+    "Continent": "AF",
+    "CurrencyCode": "BWP",
+    "CurrencyName": "Pula",
+    "Languages": "en-BW,tn-BW"
   },
   {
     "ISO": "BY",
+    "ISO3": "BLR",
     "Country": "Belarus",
+    "Capital": "Minsk",
     "Area(in sq km)": 207600,
-    "Population": 9485386
+    "Population": 9485386,
+    "Continent": "EU",
+    "CurrencyCode": "BYN",
+    "CurrencyName": "Belarusian ruble",
+    "Languages": "be,ru"
   },
   {
     "ISO": "BZ",
+    "ISO3": "BLZ",
     "Country": "Belize",
+    "Capital": "Belmopan",
     "Area(in sq km)": 22966,
-    "Population": 383071
+    "Population": 383071,
+    "Continent": "NA",
+    "CurrencyCode": "BZD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-BZ,es"
   },
   {
     "ISO": "CA",
+    "ISO3": "CAN",
     "Country": "Canada",
+    "Capital": "Ottawa",
     "Area(in sq km)": 9984670,
-    "Population": 37058856
-  },
-  {
-    "ISO": "CC",
-    "Country": "Cocos Islands",
-    "Area(in sq km)": 14,
-    "Population": 628
+    "Population": 37058856,
+    "Continent": "NA",
+    "CurrencyCode": "CAD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-CA,fr-CA,iu"
   },
   {
     "ISO": "CD",
+    "ISO3": "COD",
     "Country": "Democratic Republic of the Congo",
+    "Capital": "Kinshasa",
     "Area(in sq km)": 2345410,
-    "Population": 84068091
+    "Population": 84068091,
+    "Continent": "AF",
+    "CurrencyCode": "CDF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-CD,ln,ktu,kg,sw,lua"
   },
   {
     "ISO": "CF",
+    "ISO3": "CAF",
     "Country": "Central African Republic",
+    "Capital": "Bangui",
     "Area(in sq km)": 622984,
-    "Population": 4666377
+    "Population": 4666377,
+    "Continent": "AF",
+    "CurrencyCode": "XAF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-CF,sg,ln,kg"
   },
   {
     "ISO": "CG",
+    "ISO3": "COG",
     "Country": "Republic of the Congo",
+    "Capital": "Brazzaville",
     "Area(in sq km)": 342000,
-    "Population": 5244363
+    "Population": 5244363,
+    "Continent": "AF",
+    "CurrencyCode": "XAF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-CG,kg,ln-CG"
   },
   {
     "ISO": "CH",
+    "ISO3": "CHE",
     "Country": "Switzerland",
+    "Capital": "Bern",
     "Area(in sq km)": 41290,
-    "Population": 8516543
+    "Population": 8516543,
+    "Continent": "EU",
+    "CurrencyCode": "CHF",
+    "CurrencyName": "Franc",
+    "Languages": "de-CH,fr-CH,it-CH,rm"
   },
   {
     "ISO": "CI",
+    "ISO3": "CIV",
     "Country": "Ivory Coast",
+    "Capital": "Yamoussoukro",
     "Area(in sq km)": 322460,
-    "Population": 25069229
-  },
-  {
-    "ISO": "CK",
-    "Country": "Cook Islands",
-    "Area(in sq km)": 240,
-    "Population": 21388
+    "Population": 25069229,
+    "Continent": "AF",
+    "CurrencyCode": "XOF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-CI"
   },
   {
     "ISO": "CL",
+    "ISO3": "CHL",
     "Country": "Chile",
+    "Capital": "Santiago",
     "Area(in sq km)": 756950,
-    "Population": 18729160
+    "Population": 18729160,
+    "Continent": "SA",
+    "CurrencyCode": "CLP",
+    "CurrencyName": "Peso",
+    "Languages": "es-CL"
   },
   {
     "ISO": "CM",
+    "ISO3": "CMR",
     "Country": "Cameroon",
+    "Capital": "Yaounde",
     "Area(in sq km)": 475440,
-    "Population": 25216237
+    "Population": 25216237,
+    "Continent": "AF",
+    "CurrencyCode": "XAF",
+    "CurrencyName": "Franc",
+    "Languages": "en-CM,fr-CM"
   },
   {
     "ISO": "CN",
+    "ISO3": "CHN",
     "Country": "China",
+    "Capital": "Beijing",
     "Area(in sq km)": 9596960,
-    "Population": 1411778724
+    "Population": 1411778724,
+    "Continent": "AS",
+    "CurrencyCode": "CNY",
+    "CurrencyName": "Yuan Renminbi",
+    "Languages": "zh-CN,yue,wuu,dta,ug,za"
   },
   {
     "ISO": "CO",
+    "ISO3": "COL",
     "Country": "Colombia",
+    "Capital": "Bogota",
     "Area(in sq km)": 1138910,
-    "Population": 49648685
+    "Population": 49648685,
+    "Continent": "SA",
+    "CurrencyCode": "COP",
+    "CurrencyName": "Peso",
+    "Languages": "es-CO"
   },
   {
     "ISO": "CR",
+    "ISO3": "CRI",
     "Country": "Costa Rica",
+    "Capital": "San Jose",
     "Area(in sq km)": 51100,
-    "Population": 4999441
+    "Population": 4999441,
+    "Continent": "NA",
+    "CurrencyCode": "CRC",
+    "CurrencyName": "Colon",
+    "Languages": "es-CR,en"
   },
   {
     "ISO": "CU",
+    "ISO3": "CUB",
     "Country": "Cuba",
+    "Capital": "Havana",
     "Area(in sq km)": 110860,
-    "Population": 11338138
+    "Population": 11338138,
+    "Continent": "NA",
+    "CurrencyCode": "CUP",
+    "CurrencyName": "Peso",
+    "Languages": "es-CU,pap"
   },
   {
     "ISO": "CV",
+    "ISO3": "CPV",
     "Country": "Cabo Verde",
+    "Capital": "Praia",
     "Area(in sq km)": 4033,
-    "Population": 543767
-  },
-  {
-    "ISO": "CW",
-    "Country": "Curacao",
-    "Area(in sq km)": 444,
-    "Population": 159849
-  },
-  {
-    "ISO": "CX",
-    "Country": "Christmas Island",
-    "Area(in sq km)": 135,
-    "Population": 1500
+    "Population": 543767,
+    "Continent": "AF",
+    "CurrencyCode": "CVE",
+    "CurrencyName": "Escudo",
+    "Languages": "pt-CV"
   },
   {
     "ISO": "CY",
+    "ISO3": "CYP",
     "Country": "Cyprus",
+    "Capital": "Nicosia",
     "Area(in sq km)": 9250,
-    "Population": 1189265
+    "Population": 1189265,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "el-CY,tr-CY,en"
   },
   {
     "ISO": "CZ",
+    "ISO3": "CZE",
     "Country": "Czechia",
+    "Capital": "Prague",
     "Area(in sq km)": 78866,
-    "Population": 10625695
+    "Population": 10625695,
+    "Continent": "EU",
+    "CurrencyCode": "CZK",
+    "CurrencyName": "Koruna",
+    "Languages": "cs,sk"
   },
   {
     "ISO": "DE",
+    "ISO3": "DEU",
     "Country": "Germany",
+    "Capital": "Berlin",
     "Area(in sq km)": 357021,
-    "Population": 82927922
+    "Population": 82927922,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "de"
   },
   {
     "ISO": "DJ",
+    "ISO3": "DJI",
     "Country": "Djibouti",
+    "Capital": "Djibouti",
     "Area(in sq km)": 23000,
-    "Population": 958920
+    "Population": 958920,
+    "Continent": "AF",
+    "CurrencyCode": "DJF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-DJ,ar,so-DJ,aa"
   },
   {
     "ISO": "DK",
+    "ISO3": "DNK",
     "Country": "Denmark",
+    "Capital": "Copenhagen",
     "Area(in sq km)": 43094,
-    "Population": 5797446
+    "Population": 5797446,
+    "Continent": "EU",
+    "CurrencyCode": "DKK",
+    "CurrencyName": "Krone",
+    "Languages": "da-DK,en,fo,de-DK"
   },
   {
     "ISO": "DM",
+    "ISO3": "DMA",
     "Country": "Dominica",
+    "Capital": "Roseau",
     "Area(in sq km)": 754,
-    "Population": 71625
+    "Population": 71625,
+    "Continent": "NA",
+    "CurrencyCode": "XCD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-DM"
   },
   {
     "ISO": "DO",
+    "ISO3": "DOM",
     "Country": "Dominican Republic",
+    "Capital": "Santo Domingo",
     "Area(in sq km)": 48730,
-    "Population": 10627165
+    "Population": 10627165,
+    "Continent": "NA",
+    "CurrencyCode": "DOP",
+    "CurrencyName": "Peso",
+    "Languages": "es-DO"
   },
   {
     "ISO": "DZ",
+    "ISO3": "DZA",
     "Country": "Algeria",
+    "Capital": "Algiers",
     "Area(in sq km)": 2381740,
-    "Population": 42228429
+    "Population": 42228429,
+    "Continent": "AF",
+    "CurrencyCode": "DZD",
+    "CurrencyName": "Dinar",
+    "Languages": "ar-DZ"
   },
   {
     "ISO": "EC",
+    "ISO3": "ECU",
     "Country": "Ecuador",
+    "Capital": "Quito",
     "Area(in sq km)": 283560,
-    "Population": 17084357
+    "Population": 17084357,
+    "Continent": "SA",
+    "CurrencyCode": "USD",
+    "CurrencyName": "Dollar",
+    "Languages": "es-EC"
   },
   {
     "ISO": "EE",
+    "ISO3": "EST",
     "Country": "Estonia",
+    "Capital": "Tallinn",
     "Area(in sq km)": 45226,
-    "Population": 1320884
+    "Population": 1320884,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "et,ru"
   },
   {
     "ISO": "EG",
+    "ISO3": "EGY",
     "Country": "Egypt",
+    "Capital": "Cairo",
     "Area(in sq km)": 1001450,
-    "Population": 98423595
+    "Population": 98423595,
+    "Continent": "AF",
+    "CurrencyCode": "EGP",
+    "CurrencyName": "Pound",
+    "Languages": "ar-EG,en,fr"
   },
   {
     "ISO": "ER",
+    "ISO3": "ERI",
     "Country": "Eritrea",
+    "Capital": "Asmara",
     "Area(in sq km)": 121320,
-    "Population": 6209262
+    "Population": 6209262,
+    "Continent": "AF",
+    "CurrencyCode": "ERN",
+    "CurrencyName": "Nakfa",
+    "Languages": "aa-ER,ar,tig,kun,ti-ER"
   },
   {
     "ISO": "ES",
+    "ISO3": "ESP",
     "Country": "Spain",
+    "Capital": "Madrid",
     "Area(in sq km)": 504782,
-    "Population": 46723749
+    "Population": 46723749,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "es-ES,ca,gl,eu,oc"
   },
   {
     "ISO": "ET",
+    "ISO3": "ETH",
     "Country": "Ethiopia",
+    "Capital": "Addis Ababa",
     "Area(in sq km)": 1127127,
-    "Population": 109224559
+    "Population": 109224559,
+    "Continent": "AF",
+    "CurrencyCode": "ETB",
+    "CurrencyName": "Birr",
+    "Languages": "am,en-ET,om-ET,ti-ET,so-ET,sid"
   },
   {
     "ISO": "FI",
+    "ISO3": "FIN",
     "Country": "Finland",
+    "Capital": "Helsinki",
     "Area(in sq km)": 337030,
-    "Population": 5518050
+    "Population": 5518050,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "fi-FI,sv-FI,smn"
   },
   {
     "ISO": "FJ",
+    "ISO3": "FJI",
     "Country": "Fiji",
+    "Capital": "Suva",
     "Area(in sq km)": 18270,
-    "Population": 883483
+    "Population": 883483,
+    "Continent": "OC",
+    "CurrencyCode": "FJD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-FJ,fj"
   },
   {
     "ISO": "FM",
+    "ISO3": "FSM",
     "Country": "Micronesia",
+    "Capital": "Palikir",
     "Area(in sq km)": 702,
-    "Population": 112640
+    "Population": 112640,
+    "Continent": "OC",
+    "CurrencyCode": "USD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-FM,chk,pon,yap,kos,uli,woe,nkr,kpg"
   },
   {
     "ISO": "FR",
+    "ISO3": "FRA",
     "Country": "France",
+    "Capital": "Paris",
     "Area(in sq km)": 547030,
-    "Population": 66987244
+    "Population": 66987244,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "fr-FR,frp,br,co,ca,eu,oc"
   },
   {
     "ISO": "GA",
+    "ISO3": "GAB",
     "Country": "Gabon",
+    "Capital": "Libreville",
     "Area(in sq km)": 267667,
-    "Population": 2119275
+    "Population": 2119275,
+    "Continent": "AF",
+    "CurrencyCode": "XAF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-GA"
   },
   {
     "ISO": "GB",
+    "ISO3": "GBR",
     "Country": "United Kingdom",
+    "Capital": "London",
     "Area(in sq km)": 244820,
-    "Population": 66488991
+    "Population": 66488991,
+    "Continent": "EU",
+    "CurrencyCode": "GBP",
+    "CurrencyName": "Pound",
+    "Languages": "en-GB,cy-GB,gd"
   },
   {
     "ISO": "GD",
+    "ISO3": "GRD",
     "Country": "Grenada",
+    "Capital": "St. George's",
     "Area(in sq km)": 344,
-    "Population": 111454
+    "Population": 111454,
+    "Continent": "NA",
+    "CurrencyCode": "XCD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-GD"
   },
   {
     "ISO": "GE",
+    "ISO3": "GEO",
     "Country": "Georgia",
+    "Capital": "Tbilisi",
     "Area(in sq km)": 69700,
-    "Population": 3731000
-  },
-  {
-    "ISO": "GG",
-    "Country": "Guernsey",
-    "Area(in sq km)": 78,
-    "Population": 65228
+    "Population": 3731000,
+    "Continent": "AS",
+    "CurrencyCode": "GEL",
+    "CurrencyName": "Lari",
+    "Languages": "ka,ru,hy,az"
   },
   {
     "ISO": "GH",
+    "ISO3": "GHA",
     "Country": "Ghana",
+    "Capital": "Accra",
     "Area(in sq km)": 239460,
-    "Population": 29767108
+    "Population": 29767108,
+    "Continent": "AF",
+    "CurrencyCode": "GHS",
+    "CurrencyName": "Cedi",
+    "Languages": "en-GH,ak,ee,tw"
   },
   {
     "ISO": "GM",
+    "ISO3": "GMB",
     "Country": "Gambia",
+    "Capital": "Banjul",
     "Area(in sq km)": 11300,
-    "Population": 2280102
+    "Population": 2280102,
+    "Continent": "AF",
+    "CurrencyCode": "GMD",
+    "CurrencyName": "Dalasi",
+    "Languages": "en-GM,mnk,wof,wo,ff"
   },
   {
     "ISO": "GN",
+    "ISO3": "GIN",
     "Country": "Guinea",
+    "Capital": "Conakry",
     "Area(in sq km)": 245857,
-    "Population": 12414318
-  },
-  {
-    "ISO": "GP",
-    "Country": "Guadeloupe",
-    "Area(in sq km)": 1780,
-    "Population": 443000
+    "Population": 12414318,
+    "Continent": "AF",
+    "CurrencyCode": "GNF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-GN"
   },
   {
     "ISO": "GQ",
+    "ISO3": "GNQ",
     "Country": "Equatorial Guinea",
+    "Capital": "Malabo",
     "Area(in sq km)": 28051,
-    "Population": 1308974
+    "Population": 1308974,
+    "Continent": "AF",
+    "CurrencyCode": "XAF",
+    "CurrencyName": "Franc",
+    "Languages": "es-GQ,fr,pt"
   },
   {
     "ISO": "GR",
+    "ISO3": "GRC",
     "Country": "Greece",
+    "Capital": "Athens",
     "Area(in sq km)": 131940,
-    "Population": 10727668
-  },
-  {
-    "ISO": "GS",
-    "Country": "South Georgia and the South Sandwich Islands",
-    "Area(in sq km)": 3903,
-    "Population": 30
+    "Population": 10727668,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "el-GR,en,fr"
   },
   {
     "ISO": "GT",
+    "ISO3": "GTM",
     "Country": "Guatemala",
+    "Capital": "Guatemala City",
     "Area(in sq km)": 108890,
-    "Population": 17247807
+    "Population": 17247807,
+    "Continent": "NA",
+    "CurrencyCode": "GTQ",
+    "CurrencyName": "Quetzal",
+    "Languages": "es-GT"
   },
   {
     "ISO": "GW",
+    "ISO3": "GNB",
     "Country": "Guinea-Bissau",
+    "Capital": "Bissau",
     "Area(in sq km)": 36120,
-    "Population": 1874309
+    "Population": 1874309,
+    "Continent": "AF",
+    "CurrencyCode": "XOF",
+    "CurrencyName": "Franc",
+    "Languages": "pt-GW,pov"
   },
   {
     "ISO": "GY",
+    "ISO3": "GUY",
     "Country": "Guyana",
+    "Capital": "Georgetown",
     "Area(in sq km)": 214970,
-    "Population": 779004
+    "Population": 779004,
+    "Continent": "SA",
+    "CurrencyCode": "GYD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-GY"
   },
   {
     "ISO": "HK",
+    "ISO3": "HKG",
     "Country": "Hong Kong",
+    "Capital": "Hong Kong",
     "Area(in sq km)": 1092,
-    "Population": 7491609
+    "Population": 7491609,
+    "Continent": "AS",
+    "CurrencyCode": "HKD",
+    "CurrencyName": "Dollar",
+    "Languages": "zh-HK,yue,zh,en"
   },
   {
     "ISO": "HM",
+    "ISO3": "HMD",
     "Country": "Heard Island and McDonald Islands",
+    "Capital": "",
     "Area(in sq km)": 412,
-    "Population": 0
+    "Population": 0,
+    "Continent": "AN",
+    "CurrencyCode": "AUD",
+    "CurrencyName": "Dollar",
+    "Languages": ""
   },
   {
     "ISO": "HN",
+    "ISO3": "HND",
     "Country": "Honduras",
+    "Capital": "Tegucigalpa",
     "Area(in sq km)": 112090,
-    "Population": 9587522
+    "Population": 9587522,
+    "Continent": "NA",
+    "CurrencyCode": "HNL",
+    "CurrencyName": "Lempira",
+    "Languages": "es-HN,cab,miq"
   },
   {
     "ISO": "HR",
+    "ISO3": "HRV",
     "Country": "Croatia",
+    "Capital": "Zagreb",
     "Area(in sq km)": 56542,
-    "Population": 3871833
+    "Population": 3871833,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "hr-HR,sr"
   },
   {
     "ISO": "HT",
+    "ISO3": "HTI",
     "Country": "Haiti",
+    "Capital": "Port-au-Prince",
     "Area(in sq km)": 27750,
-    "Population": 11123176
+    "Population": 11123176,
+    "Continent": "NA",
+    "CurrencyCode": "HTG",
+    "CurrencyName": "Gourde",
+    "Languages": "ht,fr-HT"
   },
   {
     "ISO": "HU",
+    "ISO3": "HUN",
     "Country": "Hungary",
+    "Capital": "Budapest",
     "Area(in sq km)": 93030,
-    "Population": 9768785
+    "Population": 9768785,
+    "Continent": "EU",
+    "CurrencyCode": "HUF",
+    "CurrencyName": "Forint",
+    "Languages": "hu-HU"
   },
   {
     "ISO": "ID",
+    "ISO3": "IDN",
     "Country": "Indonesia",
+    "Capital": "Jakarta",
     "Area(in sq km)": 1919440,
-    "Population": 267663435
+    "Population": 267663435,
+    "Continent": "AS",
+    "CurrencyCode": "IDR",
+    "CurrencyName": "Rupiah",
+    "Languages": "id,en,nl,jv"
   },
   {
     "ISO": "IE",
+    "ISO3": "IRL",
     "Country": "Ireland",
+    "Capital": "Dublin",
     "Area(in sq km)": 70280,
-    "Population": 4853506
+    "Population": 4853506,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "en-IE,ga-IE"
   },
   {
     "ISO": "IL",
+    "ISO3": "ISR",
     "Country": "Israel",
+    "Capital": "Jerusalem",
     "Area(in sq km)": 20770,
-    "Population": 8883800
-  },
-  {
-    "ISO": "IM",
-    "Country": "Isle of Man",
-    "Area(in sq km)": 572,
-    "Population": 84077
+    "Population": 8883800,
+    "Continent": "AS",
+    "CurrencyCode": "ILS",
+    "CurrencyName": "Shekel",
+    "Languages": "he,ar-IL,en-IL,"
   },
   {
     "ISO": "IN",
+    "ISO3": "IND",
     "Country": "India",
+    "Capital": "New Delhi",
     "Area(in sq km)": 3287590,
-    "Population": 1352617328
+    "Population": 1352617328,
+    "Continent": "AS",
+    "CurrencyCode": "INR",
+    "CurrencyName": "Rupee",
+    "Languages": "en-IN,hi,bn,te,mr,ta,ur,gu,kn,ml,or,pa,as,bh,sat,ks,ne,sd,kok,doi,mni,sit,sa,fr,lus,inc"
   },
   {
     "ISO": "IQ",
+    "ISO3": "IRQ",
     "Country": "Iraq",
+    "Capital": "Baghdad",
     "Area(in sq km)": 437072,
-    "Population": 38433600
+    "Population": 38433600,
+    "Continent": "AS",
+    "CurrencyCode": "IQD",
+    "CurrencyName": "Dinar",
+    "Languages": "ar-IQ,ku,hy"
   },
   {
     "ISO": "IR",
+    "ISO3": "IRN",
     "Country": "Iran",
+    "Capital": "Tehran",
     "Area(in sq km)": 1648000,
-    "Population": 81800269
+    "Population": 81800269,
+    "Continent": "AS",
+    "CurrencyCode": "IRR",
+    "CurrencyName": "Rial",
+    "Languages": "fa-IR,ku"
   },
   {
     "ISO": "IS",
+    "ISO3": "ISL",
     "Country": "Iceland",
+    "Capital": "Reykjavik",
     "Area(in sq km)": 103000,
-    "Population": 353574
+    "Population": 353574,
+    "Continent": "EU",
+    "CurrencyCode": "ISK",
+    "CurrencyName": "Krona",
+    "Languages": "is,en,de,da,sv,no"
   },
   {
     "ISO": "IT",
+    "ISO3": "ITA",
     "Country": "Italy",
+    "Capital": "Rome",
     "Area(in sq km)": 301230,
-    "Population": 60431283
-  },
-  {
-    "ISO": "JE",
-    "Country": "Jersey",
-    "Area(in sq km)": 116,
-    "Population": 90812
+    "Population": 60431283,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "it-IT,de-IT,fr-IT,sc,ca,co,sl"
   },
   {
     "ISO": "JM",
+    "ISO3": "JAM",
     "Country": "Jamaica",
+    "Capital": "Kingston",
     "Area(in sq km)": 10991,
-    "Population": 2934855
+    "Population": 2934855,
+    "Continent": "NA",
+    "CurrencyCode": "JMD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-JM"
   },
   {
     "ISO": "JO",
+    "ISO3": "JOR",
     "Country": "Jordan",
+    "Capital": "Amman",
     "Area(in sq km)": 92300,
-    "Population": 9956011
+    "Population": 9956011,
+    "Continent": "AS",
+    "CurrencyCode": "JOD",
+    "CurrencyName": "Dinar",
+    "Languages": "ar-JO,en"
   },
   {
     "ISO": "JP",
+    "ISO3": "JPN",
     "Country": "Japan",
+    "Capital": "Tokyo",
     "Area(in sq km)": 377835,
-    "Population": 126529100
+    "Population": 126529100,
+    "Continent": "AS",
+    "CurrencyCode": "JPY",
+    "CurrencyName": "Yen",
+    "Languages": "ja"
   },
   {
     "ISO": "KE",
+    "ISO3": "KEN",
     "Country": "Kenya",
+    "Capital": "Nairobi",
     "Area(in sq km)": 582650,
-    "Population": 51393010
+    "Population": 51393010,
+    "Continent": "AF",
+    "CurrencyCode": "KES",
+    "CurrencyName": "Shilling",
+    "Languages": "en-KE,sw-KE"
   },
   {
     "ISO": "KG",
+    "ISO3": "KGZ",
     "Country": "Kyrgyzstan",
+    "Capital": "Bishkek",
     "Area(in sq km)": 198500,
-    "Population": 6315800
+    "Population": 6315800,
+    "Continent": "AS",
+    "CurrencyCode": "KGS",
+    "CurrencyName": "Som",
+    "Languages": "ky,uz,ru"
   },
   {
     "ISO": "KH",
+    "ISO3": "KHM",
     "Country": "Cambodia",
+    "Capital": "Phnom Penh",
     "Area(in sq km)": 181040,
-    "Population": 16249798
+    "Population": 16249798,
+    "Continent": "AS",
+    "CurrencyCode": "KHR",
+    "CurrencyName": "Riels",
+    "Languages": "km,fr,en"
   },
   {
     "ISO": "KI",
+    "ISO3": "KIR",
     "Country": "Kiribati",
+    "Capital": "Tarawa",
     "Area(in sq km)": 811,
-    "Population": 115847
+    "Population": 115847,
+    "Continent": "OC",
+    "CurrencyCode": "AUD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-KI,gil"
   },
   {
     "ISO": "KM",
+    "ISO3": "COM",
     "Country": "Comoros",
+    "Capital": "Moroni",
     "Area(in sq km)": 2170,
-    "Population": 832322
+    "Population": 832322,
+    "Continent": "AF",
+    "CurrencyCode": "KMF",
+    "CurrencyName": "Franc",
+    "Languages": "ar,fr-KM"
   },
   {
     "ISO": "KN",
+    "ISO3": "KNA",
     "Country": "Saint Kitts and Nevis",
+    "Capital": "Basseterre",
     "Area(in sq km)": 261,
-    "Population": 52441
+    "Population": 52441,
+    "Continent": "NA",
+    "CurrencyCode": "XCD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-KN"
   },
   {
     "ISO": "KP",
+    "ISO3": "PRK",
     "Country": "North Korea",
+    "Capital": "Pyongyang",
     "Area(in sq km)": 120540,
-    "Population": 25549819
+    "Population": 25549819,
+    "Continent": "AS",
+    "CurrencyCode": "KPW",
+    "CurrencyName": "Won",
+    "Languages": "ko-KP"
   },
   {
     "ISO": "KR",
+    "ISO3": "KOR",
     "Country": "South Korea",
+    "Capital": "Seoul",
     "Area(in sq km)": 98480,
-    "Population": 51635256
+    "Population": 51635256,
+    "Continent": "AS",
+    "CurrencyCode": "KRW",
+    "CurrencyName": "Won",
+    "Languages": "ko-KR,en"
   },
   {
     "ISO": "XK",
+    "ISO3": "XKX",
     "Country": "Kosovo",
+    "Capital": "Pristina",
     "Area(in sq km)": 10908,
-    "Population": 1845300
+    "Population": 1845300,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "sq,sr"
   },
   {
     "ISO": "KW",
+    "ISO3": "KWT",
     "Country": "Kuwait",
+    "Capital": "Kuwait City",
     "Area(in sq km)": 17820,
-    "Population": 4137309
+    "Population": 4137309,
+    "Continent": "AS",
+    "CurrencyCode": "KWD",
+    "CurrencyName": "Dinar",
+    "Languages": "ar-KW,en"
   },
   {
     "ISO": "KZ",
+    "ISO3": "KAZ",
     "Country": "Kazakhstan",
+    "Capital": "Nur-Sultan",
     "Area(in sq km)": 2717300,
-    "Population": 18276499
+    "Population": 18276499,
+    "Continent": "AS",
+    "CurrencyCode": "KZT",
+    "CurrencyName": "Tenge",
+    "Languages": "kk,ru"
   },
   {
     "ISO": "LA",
+    "ISO3": "LAO",
     "Country": "Laos",
+    "Capital": "Vientiane",
     "Area(in sq km)": 236800,
-    "Population": 7061507
+    "Population": 7061507,
+    "Continent": "AS",
+    "CurrencyCode": "LAK",
+    "CurrencyName": "Kip",
+    "Languages": "lo,fr,en"
   },
   {
     "ISO": "LB",
+    "ISO3": "LBN",
     "Country": "Lebanon",
+    "Capital": "Beirut",
     "Area(in sq km)": 10400,
-    "Population": 6848925
+    "Population": 6848925,
+    "Continent": "AS",
+    "CurrencyCode": "LBP",
+    "CurrencyName": "Pound",
+    "Languages": "ar-LB,fr-LB,en,hy"
   },
   {
     "ISO": "LC",
+    "ISO3": "LCA",
     "Country": "Saint Lucia",
+    "Capital": "Castries",
     "Area(in sq km)": 616,
-    "Population": 181889
+    "Population": 181889,
+    "Continent": "NA",
+    "CurrencyCode": "XCD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-LC"
   },
   {
     "ISO": "LI",
+    "ISO3": "LIE",
     "Country": "Liechtenstein",
+    "Capital": "Vaduz",
     "Area(in sq km)": 160,
-    "Population": 37910
+    "Population": 37910,
+    "Continent": "EU",
+    "CurrencyCode": "CHF",
+    "CurrencyName": "Franc",
+    "Languages": "de-LI"
   },
   {
     "ISO": "LK",
+    "ISO3": "LKA",
     "Country": "Sri Lanka",
+    "Capital": "Colombo",
     "Area(in sq km)": 65610,
-    "Population": 21670000
+    "Population": 21670000,
+    "Continent": "AS",
+    "CurrencyCode": "LKR",
+    "CurrencyName": "Rupee",
+    "Languages": "si,ta,en"
   },
   {
     "ISO": "LR",
+    "ISO3": "LBR",
     "Country": "Liberia",
+    "Capital": "Monrovia",
     "Area(in sq km)": 111370,
-    "Population": 4818977
+    "Population": 4818977,
+    "Continent": "AF",
+    "CurrencyCode": "LRD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-LR"
   },
   {
     "ISO": "LS",
+    "ISO3": "LSO",
     "Country": "Lesotho",
+    "Capital": "Maseru",
     "Area(in sq km)": 30355,
-    "Population": 2108132
+    "Population": 2108132,
+    "Continent": "AF",
+    "CurrencyCode": "LSL",
+    "CurrencyName": "Loti",
+    "Languages": "en-LS,st,zu,xh"
   },
   {
     "ISO": "LT",
+    "ISO3": "LTU",
     "Country": "Lithuania",
+    "Capital": "Vilnius",
     "Area(in sq km)": 65200,
-    "Population": 2789533
+    "Population": 2789533,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "lt,ru,pl"
   },
   {
     "ISO": "LU",
+    "ISO3": "LUX",
     "Country": "Luxembourg",
+    "Capital": "Luxembourg",
     "Area(in sq km)": 2586,
-    "Population": 607728
+    "Population": 607728,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "lb,de-LU,fr-LU"
   },
   {
     "ISO": "LV",
+    "ISO3": "LVA",
     "Country": "Latvia",
+    "Capital": "Riga",
     "Area(in sq km)": 64589,
-    "Population": 1926542
+    "Population": 1926542,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "lv,ru,lt"
   },
   {
     "ISO": "LY",
+    "ISO3": "LBY",
     "Country": "Libya",
+    "Capital": "Tripoli",
     "Area(in sq km)": 1759540,
-    "Population": 6678567
+    "Population": 6678567,
+    "Continent": "AF",
+    "CurrencyCode": "LYD",
+    "CurrencyName": "Dinar",
+    "Languages": "ar-LY,it,en"
   },
   {
     "ISO": "MA",
+    "ISO3": "MAR",
     "Country": "Morocco",
+    "Capital": "Rabat",
     "Area(in sq km)": 446550,
-    "Population": 36029138
+    "Population": 36029138,
+    "Continent": "AF",
+    "CurrencyCode": "MAD",
+    "CurrencyName": "Dirham",
+    "Languages": "ar-MA,ber,fr"
   },
   {
     "ISO": "MC",
+    "ISO3": "MCO",
     "Country": "Monaco",
+    "Capital": "Monaco",
     "Area(in sq km)": 1.95,
-    "Population": 38682
+    "Population": 38682,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "fr-MC,en,it"
   },
   {
     "ISO": "MD",
+    "ISO3": "MDA",
     "Country": "Moldova",
+    "Capital": "Chisinau",
     "Area(in sq km)": 33843,
-    "Population": 3545883
+    "Population": 3545883,
+    "Continent": "EU",
+    "CurrencyCode": "MDL",
+    "CurrencyName": "Leu",
+    "Languages": "ro,ru,gag,tr"
   },
   {
     "ISO": "ME",
+    "ISO3": "MNE",
     "Country": "Montenegro",
+    "Capital": "Podgorica",
     "Area(in sq km)": 14026,
-    "Population": 622345
+    "Population": 622345,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "sr,hu,bs,sq,hr,rom"
   },
   {
     "ISO": "MG",
+    "ISO3": "MDG",
     "Country": "Madagascar",
+    "Capital": "Antananarivo",
     "Area(in sq km)": 587040,
-    "Population": 26262368
+    "Population": 26262368,
+    "Continent": "AF",
+    "CurrencyCode": "MGA",
+    "CurrencyName": "Ariary",
+    "Languages": "fr-MG,mg"
   },
   {
     "ISO": "MH",
+    "ISO3": "MHL",
     "Country": "Marshall Islands",
+    "Capital": "Majuro",
     "Area(in sq km)": 181.3,
-    "Population": 58413
+    "Population": 58413,
+    "Continent": "OC",
+    "CurrencyCode": "USD",
+    "CurrencyName": "Dollar",
+    "Languages": "mh,en-MH"
   },
   {
     "ISO": "MK",
+    "ISO3": "MKD",
     "Country": "North Macedonia",
+    "Capital": "Skopje",
     "Area(in sq km)": 25333,
-    "Population": 2082958
+    "Population": 2082958,
+    "Continent": "EU",
+    "CurrencyCode": "MKD",
+    "CurrencyName": "Denar",
+    "Languages": "mk,sq,tr,rmm,sr"
   },
   {
     "ISO": "ML",
+    "ISO3": "MLI",
     "Country": "Mali",
+    "Capital": "Bamako",
     "Area(in sq km)": 1240000,
-    "Population": 19077690
+    "Population": 19077690,
+    "Continent": "AF",
+    "CurrencyCode": "XOF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-ML,bm"
   },
   {
     "ISO": "MM",
+    "ISO3": "MMR",
     "Country": "Myanmar",
+    "Capital": "Nay Pyi Taw",
     "Area(in sq km)": 678500,
-    "Population": 53708395
+    "Population": 53708395,
+    "Continent": "AS",
+    "CurrencyCode": "MMK",
+    "CurrencyName": "Kyat",
+    "Languages": "my"
   },
   {
     "ISO": "MN",
+    "ISO3": "MNG",
     "Country": "Mongolia",
+    "Capital": "Ulaanbaatar",
     "Area(in sq km)": 1565000,
-    "Population": 3170208
+    "Population": 3170208,
+    "Continent": "AS",
+    "CurrencyCode": "MNT",
+    "CurrencyName": "Tugrik",
+    "Languages": "mn,ru"
   },
   {
     "ISO": "MO",
+    "ISO3": "MAC",
     "Country": "Macao",
+    "Capital": "Macao",
     "Area(in sq km)": 254,
-    "Population": 631636
-  },
-  {
-    "ISO": "MQ",
-    "Country": "Martinique",
-    "Area(in sq km)": 1100,
-    "Population": 432900
+    "Population": 631636,
+    "Continent": "AS",
+    "CurrencyCode": "MOP",
+    "CurrencyName": "Pataca",
+    "Languages": "zh,zh-MO,pt"
   },
   {
     "ISO": "MR",
+    "ISO3": "MRT",
     "Country": "Mauritania",
+    "Capital": "Nouakchott",
     "Area(in sq km)": 1030700,
-    "Population": 4403319
+    "Population": 4403319,
+    "Continent": "AF",
+    "CurrencyCode": "MRU",
+    "CurrencyName": "Ouguiya",
+    "Languages": "ar-MR,fuc,snk,fr,mey,wo"
   },
   {
     "ISO": "MT",
+    "ISO3": "MLT",
     "Country": "Malta",
+    "Capital": "Valletta",
     "Area(in sq km)": 316,
-    "Population": 483530
+    "Population": 483530,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "mt,en-MT"
   },
   {
     "ISO": "MU",
+    "ISO3": "MUS",
     "Country": "Mauritius",
+    "Capital": "Port Louis",
     "Area(in sq km)": 2040,
-    "Population": 1265303
+    "Population": 1265303,
+    "Continent": "AF",
+    "CurrencyCode": "MUR",
+    "CurrencyName": "Rupee",
+    "Languages": "en-MU,bho,fr"
   },
   {
     "ISO": "MV",
+    "ISO3": "MDV",
     "Country": "Maldives",
+    "Capital": "Male",
     "Area(in sq km)": 300,
-    "Population": 515696
+    "Population": 515696,
+    "Continent": "AS",
+    "CurrencyCode": "MVR",
+    "CurrencyName": "Rufiyaa",
+    "Languages": "dv,en"
   },
   {
     "ISO": "MW",
+    "ISO3": "MWI",
     "Country": "Malawi",
+    "Capital": "Lilongwe",
     "Area(in sq km)": 118480,
-    "Population": 17563749
+    "Population": 17563749,
+    "Continent": "AF",
+    "CurrencyCode": "MWK",
+    "CurrencyName": "Kwacha",
+    "Languages": "ny,yao,tum,swk"
   },
   {
     "ISO": "MX",
+    "ISO3": "MEX",
     "Country": "Mexico",
+    "Capital": "Mexico City",
     "Area(in sq km)": 1972550,
-    "Population": 126190788
+    "Population": 126190788,
+    "Continent": "NA",
+    "CurrencyCode": "MXN",
+    "CurrencyName": "Peso",
+    "Languages": "es-MX"
   },
   {
     "ISO": "MY",
+    "ISO3": "MYS",
     "Country": "Malaysia",
+    "Capital": "Kuala Lumpur",
     "Area(in sq km)": 329750,
-    "Population": 31528585
+    "Population": 31528585,
+    "Continent": "AS",
+    "CurrencyCode": "MYR",
+    "CurrencyName": "Ringgit",
+    "Languages": "ms-MY,en,zh,ta,te,ml,pa,th"
   },
   {
     "ISO": "MZ",
+    "ISO3": "MOZ",
     "Country": "Mozambique",
+    "Capital": "Maputo",
     "Area(in sq km)": 801590,
-    "Population": 29495962
+    "Population": 29495962,
+    "Continent": "AF",
+    "CurrencyCode": "MZN",
+    "CurrencyName": "Metical",
+    "Languages": "pt-MZ,vmw"
   },
   {
     "ISO": "NA",
+    "ISO3": "NAM",
     "Country": "Namibia",
+    "Capital": "Windhoek",
     "Area(in sq km)": 825418,
-    "Population": 2448255
-  },
-  {
-    "ISO": "NC",
-    "Country": "New Caledonia",
-    "Area(in sq km)": 19060,
-    "Population": 284060
+    "Population": 2448255,
+    "Continent": "AF",
+    "CurrencyCode": "NAD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-NA,af,de,hz,naq"
   },
   {
     "ISO": "NE",
+    "ISO3": "NER",
     "Country": "Niger",
+    "Capital": "Niamey",
     "Area(in sq km)": 1267000,
-    "Population": 22442948
-  },
-  {
-    "ISO": "NF",
-    "Country": "Norfolk Island",
-    "Area(in sq km)": 34.6,
-    "Population": 1828
+    "Population": 22442948,
+    "Continent": "AF",
+    "CurrencyCode": "XOF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-NE,ha,kr,dje"
   },
   {
     "ISO": "NG",
+    "ISO3": "NGA",
     "Country": "Nigeria",
+    "Capital": "Abuja",
     "Area(in sq km)": 923768,
-    "Population": 195874740
+    "Population": 195874740,
+    "Continent": "AF",
+    "CurrencyCode": "NGN",
+    "CurrencyName": "Naira",
+    "Languages": "en-NG,ha,yo,ig,ff"
   },
   {
     "ISO": "NI",
+    "ISO3": "NIC",
     "Country": "Nicaragua",
+    "Capital": "Managua",
     "Area(in sq km)": 129494,
-    "Population": 6465513
+    "Population": 6465513,
+    "Continent": "NA",
+    "CurrencyCode": "NIO",
+    "CurrencyName": "Cordoba",
+    "Languages": "es-NI,en"
   },
   {
     "ISO": "NL",
+    "ISO3": "NLD",
     "Country": "The Netherlands",
+    "Capital": "Amsterdam",
     "Area(in sq km)": 41526,
-    "Population": 17231017
+    "Population": 17231017,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "nl-NL,fy-NL"
   },
   {
     "ISO": "NO",
+    "ISO3": "NOR",
     "Country": "Norway",
+    "Capital": "Oslo",
     "Area(in sq km)": 324220,
-    "Population": 5314336
+    "Population": 5314336,
+    "Continent": "EU",
+    "CurrencyCode": "NOK",
+    "CurrencyName": "Krone",
+    "Languages": "no,nb,nn,se,fi"
   },
   {
     "ISO": "NP",
+    "ISO3": "NPL",
     "Country": "Nepal",
+    "Capital": "Kathmandu",
     "Area(in sq km)": 140800,
-    "Population": 28087871
+    "Population": 28087871,
+    "Continent": "AS",
+    "CurrencyCode": "NPR",
+    "CurrencyName": "Rupee",
+    "Languages": "ne,en"
   },
   {
     "ISO": "NR",
+    "ISO3": "NRU",
     "Country": "Nauru",
+    "Capital": "Yaren",
     "Area(in sq km)": 21,
-    "Population": 12704
-  },
-  {
-    "ISO": "NU",
-    "Country": "Niue",
-    "Area(in sq km)": 260,
-    "Population": 2166
+    "Population": 12704,
+    "Continent": "OC",
+    "CurrencyCode": "AUD",
+    "CurrencyName": "Dollar",
+    "Languages": "na,en-NR"
   },
   {
     "ISO": "NZ",
+    "ISO3": "NZL",
     "Country": "New Zealand",
+    "Capital": "Wellington",
     "Area(in sq km)": 268680,
-    "Population": 4885500
+    "Population": 4885500,
+    "Continent": "OC",
+    "CurrencyCode": "NZD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-NZ,mi"
   },
   {
     "ISO": "OM",
+    "ISO3": "OMN",
     "Country": "Oman",
+    "Capital": "Muscat",
     "Area(in sq km)": 212460,
-    "Population": 4829483
+    "Population": 4829483,
+    "Continent": "AS",
+    "CurrencyCode": "OMR",
+    "CurrencyName": "Rial",
+    "Languages": "ar-OM,en,bal,ur"
   },
   {
     "ISO": "PA",
+    "ISO3": "PAN",
     "Country": "Panama",
+    "Capital": "Panama City",
     "Area(in sq km)": 78200,
-    "Population": 4176873
+    "Population": 4176873,
+    "Continent": "NA",
+    "CurrencyCode": "PAB",
+    "CurrencyName": "Balboa",
+    "Languages": "es-PA,en"
   },
   {
     "ISO": "PE",
+    "ISO3": "PER",
     "Country": "Peru",
+    "Capital": "Lima",
     "Area(in sq km)": 1285220,
-    "Population": 31989256
-  },
-  {
-    "ISO": "PF",
-    "Country": "French Polynesia",
-    "Area(in sq km)": 4167,
-    "Population": 277679
+    "Population": 31989256,
+    "Continent": "SA",
+    "CurrencyCode": "PEN",
+    "CurrencyName": "Sol",
+    "Languages": "es-PE,qu,ay"
   },
   {
     "ISO": "PG",
+    "ISO3": "PNG",
     "Country": "Papua New Guinea",
+    "Capital": "Port Moresby",
     "Area(in sq km)": 462840,
-    "Population": 8606316
+    "Population": 8606316,
+    "Continent": "OC",
+    "CurrencyCode": "PGK",
+    "CurrencyName": "Kina",
+    "Languages": "en-PG,ho,meu,tpi"
   },
   {
     "ISO": "PH",
+    "ISO3": "PHL",
     "Country": "Philippines",
+    "Capital": "Manila",
     "Area(in sq km)": 300000,
-    "Population": 106651922
+    "Population": 106651922,
+    "Continent": "AS",
+    "CurrencyCode": "PHP",
+    "CurrencyName": "Peso",
+    "Languages": "tl,en-PH,fil,ceb,ilo,hil,war,pam,bik,bcl,pag,mrw,tsg,mdh,cbk,krj,sgd,msb,akl,ibg,yka,mta,abx"
   },
   {
     "ISO": "PK",
+    "ISO3": "PAK",
     "Country": "Pakistan",
+    "Capital": "Islamabad",
     "Area(in sq km)": 803940,
-    "Population": 212215030
+    "Population": 212215030,
+    "Continent": "AS",
+    "CurrencyCode": "PKR",
+    "CurrencyName": "Rupee",
+    "Languages": "ur-PK,en-PK,pa,sd,ps,brh"
   },
   {
     "ISO": "PL",
+    "ISO3": "POL",
     "Country": "Poland",
+    "Capital": "Warsaw",
     "Area(in sq km)": 312685,
-    "Population": 37978548
+    "Population": 37978548,
+    "Continent": "EU",
+    "CurrencyCode": "PLN",
+    "CurrencyName": "Zloty",
+    "Languages": "pl"
   },
   {
-    "ISO": "PN",
-    "Country": "Pitcairn",
-    "Area(in sq km)": 47,
-    "Population": 46
+    "ISO": "PR",
+    "ISO3": "PRI",
+    "Country": "Puerto Rico",
+    "Capital": "San Juan",
+    "Area(in sq km)": 9104,
+    "Population": 3195153,
+    "Continent": "NA",
+    "CurrencyCode": "USD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-PR,es-PR"
   },
   {
     "ISO": "PS",
+    "ISO3": "PSE",
     "Country": "Palestinian Territory",
+    "Capital": "East Jerusalem",
     "Area(in sq km)": 5970,
-    "Population": 4569087
+    "Population": 4569087,
+    "Continent": "AS",
+    "CurrencyCode": "ILS",
+    "CurrencyName": "Shekel",
+    "Languages": "ar-PS"
   },
   {
     "ISO": "PT",
+    "ISO3": "PRT",
     "Country": "Portugal",
+    "Capital": "Lisbon",
     "Area(in sq km)": 92391,
-    "Population": 10281762
+    "Population": 10281762,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "pt-PT,mwl"
   },
   {
     "ISO": "PW",
+    "ISO3": "PLW",
     "Country": "Palau",
+    "Capital": "Melekeok",
     "Area(in sq km)": 458,
-    "Population": 17907
+    "Population": 17907,
+    "Continent": "OC",
+    "CurrencyCode": "USD",
+    "CurrencyName": "Dollar",
+    "Languages": "pau,sov,en-PW,tox,ja,fil,zh"
   },
   {
     "ISO": "PY",
+    "ISO3": "PRY",
     "Country": "Paraguay",
+    "Capital": "Asuncion",
     "Area(in sq km)": 406750,
-    "Population": 6956071
+    "Population": 6956071,
+    "Continent": "SA",
+    "CurrencyCode": "PYG",
+    "CurrencyName": "Guarani",
+    "Languages": "es-PY,gn"
   },
   {
     "ISO": "QA",
+    "ISO3": "QAT",
     "Country": "Qatar",
+    "Capital": "Doha",
     "Area(in sq km)": 11437,
-    "Population": 2781677
+    "Population": 2781677,
+    "Continent": "AS",
+    "CurrencyCode": "QAR",
+    "CurrencyName": "Rial",
+    "Languages": "ar-QA,es"
   },
   {
     "ISO": "RO",
+    "ISO3": "ROU",
     "Country": "Romania",
+    "Capital": "Bucharest",
     "Area(in sq km)": 237500,
-    "Population": 19473936
+    "Population": 19473936,
+    "Continent": "EU",
+    "CurrencyCode": "RON",
+    "CurrencyName": "Leu",
+    "Languages": "ro,hu,rom"
   },
   {
     "ISO": "RS",
+    "ISO3": "SRB",
     "Country": "Serbia",
+    "Capital": "Belgrade",
     "Area(in sq km)": 88361,
-    "Population": 6982084
+    "Population": 6982084,
+    "Continent": "EU",
+    "CurrencyCode": "RSD",
+    "CurrencyName": "Dinar",
+    "Languages": "sr,hu,bs,rom"
   },
   {
     "ISO": "RU",
+    "ISO3": "RUS",
     "Country": "Russia",
+    "Capital": "Moscow",
     "Area(in sq km)": 17100000,
-    "Population": 144478050
+    "Population": 144478050,
+    "Continent": "EU",
+    "CurrencyCode": "RUB",
+    "CurrencyName": "Ruble",
+    "Languages": "ru,tt,xal,cau,ady,kv,ce,tyv,cv,udm,tut,mns,bua,myv,mdf,chm,ba,inh,kbd,krc,av,sah,nog"
   },
   {
     "ISO": "RW",
+    "ISO3": "RWA",
     "Country": "Rwanda",
+    "Capital": "Kigali",
     "Area(in sq km)": 26338,
-    "Population": 12301939
+    "Population": 12301939,
+    "Continent": "AF",
+    "CurrencyCode": "RWF",
+    "CurrencyName": "Franc",
+    "Languages": "rw,en-RW,fr-RW,sw"
   },
   {
     "ISO": "SA",
+    "ISO3": "SAU",
     "Country": "Saudi Arabia",
+    "Capital": "Riyadh",
     "Area(in sq km)": 1960582,
-    "Population": 33699947
+    "Population": 33699947,
+    "Continent": "AS",
+    "CurrencyCode": "SAR",
+    "CurrencyName": "Rial",
+    "Languages": "ar-SA"
   },
   {
     "ISO": "SB",
+    "ISO3": "SLB",
     "Country": "Solomon Islands",
+    "Capital": "Honiara",
     "Area(in sq km)": 28450,
-    "Population": 652858
+    "Population": 652858,
+    "Continent": "OC",
+    "CurrencyCode": "SBD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-SB,tpi"
   },
   {
     "ISO": "SC",
+    "ISO3": "SYC",
     "Country": "Seychelles",
+    "Capital": "Victoria",
     "Area(in sq km)": 455,
-    "Population": 96762
+    "Population": 96762,
+    "Continent": "AF",
+    "CurrencyCode": "SCR",
+    "CurrencyName": "Rupee",
+    "Languages": "en-SC,fr-SC"
   },
   {
     "ISO": "SD",
+    "ISO3": "SDN",
     "Country": "Sudan",
+    "Capital": "Khartoum",
     "Area(in sq km)": 1861484,
-    "Population": 41801533
+    "Population": 41801533,
+    "Continent": "AF",
+    "CurrencyCode": "SDG",
+    "CurrencyName": "Pound",
+    "Languages": "ar-SD,en,fia"
   },
   {
     "ISO": "SS",
+    "ISO3": "SSD",
     "Country": "South Sudan",
+    "Capital": "Juba",
     "Area(in sq km)": 644329,
-    "Population": 8260490
+    "Population": 8260490,
+    "Continent": "AF",
+    "CurrencyCode": "SSP",
+    "CurrencyName": "Pound",
+    "Languages": "en"
   },
   {
     "ISO": "SE",
+    "ISO3": "SWE",
     "Country": "Sweden",
+    "Capital": "Stockholm",
     "Area(in sq km)": 449964,
-    "Population": 10183175
+    "Population": 10183175,
+    "Continent": "EU",
+    "CurrencyCode": "SEK",
+    "CurrencyName": "Krona",
+    "Languages": "sv-SE,se,sma,fi-SE"
   },
   {
     "ISO": "SG",
+    "ISO3": "SGP",
     "Country": "Singapore",
+    "Capital": "Singapore",
     "Area(in sq km)": 692.7,
-    "Population": 5638676
+    "Population": 5638676,
+    "Continent": "AS",
+    "CurrencyCode": "SGD",
+    "CurrencyName": "Dollar",
+    "Languages": "cmn,en-SG,ms-SG,ta-SG,zh-SG"
   },
   {
     "ISO": "SI",
+    "ISO3": "SVN",
     "Country": "Slovenia",
+    "Capital": "Ljubljana",
     "Area(in sq km)": 20273,
-    "Population": 2067372
+    "Population": 2067372,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "sl,sh"
   },
   {
     "ISO": "SJ",
+    "ISO3": "SJM",
     "Country": "Svalbard and Jan Mayen",
+    "Capital": "Longyearbyen",
     "Area(in sq km)": 62049,
-    "Population": 2550
+    "Population": 2550,
+    "Continent": "EU",
+    "CurrencyCode": "NOK",
+    "CurrencyName": "Krone",
+    "Languages": "no,ru"
   },
   {
     "ISO": "SK",
+    "ISO3": "SVK",
     "Country": "Slovakia",
+    "Capital": "Bratislava",
     "Area(in sq km)": 48845,
-    "Population": 5447011
+    "Population": 5447011,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "sk,hu"
   },
   {
     "ISO": "SL",
+    "ISO3": "SLE",
     "Country": "Sierra Leone",
+    "Capital": "Freetown",
     "Area(in sq km)": 71740,
-    "Population": 7650154
+    "Population": 7650154,
+    "Continent": "AF",
+    "CurrencyCode": "SLE",
+    "CurrencyName": "Leone",
+    "Languages": "en-SL,men,tem"
   },
   {
     "ISO": "SM",
+    "ISO3": "SMR",
     "Country": "San Marino",
+    "Capital": "San Marino",
     "Area(in sq km)": 61.2,
-    "Population": 33785
+    "Population": 33785,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "it-SM"
   },
   {
     "ISO": "SN",
+    "ISO3": "SEN",
     "Country": "Senegal",
+    "Capital": "Dakar",
     "Area(in sq km)": 196190,
-    "Population": 15854360
+    "Population": 15854360,
+    "Continent": "AF",
+    "CurrencyCode": "XOF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-SN,wo,fuc,mnk"
   },
   {
     "ISO": "SO",
+    "ISO3": "SOM",
     "Country": "Somalia",
+    "Capital": "Mogadishu",
     "Area(in sq km)": 637657,
-    "Population": 15008154
+    "Population": 15008154,
+    "Continent": "AF",
+    "CurrencyCode": "SOS",
+    "CurrencyName": "Shilling",
+    "Languages": "so-SO,ar-SO,it,en-SO"
   },
   {
     "ISO": "SR",
+    "ISO3": "SUR",
     "Country": "Suriname",
+    "Capital": "Paramaribo",
     "Area(in sq km)": 163270,
-    "Population": 575991
+    "Population": 575991,
+    "Continent": "SA",
+    "CurrencyCode": "SRD",
+    "CurrencyName": "Dollar",
+    "Languages": "nl-SR,en,srn,hns,jv"
   },
   {
     "ISO": "ST",
+    "ISO3": "STP",
     "Country": "Sao Tome and Principe",
+    "Capital": "Sao Tome",
     "Area(in sq km)": 1001,
-    "Population": 197700
+    "Population": 197700,
+    "Continent": "AF",
+    "CurrencyCode": "STN",
+    "CurrencyName": "Dobra",
+    "Languages": "pt-ST"
   },
   {
     "ISO": "SV",
+    "ISO3": "SLV",
     "Country": "El Salvador",
+    "Capital": "San Salvador",
     "Area(in sq km)": 21040,
-    "Population": 6420744
-  },
-  {
-    "ISO": "SX",
-    "Country": "Sint Maarten",
-    "Area(in sq km)": 21,
-    "Population": 40654
+    "Population": 6420744,
+    "Continent": "NA",
+    "CurrencyCode": "USD",
+    "CurrencyName": "Dollar",
+    "Languages": "es-SV"
   },
   {
     "ISO": "SY",
+    "ISO3": "SYR",
     "Country": "Syria",
+    "Capital": "Damascus",
     "Area(in sq km)": 185180,
-    "Population": 16906283
+    "Population": 16906283,
+    "Continent": "AS",
+    "CurrencyCode": "SYP",
+    "CurrencyName": "Pound",
+    "Languages": "ar-SY,ku,hy,arc,fr,en"
   },
   {
     "ISO": "SZ",
+    "ISO3": "SWZ",
     "Country": "Eswatini",
+    "Capital": "Mbabane",
     "Area(in sq km)": 17363,
-    "Population": 1136191
+    "Population": 1136191,
+    "Continent": "AF",
+    "CurrencyCode": "SZL",
+    "CurrencyName": "Lilangeni",
+    "Languages": "en-SZ,ss-SZ"
   },
   {
     "ISO": "TD",
+    "ISO3": "TCD",
     "Country": "Chad",
+    "Capital": "N'Djamena",
     "Area(in sq km)": 1284000,
-    "Population": 15477751
-  },
-  {
-    "ISO": "TF",
-    "Country": "French Southern Territories",
-    "Area(in sq km)": 7829,
-    "Population": 140
+    "Population": 15477751,
+    "Continent": "AF",
+    "CurrencyCode": "XAF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-TD,ar-TD,sre"
   },
   {
     "ISO": "TG",
+    "ISO3": "TGO",
     "Country": "Togo",
+    "Capital": "Lome",
     "Area(in sq km)": 56785,
-    "Population": 7889094
+    "Population": 7889094,
+    "Continent": "AF",
+    "CurrencyCode": "XOF",
+    "CurrencyName": "Franc",
+    "Languages": "fr-TG,ee,hna,kbp,dag,ha"
   },
   {
     "ISO": "TH",
+    "ISO3": "THA",
     "Country": "Thailand",
+    "Capital": "Bangkok",
     "Area(in sq km)": 514000,
-    "Population": 69428524
+    "Population": 69428524,
+    "Continent": "AS",
+    "CurrencyCode": "THB",
+    "CurrencyName": "Baht",
+    "Languages": "th,en"
   },
   {
     "ISO": "TJ",
+    "ISO3": "TJK",
     "Country": "Tajikistan",
+    "Capital": "Dushanbe",
     "Area(in sq km)": 143100,
-    "Population": 9100837
-  },
-  {
-    "ISO": "TK",
-    "Country": "Tokelau",
-    "Area(in sq km)": 10,
-    "Population": 1466
+    "Population": 9100837,
+    "Continent": "AS",
+    "CurrencyCode": "TJS",
+    "CurrencyName": "Somoni",
+    "Languages": "tg,ru"
   },
   {
     "ISO": "TL",
+    "ISO3": "TLS",
     "Country": "Timor Leste",
+    "Capital": "Dili",
     "Area(in sq km)": 15007,
-    "Population": 1267972
+    "Population": 1267972,
+    "Continent": "OC",
+    "CurrencyCode": "USD",
+    "CurrencyName": "Dollar",
+    "Languages": "tet,pt-TL,id,en"
   },
   {
     "ISO": "TM",
+    "ISO3": "TKM",
     "Country": "Turkmenistan",
+    "Capital": "Ashgabat",
     "Area(in sq km)": 488100,
-    "Population": 5850908
+    "Population": 5850908,
+    "Continent": "AS",
+    "CurrencyCode": "TMT",
+    "CurrencyName": "Manat",
+    "Languages": "tk,ru,uz"
   },
   {
     "ISO": "TN",
+    "ISO3": "TUN",
     "Country": "Tunisia",
+    "Capital": "Tunis",
     "Area(in sq km)": 163610,
-    "Population": 11565204
+    "Population": 11565204,
+    "Continent": "AF",
+    "CurrencyCode": "TND",
+    "CurrencyName": "Dinar",
+    "Languages": "ar-TN,fr"
   },
   {
     "ISO": "TO",
+    "ISO3": "TON",
     "Country": "Tonga",
+    "Capital": "Nuku'alofa",
     "Area(in sq km)": 748,
-    "Population": 103197
+    "Population": 103197,
+    "Continent": "OC",
+    "CurrencyCode": "TOP",
+    "CurrencyName": "Pa'anga",
+    "Languages": "to,en-TO"
   },
   {
     "ISO": "TR",
+    "ISO3": "TUR",
     "Country": "Türkiye",
+    "Capital": "Ankara",
     "Area(in sq km)": 780580,
-    "Population": 82319724
+    "Population": 82319724,
+    "Continent": "AS",
+    "CurrencyCode": "TRY",
+    "CurrencyName": "Lira",
+    "Languages": "tr-TR,ku,diq,az,av"
   },
   {
     "ISO": "TT",
+    "ISO3": "TTO",
     "Country": "Trinidad and Tobago",
+    "Capital": "Port of Spain",
     "Area(in sq km)": 5128,
-    "Population": 1389858
+    "Population": 1389858,
+    "Continent": "NA",
+    "CurrencyCode": "TTD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-TT,hns,fr,es,zh"
   },
   {
     "ISO": "TV",
+    "ISO3": "TUV",
     "Country": "Tuvalu",
+    "Capital": "Funafuti",
     "Area(in sq km)": 26,
-    "Population": 11508
+    "Population": 11508,
+    "Continent": "OC",
+    "CurrencyCode": "AUD",
+    "CurrencyName": "Dollar",
+    "Languages": "tvl,en,sm,gil"
   },
   {
     "ISO": "TW",
+    "ISO3": "TWN",
     "Country": "Taiwan",
+    "Capital": "Taipei",
     "Area(in sq km)": 35980,
-    "Population": 23451837
+    "Population": 23451837,
+    "Continent": "AS",
+    "CurrencyCode": "TWD",
+    "CurrencyName": "Dollar",
+    "Languages": "zh-TW,zh,nan,hak"
   },
   {
     "ISO": "TZ",
+    "ISO3": "TZA",
     "Country": "Tanzania",
+    "Capital": "Dodoma",
     "Area(in sq km)": 945087,
-    "Population": 56318348
+    "Population": 56318348,
+    "Continent": "AF",
+    "CurrencyCode": "TZS",
+    "CurrencyName": "Shilling",
+    "Languages": "sw-TZ,en,ar"
   },
   {
     "ISO": "UA",
+    "ISO3": "UKR",
     "Country": "Ukraine",
+    "Capital": "Kyiv",
     "Area(in sq km)": 603700,
-    "Population": 44622516
+    "Population": 44622516,
+    "Continent": "EU",
+    "CurrencyCode": "UAH",
+    "CurrencyName": "Hryvnia",
+    "Languages": "uk,ru-UA,rom,pl,hu"
   },
   {
     "ISO": "UG",
+    "ISO3": "UGA",
     "Country": "Uganda",
+    "Capital": "Kampala",
     "Area(in sq km)": 236040,
-    "Population": 42723139
+    "Population": 42723139,
+    "Continent": "AF",
+    "CurrencyCode": "UGX",
+    "CurrencyName": "Shilling",
+    "Languages": "en-UG,lg,sw,ar"
   },
   {
     "ISO": "UM",
+    "ISO3": "UMI",
     "Country": "United States Minor Outlying Islands",
+    "Capital": "",
     "Area(in sq km)": 0,
-    "Population": 0
+    "Population": 0,
+    "Continent": "OC",
+    "CurrencyCode": "USD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-UM"
   },
   {
     "ISO": "US",
+    "ISO3": "USA",
     "Country": "United States",
+    "Capital": "Washington",
     "Area(in sq km)": 9629091,
-    "Population": 327167434
+    "Population": 327167434,
+    "Continent": "NA",
+    "CurrencyCode": "USD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-US,es-US,haw,fr"
   },
   {
     "ISO": "UY",
+    "ISO3": "URY",
     "Country": "Uruguay",
+    "Capital": "Montevideo",
     "Area(in sq km)": 176220,
-    "Population": 3449299
+    "Population": 3449299,
+    "Continent": "SA",
+    "CurrencyCode": "UYU",
+    "CurrencyName": "Peso",
+    "Languages": "es-UY"
   },
   {
     "ISO": "UZ",
+    "ISO3": "UZB",
     "Country": "Uzbekistan",
+    "Capital": "Tashkent",
     "Area(in sq km)": 447400,
-    "Population": 32955400
+    "Population": 32955400,
+    "Continent": "AS",
+    "CurrencyCode": "UZS",
+    "CurrencyName": "Som",
+    "Languages": "uz,ru,tg"
   },
   {
     "ISO": "VA",
+    "ISO3": "VAT",
     "Country": "Vatican",
+    "Capital": "Vatican City",
     "Area(in sq km)": 0.44,
-    "Population": 921
+    "Population": 921,
+    "Continent": "EU",
+    "CurrencyCode": "EUR",
+    "CurrencyName": "Euro",
+    "Languages": "la,it,fr"
   },
   {
     "ISO": "VC",
+    "ISO3": "VCT",
     "Country": "Saint Vincent and the Grenadines",
+    "Capital": "Kingstown",
     "Area(in sq km)": 389,
-    "Population": 110211
+    "Population": 110211,
+    "Continent": "NA",
+    "CurrencyCode": "XCD",
+    "CurrencyName": "Dollar",
+    "Languages": "en-VC,fr"
   },
   {
     "ISO": "VE",
+    "ISO3": "VEN",
     "Country": "Venezuela",
+    "Capital": "Caracas",
     "Area(in sq km)": 912050,
-    "Population": 28870195
+    "Population": 28870195,
+    "Continent": "SA",
+    "CurrencyCode": "VES",
+    "CurrencyName": "Bolivar Soberano",
+    "Languages": "es-VE"
   },
   {
     "ISO": "VN",
+    "ISO3": "VNM",
     "Country": "Vietnam",
+    "Capital": "Hanoi",
     "Area(in sq km)": 329560,
-    "Population": 95540395
+    "Population": 95540395,
+    "Continent": "AS",
+    "CurrencyCode": "VND",
+    "CurrencyName": "Dong",
+    "Languages": "vi,en,fr,zh,km"
   },
   {
     "ISO": "VU",
+    "ISO3": "VUT",
     "Country": "Vanuatu",
+    "Capital": "Port Vila",
     "Area(in sq km)": 12200,
-    "Population": 292680
+    "Population": 292680,
+    "Continent": "OC",
+    "CurrencyCode": "VUV",
+    "CurrencyName": "Vatu",
+    "Languages": "bi,en-VU,fr-VU"
   },
   {
     "ISO": "WS",
+    "ISO3": "WSM",
     "Country": "Samoa",
+    "Capital": "Apia",
     "Area(in sq km)": 2944,
-    "Population": 196130
+    "Population": 196130,
+    "Continent": "OC",
+    "CurrencyCode": "WST",
+    "CurrencyName": "Tala",
+    "Languages": "sm,en-WS"
   },
   {
     "ISO": "YE",
+    "ISO3": "YEM",
     "Country": "Yemen",
+    "Capital": "Sanaa",
     "Area(in sq km)": 527970,
-    "Population": 28498687
+    "Population": 28498687,
+    "Continent": "AS",
+    "CurrencyCode": "YER",
+    "CurrencyName": "Rial",
+    "Languages": "ar-YE"
   },
   {
     "ISO": "ZA",
+    "ISO3": "ZAF",
     "Country": "South Africa",
+    "Capital": "Pretoria",
     "Area(in sq km)": 1219912,
-    "Population": 57779622
+    "Population": 57779622,
+    "Continent": "AF",
+    "CurrencyCode": "ZAR",
+    "CurrencyName": "Rand",
+    "Languages": "zu,xh,af,nso,en-ZA,tn,st,ts,ss,ve,nr"
   },
   {
     "ISO": "ZM",
+    "ISO3": "ZMB",
     "Country": "Zambia",
+    "Capital": "Lusaka",
     "Area(in sq km)": 752614,
-    "Population": 17351822
+    "Population": 17351822,
+    "Continent": "AF",
+    "CurrencyCode": "ZMW",
+    "CurrencyName": "Kwacha",
+    "Languages": "en-ZM,bem,loz,lun,lue,ny,toi"
   },
   {
     "ISO": "ZW",
+    "ISO3": "ZWE",
     "Country": "Zimbabwe",
+    "Capital": "Harare",
     "Area(in sq km)": 390580,
-    "Population": 14439018
-  },
-  {
-    "ISO": "CS",
-    "Country": "Serbia and Montenegro",
-    "Area(in sq km)": 102350,
-    "Population": 10829175
+    "Population": 14439018,
+    "Continent": "AF",
+    "CurrencyCode": "ZWG",
+    "CurrencyName": "Zimbabwe Gold",
+    "Languages": "en-ZW,sn,nr,nd"
   }
 ]

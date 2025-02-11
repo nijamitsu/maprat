@@ -153,6 +153,7 @@
 		background-color: var(--color-gray);
 		align-items: center;
 		transition: transform var(--transition-standard);
+		text-align: left;
 	}
 
 	:global(.city-item-button.highlighted) {
