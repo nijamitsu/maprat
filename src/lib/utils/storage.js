@@ -17,6 +17,7 @@ const staticData = createJsonLoader('/countryInfo.json', [
 	'ISO',
 	'Country',
 	'Population',
+	'Capital',
 	'CurrencyName'
 ]);
 

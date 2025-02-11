@@ -3,6 +3,8 @@
     import { generateFlagEmoji } from '$lib/utils/generateFlagEmoji';
     import { getMatchingData } from '$lib/utils/storage';
 
+    import { isTextMatch, sortBySearchMatch, normalizeText } from '$lib/utils/textFilter';
+
     const VISA_REQUIREMENTS = {
         FREE: 'visa free',
         ON_ARRIVAL: 'visa on arrival',
@@ -31,21 +33,21 @@
     function isVisaMatch(value, filter) {
         if (filter === 'all') return true;
         
-        if (filter === 'visa free') {
+        if (filter === VISA_REQUIREMENTS.FREE) {
             return value === VISA_REQUIREMENTS.FREE || 
-                   (typeof value === 'number' && value >= 7 && value <= 360);
+                (typeof value === 'number' && value >= 7 && value <= 360);
         }
         
-        if (filter === 'visa on arrival & e-visa') {
+        if (filter === VISA_REQUIREMENTS.ON_ARRIVAL || filter === VISA_REQUIREMENTS.ETA) {
             return value === VISA_REQUIREMENTS.ON_ARRIVAL || 
-                   value === VISA_REQUIREMENTS.ETA;
+                value === VISA_REQUIREMENTS.ETA;
         }
         
-        if (filter === 'eta') {
+        if (filter === VISA_REQUIREMENTS.E_VISA) {
             return value === VISA_REQUIREMENTS.E_VISA;
         }
-        
-        if (filter === 'visa required') {
+
+        if (filter === VISA_REQUIREMENTS.REQUIRED) {
             return value === VISA_REQUIREMENTS.REQUIRED;
         }
         
@@ -71,7 +73,6 @@
             throw error;
         }
         if (data) {
-            // Create a mapping of ISO codes to country names
             countryInfoData = data.reduce((acc, country) => {
                 acc[country.ISO] = country.Country;
                 return acc;
@@ -89,39 +90,47 @@
         }
     });
 
-    const green = $derived(
+    const visaFreeCount = $derived(
         Object.values(matchedData || {})
             .filter(entry => 
-                entry.value === "visa free" || 
+                entry.value === VISA_REQUIREMENTS.FREE ||
                 (typeof entry.value === 'number' && entry.value >= 7 && entry.value <= 360)
             )
             .length
     );
 
-    const blue = $derived(
+    const visaOnArrivalAndEtaCount = $derived(
         Object.values(matchedData || {})
             .filter(entry =>
-                entry.value === "visa on arrival" ||
-                entry.value === "eta"
+                entry.value === VISA_REQUIREMENTS.ON_ARRIVAL ||
+                entry.value === VISA_REQUIREMENTS.ETA
             )
             .length
     );
 
-    const yellow = $derived(
+    const eta = $derived(
         Object.values(matchedData || {})
-            .filter(entry => entry.value === "e-visa")
+            .filter(entry =>
+                entry.value === VISA_REQUIREMENTS.ETA
+            )
             .length
     );
 
-    const red = $derived(
+    const eVisaCount = $derived(
         Object.values(matchedData || {})
-            .filter(entry => entry.value === "visa required")
+            .filter(entry => entry.value === VISA_REQUIREMENTS.E_VISA)
+            .length
+    );
+
+    const visaRequired = $derived(
+        Object.values(matchedData || {})
+            .filter(entry => entry.value === VISA_REQUIREMENTS.REQUIRED)
             .length
     );
 
     function getVisaRequirementColorClass(value) {
         if (typeof value === 'number' && value >= 7 && value <= 360) {
-            return visaColorMap["visa free"];
+            return visaColorMap[VISA_REQUIREMENTS.FREE];
         }
         return visaColorMap[value] || '';
     }
@@ -130,8 +139,11 @@
         if (value === VISA_REQUIREMENTS.FREE || (Number.isFinite(value) && value >= 7 && value <= 360)) {
             return VISA_REQUIREMENTS.FREE;
         }
-        if (value === VISA_REQUIREMENTS.ON_ARRIVAL || value === VISA_REQUIREMENTS.ETA) {
-            return 'visa on arrival or eta';
+        if (value === VISA_REQUIREMENTS.ON_ARRIVAL) {
+            return VISA_REQUIREMENTS.ON_ARRIVAL;
+        }
+        if (value === VISA_REQUIREMENTS.ETA) {
+            return VISA_REQUIREMENTS.ETA;
         }
         if (value === VISA_REQUIREMENTS.E_VISA) {
             return VISA_REQUIREMENTS.E_VISA;
@@ -142,61 +154,20 @@
         return '';
     }
 
-    let normalizedFilterText = $derived(normalizeText(countryFilterText));
-
-    function isCountryMatch(countryIso) {
-        if (!countryFilterText) return true;
-        
-        const countryName = countryInfoData[countryIso] || '';
-        const normalizedCountryName = normalizeText(countryName);
-        const nameWithoutThe = normalizedCountryName.replace(/^the\s+/, '');
-        const words = nameWithoutThe.split(' ');
-        
-        return normalizedFilterText.length <= 1
-            ? (normalizedCountryName.startsWith(normalizedFilterText) ||
-            nameWithoutThe.startsWith(normalizedFilterText))
-            : (normalizedCountryName.startsWith(normalizedFilterText) ||
-            nameWithoutThe.startsWith(normalizedFilterText) ||
-            words.some((word) => word.startsWith(normalizedFilterText)));
-    }
-
-    function sortCountries(countryEntries) {
-        return countryEntries.sort(([isoA, _a], [isoB, _b]) => {
-            const aName = normalizeText(countryInfoData[isoA] || '');
-            const bName = normalizeText(countryInfoData[isoB] || '');
-            
-            const aStarts = aName.startsWith(normalizedFilterText);
-            const bStarts = bName.startsWith(normalizedFilterText);
-            
-            if (aStarts && !bStarts) return -1;
-            if (!aStarts && bStarts) return 1;
-            
-            return aName.localeCompare(bName);
-        });
-    }
-
-    // Handle filter input changes
-    function handleFilterInput(event) {
-        countryFilterText = event.target.value;
-    }
-
-    function normalizeText(text) {
-        return text
-            .toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '');
-    }
-
-  const filterOptions = [
-    { color: 'green', value: 'visa free', label: 'visa free' },
-    { color: 'blue', value: 'visa on arrival & e-visa', label: 'visa on arrival & e-visa' },
-    { color: 'yellow', value: 'eta', label: 'eta' },
-    { color: 'red', value: 'visa required', label: 'visa required' }
-  ];
+    const filterOptions = [
+        { color: 'green', value: VISA_REQUIREMENTS.FREE },
+        { color: 'blue', value: VISA_REQUIREMENTS.ON_ARRIVAL },
+        { color: 'yellow', value: VISA_REQUIREMENTS.E_VISA },
+        { color: 'red', value: VISA_REQUIREMENTS.REQUIRED }
+    ];
 
   function handleFilterClick(value) {
     selectedFilter = selectedFilter === value ? 'all' : value;
   }
+
+  function handleFilterInput(event) {
+        countryFilterText = event.target.value;
+    }
 </script>
 
 <div class="selected-country-wrapper">
@@ -206,7 +177,13 @@
                 {selectedCountryData.Country} {generateFlagEmoji(selectedCountryData.ISO)}
             </h2>
             <div>
+                Mobility score: {visaFreeCount + visaOnArrivalAndEtaCount + eVisaCount}/199
+            </div>
+            <div>
                 Population: {selectedCountryData.Population.toLocaleString()}
+            </div>
+            <div>
+                Capital: {selectedCountryData.Capital}
             </div>
             <div>
                 Currency: {selectedCountryData.CurrencyName}
@@ -235,20 +212,18 @@
                   value={option.value}
                   onclick={() => handleFilterClick(option.value)}
                 >
-                  {[green, blue, yellow, red][i]}
+                  {[visaFreeCount, visaOnArrivalAndEtaCount, eVisaCount, visaRequired][i]}
                 </button>
               {/each}
             </div>
         </div>
 
 
-
-
         <div class="selected-country-body">
                 <div class="country-visa-info">
                     {#if matchedData}
-                        {#each sortCountries(Object.entries(matchedData)) as [countryIso, data]}
-                            {#if data.value !== -1 && isVisaMatch(data.value, selectedFilter) && isCountryMatch(countryIso)}
+                        {#each sortBySearchMatch(Object.entries(matchedData), countryFilterText, countryInfoData) as [countryIso, data]}
+                            {#if data.value !== -1 && isVisaMatch(data.value, selectedFilter) && isTextMatch(countryIso, countryFilterText, countryInfoData)}
                                 <div class="visa-row">
                                     <div class="country-name">
                                         {countryInfoData[countryIso]} {generateFlagEmoji(countryIso)}
@@ -291,7 +266,7 @@
     }
 
     .visa-country-filter {
-        margin-top: var(--spacing-large);
+        margin-top: var(--spacing-medium);
     }
 
     .visa-country-filter-input {
