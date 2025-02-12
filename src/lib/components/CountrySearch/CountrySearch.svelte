@@ -15,62 +15,63 @@
 	}
 
 	async function handleCountrySelect(data) {
-		selectedCountryData = data
+		selectedCountryData = data;
 		searchTerm = '';
 	}
 
 	let filteredCountries = $derived(
-		searchTerm.trim() ? filterJsonData(searchTerm, 'Country' ) : []
+		searchTerm.trim()
+			? filterJsonData(searchTerm, 'Country').filter(
+					(country) => country.ISO !== selectedCountryData?.ISO
+				)
+			: []
 	);
 </script>
-		
 
-			<div class="search-wrapper">
-			<form class="search-input-wrapper" action="#">
-				<SearchIcon size={15} labelFor="citySearchInput" />
-				<input
-					type="search"
-					id="citySearchInput"
-					class="city-search-input"
-					class:active={filteredCountries.length}
-					bind:value={searchTerm}
-					placeholder="Enter your passport country"
-					autocorrect="off"
-					autocapitalize="off"
-					autocomplete="off"
-					spellcheck="false"
-					aria-label="Search for a country"
-				/>
-			</form>
+<div class="search-wrapper">
+	<form class="search-input-wrapper" action="#">
+		<SearchIcon size={15} labelFor="citySearchInput" />
+		<input
+			type="search"
+			id="citySearchInput"
+			class="city-search-input"
+			class:active={filteredCountries.length}
+			bind:value={searchTerm}
+			placeholder="Enter your passport country"
+			autocorrect="off"
+			autocapitalize="off"
+			autocomplete="off"
+			spellcheck="false"
+			aria-label="Search for a country"
+		/>
+	</form>
 
-				<div
-				class="city-suggestion-wrapper"
-				use:setupKeyboardNavigation={{
-					options: filteredCountries,
-					onSelect: handleCountrySelect,
-					onClose: handleClose,
-					searchInputId: 'citySearchInput',
-					optionButtonClass: '.city-item-button'
-				}}
-				>
-
-				{#if searchTerm.trim()}
-					<ul role="listbox" aria-label="City suggestions">
-						{#each filteredCountries as data}
-							{#if data?.ISO}
-								<li>
-									<button class="city-item-button" onclick={() => handleCountrySelect(data)}>
-										{data.Country}
-										{generateFlagEmoji(data.ISO)}
-									</button>
-								</li>
-							{/if}
-						{/each}
-					</ul>
-				{/if}
-
-				</div>
-			</div>
+	<div
+		class="city-suggestion-wrapper"
+		use:setupKeyboardNavigation={{
+			options: filteredCountries,
+			onSelect: handleCountrySelect,
+			onClose: handleClose,
+			searchInputId: 'citySearchInput',
+			optionButtonClass: '.city-item-button'
+		}}
+	>
+		{#if searchTerm.trim()}
+			<ul role="listbox" aria-label="City suggestions">
+				{#each filteredCountries as data}
+					{#if data?.ISO}
+						<li>
+							<button class="city-item-button" onclick={() => handleCountrySelect(data)}>
+								{data.Country}
+								{generateFlagEmoji(data.ISO)}
+							</button>
+						</li>
+					{/if}
+				{/each}
+			</ul>
+		{/if}
+	</div>
+</div>
 
 <style>
 	.search-wrapper {

@@ -8,11 +8,9 @@
 	import SelectedCountry from '$lib/components/CountrySearch/SelectedCountry.svelte';
 
 	let isInitialized = $state(false);
-	let selectedCountryData = $state({});
+	let selectedCountryData = $state({});	
 
-	let hasSelectedCountry = $derived(Boolean(selectedCountryData?.ISO));	
-
-	onMount(async () => {
+	onMount(() => {
 		isInitialized = true;
 	});
 
@@ -27,14 +25,14 @@
 		<PassportMap {selectedCountryData} />
 		<div class="divider"></div>
 		<section class="main-container">
-			{#if !hasSelectedCountry}
+			{#if !selectedCountryData?.ISO}
 				<div class="welcome-copy">
 					<h1>Explore visa requirements for your passport on the map.</h1>
 				</div>
 			{/if}
 			<div class="countrysearch-savedcountry">
 				<CountrySearch bind:selectedCountryData />
-				{#if hasSelectedCountry}
+				{#if selectedCountryData?.ISO}
 					<SelectedCountry {selectedCountryData} />
 				{/if}
 			</div>
