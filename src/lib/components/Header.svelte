@@ -1,11 +1,27 @@
+<script>
+    import { page } from '$app/stores';
+
+    const shouldHighlight = (targetRoute) => targetRoute === $page.route.id;
+</script>
+
 <section>
 <header>
 
     <div class="header-text-wrapper">
-        <div class="left"><a class="rat-home-link" href="/">Maprat 🐀</a></div>
+        <div class="left"><a class="rat-home-link" href="/">Maprat <span>🐀</span></a></div>
         <div class="right">
-            <a href="/passport">Passport</a>
-            <a href="/about">About</a>
+            <a 
+            href="/passport" 
+            class:text-underline={shouldHighlight('/passport')}
+            >
+                Passport
+            </a>
+            <a 
+                href="/about" 
+                class:text-underline={shouldHighlight('/about')}
+            >
+                About
+            </a>
         </div>
     </div>
     
@@ -37,11 +53,12 @@
         color: #fff;
         text-decoration: none;
         transition: opacity var(--transition-standard);
-        opacity: 0.8;
+        text-shadow: 1px 1px 2px var(--color-gray);
+
     }
 
-    a:hover {
-        opacity: 1;
+    .text-underline {
+        text-decoration: underline;
     }
 
 </style>
