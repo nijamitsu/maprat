@@ -60,7 +60,7 @@ export default class MapManager {
             this.map.touchPitch.disable();
 
             this.map.on('style.load', () => {
-                this.map.setProjection({ type: 'globe' });
+                this.map.setProjection({ type: 'mercator' });
             });
 
             // Subscribe to GeoJSON loader

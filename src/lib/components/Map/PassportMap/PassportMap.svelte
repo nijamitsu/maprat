@@ -10,12 +10,12 @@
 
 	let mapContainer;
 	let mapManager = $state();
-	let projectionType = $state('globe');
+	let projectionType = $state('mercator');
 
 	let { selectedCountryData } = $props();
 
 	function toggleProjection() {
-		projectionType = projectionType === 'globe' ? 'mercator' : 'globe';
+		projectionType = projectionType === 'mercator' ? 'globe' : 'mercator';
 		if (mapManager && mapManager.map) {
 			mapManager.map.setProjection({ type: projectionType });
 		}

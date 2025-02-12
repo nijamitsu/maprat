@@ -195,6 +195,7 @@
         <div class="visa-country-filter">
             <input
                 type="search"
+                id="visaCountryFilterInput"
                 class="visa-country-filter-input"
                 placeholder="Filter countries"
                 autocorrect="off"
