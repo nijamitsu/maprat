@@ -51,7 +51,6 @@
 		background-color: #303134;
 		border: 1px solid transparent;
 		border-radius: var(--border-radius-medium);
-		color: var(--color-primary);
 		transition:
 			box-shadow var(--transition-standard),
 			border-color var(--transition-standard);
@@ -75,7 +74,6 @@
 	.saved-city-item-button {
 		border: none;
 		background: none;
-		color: var(--color-primary);
 		display: flex;
 		align-items: center;
 		flex: 1;
@@ -93,7 +91,6 @@
 		line-height: var(--spacing-large);
 		border-radius: var(--border-radius-large);
 		border: none;
-		color: #b5b5b5;
 		background-color: var(--color-gray);
 		font-size: 22px;
 		font-family: monospace;

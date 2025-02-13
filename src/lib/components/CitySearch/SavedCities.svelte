@@ -55,15 +55,16 @@
 	}
 
 	function handleShareTravelHistory() {
-		const cityIds = savedCities.map(city => city.id);
+		const cityIds = savedCities.map((city) => city.id);
 		const shareUrl = buildCityShareUrl(cityIds);
-		
+
 		// Optional: Copy to clipboard
-		navigator.clipboard.writeText(shareUrl)
+		navigator.clipboard
+			.writeText(shareUrl)
 			.then(() => {
 				alert('Success! Travel history link copied to clipboard.');
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.error('Failed to copy URL:', err);
 				alert('Share URL: ' + shareUrl);
 			});
@@ -75,8 +76,8 @@
 		<h3>
 			{#if currentRoute !== '/me'}
 				You've seen
-			{:else}	
-				They've seen	
+			{:else}
+				They've seen
 			{/if}
 			{#key visitedWorldPercentage}
 				<span class="percentage-wrapper">
@@ -97,6 +98,11 @@
 				{formatDistance(totalDistance)} km traveled
 			{/if}
 		</p>
+		{#if currentRoute !== '/me'}
+			<button class="share-travel-history-button" onclick={handleShareTravelHistory}
+				>Share your travel history</button
+			>
+		{/if}
 	</div>
 	<div class="saved-cities-container">
 		<div class="saved-cities-list-card">
@@ -118,7 +124,9 @@
 							{#each citiesInCountry.slice(0, expandedCountries.includes(countryIso) ? undefined : 5) as savedCity (savedCity.id)}
 								<div animate:flip={{ duration: 300 }}>
 									<CityItem {savedCity} removeCityEvent={() => handleRemoveCity(savedCity.id)}>
-										{savedCity.name}{savedCity.countryIso === "US" ? `, ${savedCity.stateCode}` : ''}
+										{savedCity.name}{savedCity.countryIso === 'US'
+											? `, ${savedCity.stateCode}`
+											: ''}
 									</CityItem>
 								</div>
 							{/each}
@@ -137,7 +145,6 @@
 		{#if currentRoute !== '/me'}
 			<div class="clear-all-wrapper">
 				<button class="clear-all-button" onclick={handleClearAllCities}>Clear all</button>
-				<button class="share-travel-history-button" onclick={handleShareTravelHistory}>Share</button>
 			</div>
 		{/if}
 	</div>
@@ -181,15 +188,15 @@
 	/* 3. Button Styles */
 	.clear-all-wrapper {
 		display: flex;
-		justify-content: space-between;
+		justify-content: right;
 		align-items: center;
 		padding-top: var(--spacing-medium);
 	}
 
-	.clear-all-button, .share-travel-history-button {
+	.clear-all-button,
+	.share-travel-history-button {
 		border: none;
 		background: none;
-		color: var(--color-primary);
 		padding: 0;
 	}
 
@@ -206,7 +213,8 @@
 		animation-play-state: paused;
 	}
 
-	.clear-all-button:hover, .share-travel-history-button:hover {
+	.clear-all-button:hover,
+	.share-travel-history-button:hover {
 		text-decoration: underline;
 	}
 

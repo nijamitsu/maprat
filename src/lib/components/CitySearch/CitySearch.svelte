@@ -101,7 +101,6 @@
 
 	.city-search-input {
 		width: 100%;
-		color: var(--color-primary);
 		padding: 17px 15px 16px 40px;
 		background-color: var(--color-gray);
 		font-size: var(--font-size-medium);
@@ -142,7 +141,6 @@
 		overflow-y: auto;
 		position: absolute;
 		background-color: var(--color-gray);
-		color: var(--color-secondary);
 		box-shadow: var(--shadow-dropdown);
 		border: none;
 		border-radius: 0 0 23px 23px;
@@ -170,7 +168,6 @@
 		background-color: var(--color-gray);
 		align-items: center;
 		transition: transform var(--transition-standard);
-		color: var(--color-primary);
 		text-align: left;
 	}
 

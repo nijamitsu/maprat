@@ -38,7 +38,6 @@
 	}
 
 	a {
-		color: #fff;
 		text-decoration: none;
 		transition: opacity var(--transition-standard);
 		text-shadow: 1px 1px 2px var(--color-gray);

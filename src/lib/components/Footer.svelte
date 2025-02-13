@@ -18,6 +18,5 @@
 
 	.footer-text {
 		font-size: 12px;
-		color: #fff;
 	}
 </style>

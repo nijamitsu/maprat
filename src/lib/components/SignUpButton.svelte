@@ -7,7 +7,6 @@
 		background: var(--gradient-primary);
 		background-size: 400% 400%;
 		animation: gradientBG 15s ease infinite;
-		color: var(--color-primary);
 		border: none;
 		padding: 0.8rem 1rem;
 		cursor: pointer;

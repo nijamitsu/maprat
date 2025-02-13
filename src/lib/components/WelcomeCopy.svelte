@@ -9,6 +9,5 @@
 
 	.welcome-copy h1 {
 		font-size: clamp(1rem, 2vw + 1rem, var(--font-size-xlarge));
-		color: var(--color-primary);
 	}
 </style>

@@ -65,7 +65,6 @@
 		font-size: var(--font-size-small);
 		font-weight: bold;
 		font-family: var(--font-family-secondary);
-		color: var(--color-primary);
 		background-color: var(--color-gray);
 		transition: all var(--transition-standard);
 	}
