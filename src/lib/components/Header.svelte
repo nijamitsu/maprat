@@ -10,7 +10,6 @@
 			<div class="left"><a class="rat-home-link" href="/">Maprat <span>🐀</span></a></div>
 			<div class="right">
 				<a href="/passport" class:text-underline={shouldHighlight('/passport')}> Passport </a>
-				<a href="/faq" class:text-underline={shouldHighlight('/faq')}> FAQ </a>
 				<a href="/about" class:text-underline={shouldHighlight('/about')}> About </a>
 			</div>
 		</div>

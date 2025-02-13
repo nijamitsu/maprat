@@ -2,7 +2,6 @@
 	import { createJsonLoader } from '$lib/utils/createJsonLoader';
 	import { generateFlagEmoji } from '$lib/utils/generateFlagEmoji';
 	import { getMatchingData } from '$lib/utils/storage';
-
 	import { isTextMatch, sortBySearchMatch, normalizeText } from '$lib/utils/textFilter';
 
 	const VISA_CONFIG = {
@@ -175,7 +174,7 @@
 				Capital: {selectedCountryData.Capital}
 			</div>
 			<div>
-				Currency: {selectedCountryData.CurrencyName}
+				Currency: {selectedCountryData.CurrencyName} ({selectedCountryData.CurrencyCode})
 			</div>
 		</header>
 
