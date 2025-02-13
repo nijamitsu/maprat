@@ -56,7 +56,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		color: var(--color-primary);
 		justify-content: center;
 		text-align: center;
 	}
@@ -65,6 +64,5 @@
 		width: 100%;
 		max-width: var(--max-width-element);
 		margin-bottom: var(--spacing-large);
-		color: var(--color-primary);
 	}
 </style>
