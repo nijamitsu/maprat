@@ -21,7 +21,7 @@
     {
       "id": "background",
       "type": "background",
-      "paint": {"background-color": "rgb(242,243,240)"}
+      "paint": {"background-color": "rgba(132, 178, 190, 1)"}
     },
     {
       "id": "water",
@@ -53,7 +53,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsl(0,0%,70%)",
+        "line-color": "rgba(89, 136, 151, 1)",
         "line-opacity": ["interpolate", ["linear"], ["zoom"], 0, 0.4, 4, 1],
         "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1, 5, 1.2, 12, 3]
       }
@@ -79,9 +79,8 @@
       },
       "paint": {
         "text-color": "#000",
-        "text-halo-blur": 1,
         "text-halo-color": "#fff",
-        "text-halo-width": 1
+        "text-halo-width": 0.5
       }
     },
     {
@@ -104,9 +103,8 @@
       },
       "paint": {
         "text-color": "#000",
-        "text-halo-blur": 1,
         "text-halo-color": "#fff",
-        "text-halo-width": 1
+        "text-halo-width": 0.5
       }
     },
     {
@@ -134,9 +132,8 @@
       },
       "paint": {
         "text-color": "#000",
-        "text-halo-blur": 1,
         "text-halo-color": "#fff",
-        "text-halo-width": 1
+        "text-halo-width": 0.5
       }
     }
   ],

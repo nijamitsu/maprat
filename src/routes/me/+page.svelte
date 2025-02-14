@@ -22,8 +22,8 @@
 		}
 		isInitialized = true;
 	});
-	
 </script>
+
 {#if isInitialized}
 	<section class="main-wrapper">
 		<Map {savedCities} />
@@ -39,8 +39,6 @@
 {/if}
 
 <style>
-
-	
 	.main-wrapper {
 		flex: 1;
 	}
