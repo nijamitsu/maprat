@@ -23,7 +23,7 @@
 	}
 
 	function handleItemClick() {
-		if (currentRoute !== '/me') { 
+		if (currentRoute !== '/me') {
 			isRemoveButtonVisible = !isRemoveButtonVisible;
 		}
 	}
@@ -31,9 +31,10 @@
 
 <li class:active={isRemoveButtonVisible} use:clickOutside>
 	<article>
-		<button class="saved-city-item-button"
-		onclick={handleItemClick}
-		disabled={currentRoute === '/me'}
+		<button
+			class="saved-city-item-button"
+			onclick={handleItemClick}
+			disabled={currentRoute === '/me'}
 		>
 			{@render children()}
 		</button>
@@ -82,17 +83,17 @@
 	}
 
 	.saved-city-item-button:disabled {
-        cursor: default;
-    }
+		cursor: default;
+	}
 
 	.remove-button {
 		width: var(--spacing-large);
 		height: var(--spacing-large);
-		line-height: var(--spacing-large);
-		border-radius: var(--border-radius-large);
+		padding: 0;
+		border-radius: var(--border-radius-full);
 		border: none;
 		background-color: var(--color-gray);
-		font-size: 22px;
+		font-size: 1.25rem;
 		font-family: monospace;
 		display: flex;
 		align-items: center;
