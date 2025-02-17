@@ -59,6 +59,7 @@ export default class MapManager {
 		this.map = null;
 		this.countriesGeoJSON = null;
 		this.visaMatrixData = null;
+		this.isInitialized = false;
 
 		this.config = {
 			map: {
@@ -121,7 +122,9 @@ export default class MapManager {
 				this.map.once('load', () => {
 					resolve(this.map);
 				});
+				this.isInitialized = true;
 			});
+			
 		} catch (error) {
 			console.error('Failed to initialize map:', error);
 			throw error;
@@ -138,15 +141,23 @@ export default class MapManager {
 		return VISA.COLORS[status] || VISA.COLORS[VISA.STATUS.DEFAULT];
 	}
 
-	async loadCountryPolygons(passportIso) {
-		if (!this.map || !passportIso || !this.countriesGeoJSON) {
-			throw new Error('Required parameters missing');
-		}
+	async loadCountryPolygons(selectedCountryISO) {
+        if (!this.isInitialized) {
+            throw new Error('Map not initialized. Call init() first');
+        }
+
+        if (!this.map || !this.countriesGeoJSON || !this.visaMatrixData) {
+            throw new Error('Required map data not loaded');
+        }
+
+        if (!selectedCountryISO) {
+            throw new Error('selectedCountryISO code is required');
+        }
 
 		try {
 			const matchedData = getMatchingData(this.visaMatrixData, {
 				fieldName: 'Passport',
-				matchValue: passportIso
+				matchValue: selectedCountryISO
 			});
 
 			// Clean up existing layers and sources first
@@ -163,7 +174,7 @@ export default class MapManager {
 				);
 
 				if (countryFeature) {
-					const fillColor = this.getColorForVisaStatus(data.value, countryIso === passportIso);
+					const fillColor = this.getColorForVisaStatus(data.value, countryIso === selectedCountryISO);
 
 					// Add source for the country
 					this.map.addSource(sourceId, {
@@ -200,6 +211,11 @@ export default class MapManager {
 	}
 
 	removeAllCountryPolygons() {
+		if (!this.map) {
+            console.warn('Map instance not initialized - skipping cleanup');
+            return;
+        }
+		
 		const layers = this.map.getStyle().layers;
 		const sources = this.map.getStyle().sources;
 

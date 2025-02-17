@@ -10,6 +10,7 @@
 
 	let mapContainer;
 	let mapManager = $state();
+	let mapInitialized = $state(false);
 	let projectionType = $state('mercator');
 
 	let { selectedCountryData } = $props();
@@ -22,15 +23,19 @@
 	}
 
 	$effect(() => {
-		if (mapManager && mapManager.map && selectedCountryData.ISO) {
-			mapManager.removeAllCountryPolygons();
+		if (!mapInitialized || !mapManager?.map) return;
+
+		if (selectedCountryData?.ISO) {
 			mapManager.loadCountryPolygons(selectedCountryData.ISO);
+		} else {
+			mapManager.removeAllCountryPolygons();
 		}
 	});
 
 	onMount(async () => {
 		mapManager = new MapManager();
 		await mapManager.init(mapContainer);
+		mapInitialized = true;
 	});
 </script>
 
@@ -87,7 +92,7 @@
 	}
 
 	:global(.maplibregl-ctrl-geolocate, .maplibregl-ctrl-group) {
-    	border-radius: var(--border-radius-medium) !important;
+		border-radius: var(--border-radius-medium) !important;
 		padding: 2px !important;
 	}
 </style>
