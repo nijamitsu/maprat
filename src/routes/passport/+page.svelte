@@ -8,12 +8,11 @@
 	import SelectedCountry from '$lib/components/CountrySearch/SelectedCountry.svelte';
 
 	let isInitialized = $state(false);
-	let selectedCountryData = $state({});	
+	let selectedCountryData = $state({});
 
 	onMount(() => {
 		isInitialized = true;
 	});
-
 </script>
 
 <svelte:head>
@@ -25,15 +24,16 @@
 		<PassportMap {selectedCountryData} />
 		<div class="divider"></div>
 		<section class="main-container">
-			{#if !selectedCountryData?.ISO}
+			{#if Object.keys(selectedCountryData).length === 0}
 				<div class="welcome-copy">
 					<h1>Explore visa requirements for your passport on the map.</h1>
 				</div>
 			{/if}
 			<div class="countrysearch-savedcountry">
 				<CountrySearch bind:selectedCountryData />
-				{#if selectedCountryData?.ISO}
-					<SelectedCountry {selectedCountryData} />
+
+				{#if Object.keys(selectedCountryData).length > 0}
+					<SelectedCountry bind:selectedCountryData />
 				{/if}
 			</div>
 		</section>
@@ -72,7 +72,6 @@
 	.welcome-copy h1 {
 		font-size: clamp(1rem, 2vw + 1rem, var(--font-size-large));
 		color: var(--color-primary);
-
 	}
 
 	.divider {

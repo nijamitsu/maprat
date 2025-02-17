@@ -8,19 +8,20 @@
 <section class="main-wrapper">
 	<section class="about-section">
 		<div class="about-div">
-			<i
-				>Travel feels less like a desire for progress that pushes you forward and more like gravity
+			<i>Travel feels less like a desire for progress that pushes you forward and more like gravity
 				that prevents you from staying. A call to adventure, to the unknown, and not only to see
 				someone specific or to visit a particular place. An act performed purely for its own sake,
-				serving no other purpose, existing solely for itself, like an essence.</i
-			><br /><br />
+				serving no other purpose, existing solely for itself, like an essence.</i>
+			<br /><br />
 
 			I often find myself asking people about the places they've visited around the world, but I
 			rarely get a clear answer. That's why I created Maprat—to make it easy to save and share your
 			travel history. It's made for travelers, wanderers, globetrotters, nomads whatever you want to
-			call them.<br /><br />
+			call them.
+			<br /><br />
 
-			Enjoy!<br /><br />
+			Enjoy!
+			<br /><br />
 
 			-H
 		</div>

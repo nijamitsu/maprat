@@ -12,7 +12,7 @@
 		REQUIRED: { type: 'visa required', color: 'text-red' }
 	};
 
-	let { selectedCountryData } = $props();
+	let { selectedCountryData = $bindable() } = $props();
 	let visaMatrixData = $state();
 	let matchedData = $state();
 	let selectedFilter = $state('all');
@@ -155,79 +155,126 @@
 	function handleFilterInput(event) {
 		countryFilterText = event.target.value;
 	}
+
+	/* country card */
+
+	let isRemoveButtonVisible = $state(false);
+
+	function handleCountryCardButtonClick() {
+		isRemoveButtonVisible = !isRemoveButtonVisible;
+	}
+
+	function clickOutside(node) {
+		const handleClick = (event) => {
+			if (!node.contains(event.target)) {
+				isRemoveButtonVisible = false;
+			}
+		};
+
+		document.addEventListener('click', handleClick);
+
+		return {
+			destroy() {
+				document.removeEventListener('click', handleClick);
+			}
+		};
+	}
+
+	function removeCountryEvent() {
+		selectedCountryData = {};
+	}
+
+	/* country card */
 </script>
 
-<div class="selected-country-wrapper">
-	<div class="selected-country-container">
-		<header>
-			<h2 class="selected-country-title">
-				{selectedCountryData.Country}
-				{generateFlagEmoji(selectedCountryData.ISO)}
-			</h2>
-			<div>
-				Mobility score: {visaFreeCount() + visaOnArrivalAndEtaCount() + eVisaCount()}/199
-			</div>
-			<div>
-				Population: {selectedCountryData.Population.toLocaleString()}
-			</div>
-			<div>
-				Capital: {selectedCountryData.Capital}
-			</div>
-			<div>
-				Currency: {selectedCountryData.CurrencyName} ({selectedCountryData.CurrencyCode})
-			</div>
-		</header>
-
-		<div class="visa-country-filter">
-			<input
-				type="search"
-				id="visaCountryFilterInput"
-				class="visa-country-filter-input"
-				placeholder="Filter countries"
-				autocorrect="off"
-				autocapitalize="off"
-				autocomplete="off"
-				spellcheck="false"
-				aria-label="Filter countries"
-				oninput={handleFilterInput}
-			/>
-
-			<div class="color-legend-wrapper">
-				{#each filterOptions as option, i}
+{#if selectedCountryData}
+	<div class="selected-country-wrapper">
+		<div class="selected-country-container">
+			<div class="country-card" use:clickOutside>
+				<button
+					class="country-card-button"
+					onclick={handleCountryCardButtonClick}
+					aria-pressed={isRemoveButtonVisible}
+				>
+					<h2 class="selected-country-title">
+						{selectedCountryData.Country}
+						{generateFlagEmoji(selectedCountryData.ISO)}
+					</h2>
+					<div>
+						Mobility score: {visaFreeCount() + visaOnArrivalAndEtaCount() + eVisaCount()}/199
+					</div>
+					<div>
+						Population: {selectedCountryData.Population.toLocaleString()}
+					</div>
+					<div>
+						Capital: {selectedCountryData.Capital}
+					</div>
+					<div>
+						Currency: {selectedCountryData.CurrencyName} ({selectedCountryData.CurrencyCode})
+					</div>
+				</button>
+				{#if isRemoveButtonVisible}
 					<button
-						class="bg-{option.color} {selectedFilter === option.value ? 'selected' : ''}"
-						value={option.value}
-						onclick={() => handleFilterClick(option.value)}
+						class="remove-button"
+						aria-label="Remove {selectedCountryData.Country}"
+						onclick={removeCountryEvent}>&times;</button
 					>
-						{[visaFreeCount(), visaOnArrivalAndEtaCount(), eVisaCount(), visaRequiredCount()][i]}
-					</button>
-				{/each}
-			</div>
-		</div>
-
-		<div class="selected-country-body">
-			<div class="country-visa-info">
-				{#if matchedData}
-					{#each sortBySearchMatch(Object.entries(matchedData), countryFilterText, countryInfoData) as [countryIso, data]}
-						{#if data.value !== -1 && isVisaMatch(data.value, selectedFilter) && isTextMatch(countryIso, countryFilterText, countryInfoData)}
-							<div class="visa-row">
-								<div class="country-name">
-									{countryInfoData[countryIso]}
-									{generateFlagEmoji(countryIso)}
-								</div>
-								<div class="visa-requirement {getVisaRequirementColorClass(data.value)}">
-									{getVisaText(data.value)}
-								</div>
-							</div>
-						{/if}
-					{/each}
 				{/if}
+			</div>
+
+			<div class="visa-country-filter">
+				<input
+					type="search"
+					id="visaCountryFilterInput"
+					class="visa-country-filter-input"
+					placeholder="Filter countries"
+					autocorrect="off"
+					autocapitalize="off"
+					autocomplete="off"
+					spellcheck="false"
+					aria-label="Filter countries"
+					oninput={handleFilterInput}
+				/>
+
+				<div class="color-legend-wrapper">
+					{#each filterOptions as option, i}
+						<button
+							class="bg-{option.color} {selectedFilter === option.value ? 'selected' : ''}"
+							value={option.value}
+							onclick={() => handleFilterClick(option.value)}
+						>
+							{[visaFreeCount(), visaOnArrivalAndEtaCount(), eVisaCount(), visaRequiredCount()][i]}
+						</button>
+					{/each}
+				</div>
+			</div>
+
+			<div class="selected-country-body">
+				<div class="country-visa-info">
+					{#if matchedData}
+						{#each sortBySearchMatch(Object.entries(matchedData), countryFilterText, countryInfoData) as [countryIso, data]}
+							{#if data.value !== -1 && isVisaMatch(data.value, selectedFilter) && isTextMatch(countryIso, countryFilterText, countryInfoData)}
+								<div class="visa-row">
+									<div class="country-name">
+										{countryInfoData[countryIso]}
+										{generateFlagEmoji(countryIso)}
+									</div>
+									<div class="visa-requirement {getVisaRequirementColorClass(data.value)}">
+										{getVisaText(data.value)}
+									</div>
+								</div>
+							{/if}
+						{/each}
+					{/if}
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+{/if}
 
 <style>
+	/* country card */
+
 	.selected-country-wrapper {
 		width: 100%;
 		display: flex;
@@ -239,16 +286,57 @@
 		width: 100%;
 	}
 
-	header {
+	.country-card {
+		
+		text-align: left;
+		position: relative;
+	}
+
+	.country-card-button {
 		background-color: #303134;
 		border-radius: var(--border-radius-medium);
-		text-align: left;
 		padding: var(--spacing-medium);
+		width: 100%;
+		height: 100%;
+		border: 1px solid transparent;
+		text-align: left;
+	}
+
+	.country-card-button[aria-pressed='true'] {
+		border-color: var(--color-gray);
+	}
+
+	.country-card-button:hover {
+		box-shadow: 0 0 10px 2px rgba(192, 192, 192, 0.2);
+	}
+
+	.remove-button {
+		position: absolute;
+		top: var(--spacing-medium);
+		right: var(--spacing-medium);
+		width: var(--spacing-large);
+		height: var(--spacing-large);
+		padding: 0;
+		border-radius: var(--border-radius-full);
+		border: none;
+		background-color: var(--color-gray);
+		font-size: 1.25rem;
+		font-family: monospace;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: var(--transition-standard);
+	}
+
+	.remove-button:hover {
+		background-color: #626568;
 	}
 
 	h2 {
 		font-size: 1.2rem;
 	}
+
+	/* country card */
 
 	.visa-country-filter {
 		margin-top: var(--spacing-medium);

@@ -1,22 +1,22 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 * {
-    margin: 0;
-    color: var(--color-primary);
+	margin: 0;
+	color: var(--color-primary);
 }
 
 html,
 body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    font-family: var(--font-family-primary);
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-secondary);
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	font-family: var(--font-family-primary);
+	display: flex;
+	flex-direction: column;
+	background-color: var(--color-secondary);
 }
 
 img,
@@ -24,19 +24,19 @@ picture,
 video,
 canvas,
 svg {
-    display: block;
-    max-width: 100%;
+	display: block;
+	max-width: 100%;
 }
 
 input,
 button,
 textarea,
 select {
-    font: inherit;
+	font: inherit;
 }
 
 button {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 p,
@@ -46,11 +46,11 @@ h3,
 h4,
 h5,
 h6 {
-    overflow-wrap: break-word;
+	overflow-wrap: break-word;
 }
 
 p {
-    text-wrap: pretty;
+	text-wrap: pretty;
 }
 
 h1,
@@ -59,66 +59,66 @@ h3,
 h4,
 h5,
 h6 {
-    text-wrap: balance;
+	text-wrap: balance;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+	list-style: none;
+	padding: 0;
 }
 
 :root {
-    /* Colors */
-    --color-primary: #fff;
-    --color-secondary: #000;
-    --color-gray: #4d5155;
-    --color-blue: #007bff;
-    --color-light-gray: #f8f9fa;
-    --color-hover-gray: #eaeff4;
+	/* Colors */
+	--color-primary: #fff;
+	--color-secondary: #000;
+	--color-gray: #4d5155;
+	--color-blue: #007bff;
+	--color-light-gray: #f8f9fa;
+	--color-hover-gray: #eaeff4;
 
-    --color-green: #5bc980;
-    --color-blue: #559dd6;
-    --color-yellow: #e9d875;
-    --color-red: #c6335f;
+	--color-green: #5bc980;
+	--color-blue: #559dd6;
+	--color-yellow: #e9d875;
+	--color-red: #c6335f;
 
-    /* Breakpoints */
-    --breakpoint-mobile: 768px;
-    --breakpoint-tablet: 1024px;
-    --breakpoint-desktop: 1440px;
+	/* Breakpoints */
+	--breakpoint-mobile: 768px;
+	--breakpoint-tablet: 1024px;
+	--breakpoint-desktop: 1440px;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(-45deg, #4caf50, #2196f3, #9c27b0, #f44336);
+	/* Gradients */
+	--gradient-primary: linear-gradient(-45deg, #4caf50, #2196f3, #9c27b0, #f44336);
 
-    /* Shadows */
-    --shadow-dropdown: 0 4px 6px rgba(0, 0, 0, 0.1);
+	/* Shadows */
+	--shadow-dropdown: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-    /* Spacing */
-    --spacing-small: 8px;
-    --spacing-medium: 15px;
-    --spacing-large: 30px;
-    --spacing-xl: 40px;
+	/* Spacing */
+	--spacing-small: 8px;
+	--spacing-medium: 15px;
+	--spacing-large: 30px;
+	--spacing-xl: 40px;
 
-    /* Sizes */
-    --max-width-container: 50rem;
-    --max-width-element: 500px;
+	/* Sizes */
+	--max-width-container: 50rem;
+	--max-width-element: 500px;
 
-    /* Border Radius */
-    --border-radius-small: 8px;
-    --border-radius-medium: 10px;
-    --border-radius-large: 40px;
-    --border-radius-full: 9999px;
+	/* Border Radius */
+	--border-radius-small: 8px;
+	--border-radius-medium: 10px;
+	--border-radius-large: 40px;
+	--border-radius-full: 9999px;
 
-    /* Font Sizes */
-    --font-size-small: 0.8rem;
-    --font-size-medium: 1rem;
-    --font-size-large: 2rem;
-    --font-size-xlarge: 3rem;
+	/* Font Sizes */
+	--font-size-small: 0.8rem;
+	--font-size-medium: 1rem;
+	--font-size-large: 2rem;
+	--font-size-xlarge: 3rem;
 
-    /* Font Family */
-    --font-family-primary: 'Josefin Sans', sans-serif;
-    --font-family-secondary: sans-serif;
+	/* Font Family */
+	--font-family-primary: 'Josefin Sans', sans-serif;
+	--font-family-secondary: sans-serif;
 
-    /* Animations */
-    --transition-standard: 0.2s ease;
-    --transition-slow: 1s ease-in-out;
+	/* Animations */
+	--transition-standard: 0.2s ease;
+	--transition-slow: 1s ease-in-out;
 }

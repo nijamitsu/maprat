@@ -37,7 +37,9 @@
 			class="city-search-input"
 			class:active={filteredCountries.length}
 			bind:value={searchTerm}
-			placeholder="Enter your passport country"
+			placeholder={!selectedCountryData?.ISO
+				? 'Search passport country'
+				: 'Search to combine another passport'}
 			autocorrect="off"
 			autocapitalize="off"
 			autocomplete="off"
