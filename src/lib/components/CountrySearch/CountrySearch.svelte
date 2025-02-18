@@ -7,7 +7,7 @@
 	// Internal elements
 	import SearchIcon from '$lib/elements/SearchIcon.svelte';
 
-	let { selectedCountryData = $bindable() } = $props();
+	let { selectedCountryData = $bindable(), selectedCountries = $bindable() } = $props();
 	let searchTerm = $state('');
 
 	function handleClose() {
@@ -15,14 +15,17 @@
 	}
 
 	async function handleCountrySelect(data) {
+		// delete the selectedCountryData variable once you fully implemented the selectedCountries
 		selectedCountryData = data;
+
+		selectedCountries = [...selectedCountries, data];
 		searchTerm = '';
 	}
 
 	let filteredCountries = $derived(
 		searchTerm.trim()
 			? filterJsonData(searchTerm, 'Country').filter(
-					(country) => country.ISO !== selectedCountryData?.ISO
+					(country) => !selectedCountries.some((selected) => selected.ISO === country.ISO)
 				)
 			: []
 	);
@@ -37,9 +40,9 @@
 			class="city-search-input"
 			class:active={filteredCountries.length}
 			bind:value={searchTerm}
-			placeholder={!selectedCountryData?.ISO
-				? 'Search passport country'
-				: 'Search to combine another passport'}
+			placeholder={selectedCountries.length
+				? 'Search to combine another passport'
+				: 'Search passport country'}
 			autocorrect="off"
 			autocapitalize="off"
 			autocomplete="off"

@@ -13,7 +13,7 @@ const COLORS = {
 
 const VISA = {
 	STATUS: {
-		PASSPORT_COUNTRY: 'passport',
+		PASSPORT_COUNTRY: -1,
 		VISA_FREE: 'visa free',
 		NUMBER: 'number',
 		ETA: 'eta',
@@ -124,47 +124,41 @@ export default class MapManager {
 				});
 				this.isInitialized = true;
 			});
-			
 		} catch (error) {
 			console.error('Failed to initialize map:', error);
 			throw error;
 		}
 	}
 
-	getColorForVisaStatus(status, isPassportCountry = false) {
-		if (isPassportCountry) {
+	getColorForVisaStatus(value, isSelected) {
+		// Force passport country (-1) to always use gray regardless of selection.
+		if (value === VISA.STATUS.PASSPORT_COUNTRY) {
 			return VISA.COLORS[VISA.STATUS.PASSPORT_COUNTRY];
 		}
-		if (typeof status === 'number') {
+		// If value is any other number, return the generic number color.
+		if (typeof value === 'number') {
 			return VISA.COLORS[VISA.STATUS.NUMBER];
 		}
-		return VISA.COLORS[status] || VISA.COLORS[VISA.STATUS.DEFAULT];
+		return VISA.COLORS[value] || VISA.COLORS[VISA.STATUS.DEFAULT];
 	}
 
-	async loadCountryPolygons(selectedCountryISO) {
-        if (!this.isInitialized) {
-            throw new Error('Map not initialized. Call init() first');
-        }
-
-        if (!this.map || !this.countriesGeoJSON || !this.visaMatrixData) {
-            throw new Error('Required map data not loaded');
-        }
-
-        if (!selectedCountryISO) {
-            throw new Error('selectedCountryISO code is required');
-        }
+	async loadCountryPolygons(combinedVisaRequirementData) {
+		if (!this.isInitialized) {
+			throw new Error('Map not initialized. Call init() first');
+		}
+		if (!this.map || !this.countriesGeoJSON) {
+			throw new Error('Required map data not loaded');
+		}
+		if (!combinedVisaRequirementData) {
+			throw new Error('Combined visa requirement data is required');
+		}
 
 		try {
-			const matchedData = getMatchingData(this.visaMatrixData, {
-				fieldName: 'Passport',
-				matchValue: selectedCountryISO
-			});
-
 			// Clean up existing layers and sources first
 			this.removeAllCountryPolygons();
 
-			// Process each country's visa status
-			Object.entries(matchedData).forEach(([countryIso, data]) => {
+			// Process each country's visa status from combinedVisaRequirementData
+			Object.entries(combinedVisaRequirementData).forEach(([countryIso, data]) => {
 				const sourceId = `${countryIso}-source`;
 				const layerId = `${countryIso}-layer`;
 
@@ -174,7 +168,9 @@ export default class MapManager {
 				);
 
 				if (countryFeature) {
-					const fillColor = this.getColorForVisaStatus(data.value, countryIso === selectedCountryISO);
+					// We no longer compare against a single selected country,
+					// so we pass false (or customize as needed) for the second parameter.
+					const fillColor = this.getColorForVisaStatus(data.value, false);
 
 					// Add source for the country
 					this.map.addSource(sourceId, {
@@ -182,10 +178,7 @@ export default class MapManager {
 						data: {
 							type: 'Feature',
 							geometry: countryFeature.geometry,
-							properties: {
-								...countryFeature.properties,
-								visaStatus: data.value
-							}
+							properties: { ...countryFeature.properties, visaStatus: data.value }
 						}
 					});
 
@@ -195,27 +188,24 @@ export default class MapManager {
 							id: layerId,
 							type: 'fill',
 							source: sourceId,
-							paint: {
-								'fill-color': fillColor,
-								'fill-opacity': this.config.polygon.fill_opacity
-							}
+							paint: { 'fill-color': fillColor, 'fill-opacity': this.config.polygon.fill_opacity }
 						},
 						'water'
 					);
 				}
 			});
 		} catch (error) {
-			console.error('Error loading country polygons:', error);
+			console.error('Failed to load country polygons', error);
 			throw error;
 		}
 	}
 
 	removeAllCountryPolygons() {
 		if (!this.map) {
-            console.warn('Map instance not initialized - skipping cleanup');
-            return;
-        }
-		
+			console.warn('Map instance not initialized - skipping cleanup');
+			return;
+		}
+
 		const layers = this.map.getStyle().layers;
 		const sources = this.map.getStyle().sources;
 

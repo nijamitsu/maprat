@@ -13,7 +13,7 @@
 	let mapInitialized = $state(false);
 	let projectionType = $state('mercator');
 
-	let { selectedCountryData } = $props();
+	let { selectedCountries, combinedVisaRequirementData } = $props();
 
 	function toggleProjection() {
 		projectionType = projectionType === 'mercator' ? 'globe' : 'mercator';
@@ -25,8 +25,8 @@
 	$effect(() => {
 		if (!mapInitialized || !mapManager?.map) return;
 
-		if (selectedCountryData?.ISO) {
-			mapManager.loadCountryPolygons(selectedCountryData.ISO);
+		if (selectedCountries.length) {
+			mapManager.loadCountryPolygons(combinedVisaRequirementData);
 		} else {
 			mapManager.removeAllCountryPolygons();
 		}
