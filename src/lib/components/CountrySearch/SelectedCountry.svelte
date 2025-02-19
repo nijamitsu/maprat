@@ -227,7 +227,7 @@
 				<div>
 					{selectedCountries.length} passports combined:
 					{#each selectedCountries as country}
-						{generateFlagEmoji(country.ISO)}
+						{generateFlagEmoji(country.ISO)}&nbsp;
 					{/each}
 				</div>
 
