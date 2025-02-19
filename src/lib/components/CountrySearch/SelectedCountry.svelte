@@ -3,13 +3,55 @@
 	import { generateFlagEmoji } from '$lib/utils/generateFlagEmoji';
 	import { isTextMatch, sortBySearchMatch, normalizeText } from '$lib/utils/textFilter';
 
+	// Updated VISA_CONFIG with passport added
 	const VISA_CONFIG = {
+		PASSPORT: { type: -1, color: 'text-gray' },
 		FREE: { type: 'visa free', color: 'text-green' },
 		ON_ARRIVAL: { type: 'visa on arrival', color: 'text-blue' },
 		ETA: { type: 'eta', color: 'text-blue' },
 		E_VISA: { type: 'e-visa', color: 'text-yellow' },
 		REQUIRED: { type: 'visa required', color: 'text-red' }
 	};
+
+	// Properties helper to centralize visa matching logic.
+	function getVisaProperties(value) {
+		const props = { category: '', text: '', color: '', mobilityScore: 0 };
+		if (value === VISA_CONFIG.PASSPORT.type) {
+			props.category = 'passport';
+			props.text = 'Passport country';
+			props.color = VISA_CONFIG.PASSPORT.color;
+			props.mobilityScore = 1;
+		} else if (
+			value === VISA_CONFIG.FREE.type ||
+			(typeof value === 'number' && value >= 7 && value <= 360)
+		) {
+			props.category = 'visaFree';
+			props.text = VISA_CONFIG.FREE.type;
+			props.color = VISA_CONFIG.FREE.color;
+			props.mobilityScore = 1;
+		} else if (value === VISA_CONFIG.ON_ARRIVAL.type) {
+			props.category = 'onArrival';
+			props.text = VISA_CONFIG.ON_ARRIVAL.type;
+			props.color = VISA_CONFIG.ON_ARRIVAL.color;
+			props.mobilityScore = 1;
+		} else if (value === VISA_CONFIG.ETA.type) {
+			props.category = 'eta';
+			props.text = VISA_CONFIG.ETA.type;
+			props.color = VISA_CONFIG.ETA.color;
+			props.mobilityScore = 1;
+		} else if (value === VISA_CONFIG.E_VISA.type) {
+			props.category = 'eVisa';
+			props.text = VISA_CONFIG.E_VISA.type;
+			props.color = VISA_CONFIG.E_VISA.color;
+			props.mobilityScore = 1;
+		} else if (value === VISA_CONFIG.REQUIRED.type) {
+			props.category = 'required';
+			props.text = VISA_CONFIG.REQUIRED.type;
+			props.color = VISA_CONFIG.REQUIRED.color;
+			props.mobilityScore = 0;
+		}
+		return props;
+	}
 
 	let {
 		selectedCountries = $bindable(),
@@ -21,21 +63,20 @@
 	let selectedFilter = $state('all');
 	let countryFilterText = $state('');
 
+	// Refactored isVisaMatch using getVisaProperties.
 	function isVisaMatch(value, filter) {
 		if (filter === 'all') return true;
-
+		const visa = getVisaProperties(value);
 		switch (filter) {
 			case VISA_CONFIG.FREE.type:
-				return (
-					value === VISA_CONFIG.FREE.type ||
-					(typeof value === 'number' && value >= 7 && value <= 360)
-				);
+				return visa.category === 'visaFree';
 			case VISA_CONFIG.ON_ARRIVAL.type:
-			case VISA_CONFIG.ETA.type:
-				return value === VISA_CONFIG.ON_ARRIVAL.type || value === VISA_CONFIG.ETA.type;
+				// Accept on arrival OR ETA when filter is on arrival.
+				return visa.category === 'onArrival' || visa.category === 'eta';
 			case VISA_CONFIG.E_VISA.type:
+				return visa.category === 'eVisa';
 			case VISA_CONFIG.REQUIRED.type:
-				return value === filter;
+				return visa.category === 'required';
 			default:
 				return false;
 		}
@@ -47,8 +88,41 @@
 		}
 	});
 
+	// Refactored computeFilteredVisaCounts using getVisaProperties.
+	function computeFilteredVisaCounts(filteredData) {
+		const counts = {
+			passport: 0,
+			visaFreeCount: 0,
+			visaOnArrivalAndEtaCount: 0,
+			etaCount: 0,
+			eVisaCount: 0,
+			visaRequiredCount: 0
+		};
+		filteredData.forEach(([countryIso, { value }]) => {
+			const visa = getVisaProperties(value);
+			if (visa.category === 'passport' || visa.category === 'visaFree') {
+				counts.visaFreeCount++;
+			}
+			if (visa.category === 'onArrival' || visa.category === 'eta') {
+				counts.visaOnArrivalAndEtaCount++;
+			}
+			if (visa.category === 'eta') {
+				counts.etaCount++;
+			}
+			if (visa.category === 'eVisa') {
+				counts.eVisaCount++;
+			}
+			if (visa.category === 'required') {
+				counts.visaRequiredCount++;
+			}
+		});
+		return counts;
+	}
+
+	// Refactored computeVisaCounts using getVisaProperties.
 	const computeVisaCounts = () => {
 		const counts = {
+			passport: 0,
 			visaFreeCount: 0,
 			visaOnArrivalAndEtaCount: 0,
 			etaCount: 0,
@@ -57,22 +131,20 @@
 		};
 
 		for (const { value } of Object.values(combinedVisaRequirementData || {})) {
-			if (
-				value === VISA_CONFIG.FREE.type ||
-				(typeof value === 'number' && value >= 7 && value <= 360)
-			) {
+			const visa = getVisaProperties(value);
+			if (visa.category === 'passport' || visa.category === 'visaFree') {
 				counts.visaFreeCount++;
 			}
-			if (value === VISA_CONFIG.ON_ARRIVAL.type || value === VISA_CONFIG.ETA.type) {
+			if (visa.category === 'onArrival' || visa.category === 'eta') {
 				counts.visaOnArrivalAndEtaCount++;
 			}
-			if (value === VISA_CONFIG.ETA.type) {
+			if (visa.category === 'eta') {
 				counts.etaCount++;
 			}
-			if (value === VISA_CONFIG.E_VISA.type) {
+			if (visa.category === 'eVisa') {
 				counts.eVisaCount++;
 			}
-			if (value === VISA_CONFIG.REQUIRED.type) {
+			if (visa.category === 'required') {
 				counts.visaRequiredCount++;
 			}
 		}
@@ -85,32 +157,17 @@
 	const eVisaCount = () => computeVisaCounts().eVisaCount;
 	const visaRequiredCount = () => computeVisaCounts().visaRequiredCount;
 
+	// Refactored helper for color using getVisaProperties.
 	function getVisaRequirementColorClass(value) {
-		if (typeof value === 'number' && value >= 7 && value <= 360) {
-			return VISA_CONFIG.FREE.color;
-		}
-		return Object.values(VISA_CONFIG).find((config) => config.type === value)?.color || '';
+		return getVisaProperties(value).color;
 	}
 
+	// Refactored helper for display text using getVisaProperties.
 	function getVisaText(value) {
-		if (value === VISA_CONFIG.FREE.type || (Number.isFinite(value) && value >= 7 && value <= 360)) {
-			return VISA_CONFIG.FREE.type;
-		}
-		if (value === VISA_CONFIG.ON_ARRIVAL.type) {
-			return VISA_CONFIG.ON_ARRIVAL.type;
-		}
-		if (value === VISA_CONFIG.ETA.type) {
-			return VISA_CONFIG.ETA.type;
-		}
-		if (value === VISA_CONFIG.E_VISA.type) {
-			return VISA_CONFIG.E_VISA.type;
-		}
-		if (value === VISA_CONFIG.REQUIRED.type) {
-			return VISA_CONFIG.REQUIRED.type;
-		}
-		return '';
+		return getVisaProperties(value).text;
 	}
 
+	// Update filter options remain unchanged.
 	const filterOptions = [
 		{ color: 'green', value: VISA_CONFIG.FREE.type },
 		{ color: 'blue', value: VISA_CONFIG.ON_ARRIVAL.type },
@@ -139,25 +196,13 @@
 	}
 	/* end of country card */
 
+	// Refactored computeMobilityScore using getVisaProperties.
 	function computeMobilityScore(visaData) {
 		let score = 0;
-		// Iterate over each destination's visa requirement in the country’s visaData
+		// Iterate over each destination's visa requirement in the visaData.
 		for (const { value } of Object.values(visaData || {})) {
-			if (
-				value === VISA_CONFIG.FREE.type ||
-				(typeof value === 'number' && value >= 7 && value <= 360)
-			) {
-				score++;
-			}
-			if (value === VISA_CONFIG.ON_ARRIVAL.type || value === VISA_CONFIG.ETA.type) {
-				score++;
-			}
-			if (value === VISA_CONFIG.ETA.type) {
-				score++;
-			}
-			if (value === VISA_CONFIG.E_VISA.type) {
-				score++;
-			}
+			const visa = getVisaProperties(value);
+			score += visa.mobilityScore;
 		}
 		return score;
 	}
@@ -165,51 +210,30 @@
 	// Compute filtered visa data based on combinedVisaRequirementData and current filter settings.
 	let filteredVisaData = $derived(
 		combinedVisaRequirementData
-			? Object.entries(combinedVisaRequirementData).filter(
-					([countryIso, data]) =>
-						data.value !== -1 && isTextMatch(countryIso, countryFilterText, countryInfoData)
+			? Object.entries(combinedVisaRequirementData).filter(([countryIso, data]) =>
+					isTextMatch(countryIso, countryFilterText, countryInfoData)
 				)
 			: []
 	);
 
-	// Compute counts from filtered visa data.
-	function computeFilteredVisaCounts(filteredData) {
-		const counts = {
-			visaFreeCount: 0,
-			visaOnArrivalAndEtaCount: 0,
-			etaCount: 0,
-			eVisaCount: 0,
-			visaRequiredCount: 0
-		};
-		filteredData.forEach(([countryIso, { value }]) => {
-			if (
-				value === VISA_CONFIG.FREE.type ||
-				(typeof value === 'number' && value >= 7 && value <= 360)
-			) {
-				counts.visaFreeCount++;
-			}
-			if (value === VISA_CONFIG.ON_ARRIVAL.type || value === VISA_CONFIG.ETA.type) {
-				counts.visaOnArrivalAndEtaCount++;
-			}
-			if (value === VISA_CONFIG.ETA.type) {
-				counts.etaCount++;
-			}
-			if (value === VISA_CONFIG.E_VISA.type) {
-				counts.eVisaCount++;
-			}
-			if (value === VISA_CONFIG.REQUIRED.type) {
-				counts.visaRequiredCount++;
-			}
-		});
-		return counts;
-	}
-
-	// Reactive counts based on current filter.
+	// Derive counts from filtered data.
 	let filteredCounts = $derived(computeFilteredVisaCounts(filteredVisaData));
 </script>
 
 <div class="selected-country-wrapper">
 	<div class="selected-country-container">
+		{#if selectedCountries.length > 1}
+			<div class="combined-country-card">
+				<div>
+					{selectedCountries.length} passports combined:
+					{#each selectedCountries as country}
+						{generateFlagEmoji(country.ISO)}
+					{/each}
+				</div>
+
+				<div>Total mobility score: {computeMobilityScore(combinedVisaRequirementData)}/199</div>
+			</div>
+		{/if}
 		{#each [...selectedCountries].reverse() as country, i (country.ISO)}
 			<div class="country-card">
 				<button
@@ -288,7 +312,7 @@
 			<div class="country-visa-info">
 				{#if combinedVisaRequirementData}
 					{#each sortBySearchMatch(Object.entries(combinedVisaRequirementData), countryFilterText, countryInfoData) as [countryIso, data]}
-						{#if data.value !== -1 && isVisaMatch(data.value, selectedFilter) && isTextMatch(countryIso, countryFilterText, countryInfoData)}
+						{#if isVisaMatch(data.value, selectedFilter) && isTextMatch(countryIso, countryFilterText, countryInfoData)}
 							<div class="visa-row">
 								<div class="country-name">
 									{countryInfoData[countryIso]}
@@ -373,6 +397,20 @@
 	}
 	/* end of country card */
 
+	/* combined country card */
+
+	.combined-country-card {
+		text-align: left;
+		background-color: #303134;
+		border-radius: var(--border-radius-medium);
+		padding: var(--spacing-medium);
+		width: 100%;
+		height: 100%;
+		border: 1px solid transparent;
+	}
+
+	/* end of combined counrty card */
+
 	.visa-country-filter {
 		margin-top: var(--spacing-medium);
 	}
@@ -449,6 +487,10 @@
 
 	.bg-red {
 		background-color: var(--color-red);
+	}
+
+	.text-gray {
+		color: gray;
 	}
 
 	.text-green {
