@@ -7,18 +7,19 @@
 	// Internal elements
 	import SearchIcon from '$lib/elements/SearchIcon.svelte';
 
-	let { selectedCountryData = $bindable(), selectedCountries = $bindable() } = $props();
+	let { selectedCountries = $bindable() } = $props();
 	let searchTerm = $state('');
 
 	function handleClose() {
 		searchTerm = '';
 	}
 
-	async function handleCountrySelect(data) {
-		// delete the selectedCountryData variable once you fully implemented the selectedCountries
-		selectedCountryData = data;
-
-		selectedCountries = [...selectedCountries, data];
+	function handleCountrySelect(data) {
+		if (selectedCountries.length >= 5) {
+			selectedCountries = [...selectedCountries.slice(1), data];
+		} else {
+			selectedCountries = [...selectedCountries, data];
+		}
 		searchTerm = '';
 	}
 

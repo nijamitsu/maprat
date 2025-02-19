@@ -172,7 +172,7 @@
 			: []
 	);
 
-	// New helper: compute counts from filtered visa data.
+	// Compute counts from filtered visa data.
 	function computeFilteredVisaCounts(filteredData) {
 		const counts = {
 			visaFreeCount: 0,

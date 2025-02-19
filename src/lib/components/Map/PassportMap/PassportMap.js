@@ -1,6 +1,5 @@
 import maplibregl from 'maplibre-gl';
 import { createJsonLoader } from '$lib/utils/createJsonLoader';
-import { getMatchingData } from '$lib/utils/storage';
 
 const COLORS = {
 	GREEN: '#5bc980',
@@ -58,7 +57,7 @@ export default class MapManager {
 	constructor() {
 		this.map = null;
 		this.countriesGeoJSON = null;
-		this.visaMatrixData = null;
+		this.countryFeaturesMap = {}; // Pre-built lookup for country features by ISO
 		this.isInitialized = false;
 
 		this.config = {
@@ -75,9 +74,8 @@ export default class MapManager {
 			}
 		};
 
-		// Create JSON loaders
+		// Create a JSON loader for fetching GeoJSON data
 		this.geoJsonLoader = createJsonLoader('ne_110m_admin_0_countries.json');
-		this.visaMatrixLoader = createJsonLoader('passport-index-matrix-iso2.json');
 	}
 
 	async init(mapContainer) {
@@ -87,11 +85,13 @@ export default class MapManager {
 				...this.config.map
 			});
 
+			// Disable unnecessary interactions
 			this.map.dragRotate.disable();
 			this.map.keyboard.disable();
 			this.map.touchZoomRotate.disableRotation();
 			this.map.touchPitch.disable();
 
+			// Set projection when style is loaded
 			this.map.on('style.load', () => {
 				this.map.setProjection({ type: 'mercator' });
 			});
@@ -104,26 +104,23 @@ export default class MapManager {
 				}
 				if (data) {
 					this.countriesGeoJSON = data;
+					// Build a lookup map for country features by ISO code for quick access
+					this.countryFeaturesMap = data.features.reduce((acc, feature) => {
+						const iso = feature.properties.ISO_A2_EH;
+						acc[iso] = feature;
+						return acc;
+					}, {});
 				}
 			});
 
-			// Subscribe to visa matrix loader
-			this.visaMatrixUnsubscribe = this.visaMatrixLoader.subscribe(({ data, error }) => {
-				if (error) {
-					console.error('Failed to load visa matrix:', error);
-					throw error;
-				}
-				if (data) {
-					this.visaMatrixData = data;
-				}
-			});
-
-			return new Promise((resolve) => {
+			// Wait until the map is fully loaded
+			await new Promise((resolve) => {
 				this.map.once('load', () => {
+					this.isInitialized = true;
 					resolve(this.map);
 				});
-				this.isInitialized = true;
 			});
+			return this.map;
 		} catch (error) {
 			console.error('Failed to initialize map:', error);
 			throw error;
@@ -162,17 +159,14 @@ export default class MapManager {
 				const sourceId = `${countryIso}-source`;
 				const layerId = `${countryIso}-layer`;
 
-				// Find the country feature in GeoJSON
-				const countryFeature = this.countriesGeoJSON.features.find(
-					(feature) => feature.properties.ISO_A2_EH === countryIso
-				);
+				// Retrieve the country feature using the lookup map for constant-time access
+				const countryFeature = this.countryFeaturesMap[countryIso];
 
 				if (countryFeature) {
-					// We no longer compare against a single selected country,
-					// so we pass false (or customize as needed) for the second parameter.
+					// Using false for isSelected; adjust as needed
 					const fillColor = this.getColorForVisaStatus(data.value, false);
 
-					// Add source for the country
+					// Add source for the country feature to the map
 					this.map.addSource(sourceId, {
 						type: 'geojson',
 						data: {
@@ -182,7 +176,7 @@ export default class MapManager {
 						}
 					});
 
-					// Add visual layer for the country
+					// Add visual layer for the country polygon
 					this.map.addLayer(
 						{
 							id: layerId,
@@ -209,14 +203,14 @@ export default class MapManager {
 		const layers = this.map.getStyle().layers;
 		const sources = this.map.getStyle().sources;
 
-		// Remove all layers
+		// Remove all layers that match the country polygons naming convention
 		layers.forEach((layer) => {
 			if (layer.id.endsWith('-layer')) {
 				this.map.removeLayer(layer.id);
 			}
 		});
 
-		// Remove all sources
+		// Remove all sources that match the country polygons naming convention
 		Object.keys(sources).forEach((sourceId) => {
 			if (sourceId.endsWith('-source')) {
 				this.map.removeSource(sourceId);
@@ -228,8 +222,12 @@ export default class MapManager {
 		if (this.geoJsonUnsubscribe) {
 			this.geoJsonUnsubscribe();
 		}
-		if (this.visaMatrixUnsubscribe) {
-			this.visaMatrixUnsubscribe();
+		if (this.map) {
+			// Remove all registered event listeners
+			this.map.off('style.load');
+			this.map.off('load');
+			// Clean up the map instance
+			this.map.remove();
 		}
 	}
 }

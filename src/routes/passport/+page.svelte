@@ -9,7 +9,6 @@
 	import { getMatchingData } from '$lib/utils/storage';
 
 	let isInitialized = $state(false);
-	let selectedCountryData = $state({});
 	let selectedCountries = $state([]);
 	let visaRequirementData = $state();
 	let { data } = $props();
@@ -93,7 +92,7 @@
 				</div>
 			{/if}
 			<div class="countrysearch-savedcountry">
-				<CountrySearch bind:selectedCountryData bind:selectedCountries />
+				<CountrySearch bind:selectedCountries />
 
 				{#if selectedCountries.length}
 					<SelectedCountry
