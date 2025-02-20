@@ -93,7 +93,7 @@
 		const counts = {
 			passport: 0,
 			visaFreeCount: 0,
-			visaOnArrivalAndEtaCount: 0,
+			visaOnArrivalCount: 0,
 			etaCount: 0,
 			eVisaCount: 0,
 			visaRequiredCount: 0
@@ -103,8 +103,8 @@
 			if (visa.category === 'passport' || visa.category === 'visaFree') {
 				counts.visaFreeCount++;
 			}
-			if (visa.category === 'onArrival' || visa.category === 'eta') {
-				counts.visaOnArrivalAndEtaCount++;
+			if (visa.category === 'onArrival') {
+				counts.visaOnArrivalCount++;
 			}
 			if (visa.category === 'eta') {
 				counts.etaCount++;
@@ -124,7 +124,7 @@
 		const counts = {
 			passport: 0,
 			visaFreeCount: 0,
-			visaOnArrivalAndEtaCount: 0,
+			visaOnArrivalCount: 0,
 			etaCount: 0,
 			eVisaCount: 0,
 			visaRequiredCount: 0
@@ -135,8 +135,8 @@
 			if (visa.category === 'passport' || visa.category === 'visaFree') {
 				counts.visaFreeCount++;
 			}
-			if (visa.category === 'onArrival' || visa.category === 'eta') {
-				counts.visaOnArrivalAndEtaCount++;
+			if (visa.category === 'onArrival') {
+				counts.visaOnArrivalCount++;
 			}
 			if (visa.category === 'eta') {
 				counts.etaCount++;
@@ -152,7 +152,7 @@
 	};
 
 	const visaFreeCount = () => computeVisaCounts().visaFreeCount;
-	const visaOnArrivalAndEtaCount = () => computeVisaCounts().visaOnArrivalAndEtaCount;
+	const visaOnArrivalCount = () => computeVisaCounts().visaOnArrivalCount;
 	const etaCount = () => computeVisaCounts().etaCount;
 	const eVisaCount = () => computeVisaCounts().eVisaCount;
 	const visaRequiredCount = () => computeVisaCounts().visaRequiredCount;
@@ -222,60 +222,83 @@
 
 <div class="selected-country-wrapper">
 	<div class="selected-country-container">
-		{#if selectedCountries.length > 1}
-			<div class="combined-country-card">
-				<div>
-					{selectedCountries.length} passports combined:
-					{#each selectedCountries as country}
-						{generateFlagEmoji(country.ISO)}&nbsp;
-					{/each}
-				</div>
-
-				<div>Total mobility score: {computeMobilityScore(combinedVisaRequirementData)}/199</div>
-			</div>
-		{/if}
-		{#each [...selectedCountries].reverse() as country, i (country.ISO)}
-			<div class="country-card">
-				<button
-					class="country-card-button"
-					onclick={() => handleCountryCardButtonClick(country)}
-					aria-pressed={activeRemoveCard === country.ISO}
-				>
-					<h2 class="selected-country-title">
-						{country.Country}
-						{generateFlagEmoji(country.ISO)}
-					</h2>
-					<!-- Calculate mobility score using the individual visa data -->
-					{#if visaRequirementData && visaRequirementData.length}
-						<div>
-							Mobility score: {computeMobilityScore(
-								visaRequirementData[selectedCountries.length - 1 - i]
-							)}/199
-						</div>
-					{:else}
-						<div>Mobility score: N/A</div>
-					{/if}
-					<div>
-						Population: {country.Population.toLocaleString()}
-					</div>
-					<div>
-						Capital: {country.Capital}
-					</div>
-					<div>
-						Currency: {country.CurrencyName} ({country.CurrencyCode})
-					</div>
-				</button>
-				{#if activeRemoveCard === country.ISO}
-					<button
-						class="remove-button"
-						aria-label="Remove {country.Country}"
-						onclick={() => removeCountryEvent(country)}
-						>&times;
-					</button>
+		<div class="visa-requirement-summary">
+			{#if selectedCountries.length}
+				{#if selectedCountries.length > 1}
+					<h3>
+						With
+						{#each selectedCountries as country}
+							{generateFlagEmoji(country.ISO)}&nbsp;
+						{/each}
+						passports, you can visit
+					</h3>
+				{:else}
+					<h3>With your {generateFlagEmoji(selectedCountries[0].ISO)} passport, you can visit</h3>
 				{/if}
-			</div>
-		{/each}
-
+				<p>
+					{filteredCounts.visaFreeCount}
+					{filteredCounts.visaFreeCount > 1 ? 'countries' : 'country'} visa free
+				</p>
+				<p>
+					{filteredCounts.etaCount}
+					{filteredCounts.etaCount > 1 ? 'countries' : 'country'} with an eta
+				</p>
+				<p>
+					{filteredCounts.visaOnArrivalCount}
+					{filteredCounts.visaOnArrivalCount > 1 ? 'countries' : 'country'} with a visa on arrival
+				</p>
+				<p>
+					{filteredCounts.eVisaCount}
+					{filteredCounts.eVisaCount > 1 ? 'countries' : 'country'} with an e-visa
+				</p>
+				<p>
+					{filteredCounts.visaRequiredCount}
+					{filteredCounts.visaRequiredCount > 1 ? 'countries' : 'country'} require you to apply fot a
+					visa
+				</p>
+			{/if}
+		</div>
+		<div class="country-card-wrapper">
+			{#each [...selectedCountries].reverse() as country, i (country.ISO)}
+				<div class="country-card">
+					<button
+						class="country-card-button"
+						onclick={() => handleCountryCardButtonClick(country)}
+						aria-pressed={activeRemoveCard === country.ISO}
+					>
+						<h2 class="selected-country-title">
+							{country.Country}
+							{generateFlagEmoji(country.ISO)}
+						</h2>
+						<!-- Calculate mobility score using the individual visa data -->
+						{#if visaRequirementData && visaRequirementData.length}
+							<div>
+								Mobility score: {computeMobilityScore(
+									visaRequirementData[selectedCountries.length - 1 - i]
+								)}/199
+							</div>
+						{/if}
+						<div>
+							Population: {country.Population.toLocaleString()}
+						</div>
+						<div>
+							Capital: {country.Capital}
+						</div>
+						<div>
+							Currency: {country.CurrencyName} ({country.CurrencyCode})
+						</div>
+					</button>
+					{#if activeRemoveCard === country.ISO}
+						<button
+							class="remove-button"
+							aria-label="Remove {country.Country}"
+							onclick={() => removeCountryEvent(country)}
+							>&times;
+						</button>
+					{/if}
+				</div>
+			{/each}
+		</div>
 		<div class="visa-country-filter">
 			<input
 				type="search"
@@ -299,7 +322,7 @@
 					>
 						{[
 							filteredCounts.visaFreeCount,
-							filteredCounts.visaOnArrivalAndEtaCount,
+							filteredCounts.visaOnArrivalCount + filteredCounts.etaCount,
 							filteredCounts.eVisaCount,
 							filteredCounts.visaRequiredCount
 						][i]}
@@ -341,6 +364,10 @@
 
 	.selected-country-container {
 		width: 100%;
+	}
+
+	.country-card-wrapper {
+		margin-top: var(--spacing-large);
 	}
 
 	.country-card {
@@ -399,14 +426,9 @@
 
 	/* combined country card */
 
-	.combined-country-card {
-		text-align: left;
-		background-color: #303134;
-		border-radius: var(--border-radius-medium);
-		padding: var(--spacing-medium);
+	.visa-requirement-summary {
 		width: 100%;
 		height: 100%;
-		border: 1px solid transparent;
 	}
 
 	/* end of combined counrty card */
