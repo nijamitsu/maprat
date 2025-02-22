@@ -224,24 +224,23 @@
 				{/if}
 				<p>
 					{filteredCounts.visaFreeCount}
-					{filteredCounts.visaFreeCount > 1 ? 'countries' : 'country'} visa free
+					{filteredCounts.visaFreeCount > 1 ? 'countries' : 'country'} <span style="text-decoration-color: var(--color-green);">visa free</span>
 				</p>
 				<p>
 					{filteredCounts.etaCount}
-					{filteredCounts.etaCount > 1 ? 'countries' : 'country'} with an eta
+					{filteredCounts.etaCount > 1 ? 'countries' : 'country'} with an <span style="text-decoration-color: var(--color-blue);">eta</span>
 				</p>
 				<p>
 					{filteredCounts.visaOnArrivalCount}
-					{filteredCounts.visaOnArrivalCount > 1 ? 'countries' : 'country'} with a visa on arrival
+					{filteredCounts.visaOnArrivalCount > 1 ? 'countries' : 'country'} with a <span style="text-decoration-color: var(--color-blue);">visa on arrival</span>
 				</p>
 				<p>
 					{filteredCounts.eVisaCount}
-					{filteredCounts.eVisaCount > 1 ? 'countries' : 'country'} with an e-visa
+					{filteredCounts.eVisaCount > 1 ? 'countries' : 'country'} with an <span style="text-decoration-color: var(--color-yellow);">e-visa</span>
 				</p>
 				<p>
 					{filteredCounts.visaRequiredCount}
-					{filteredCounts.visaRequiredCount > 1 ? 'countries' : 'country'} require you to apply fot a
-					visa
+					{filteredCounts.visaRequiredCount > 1 ? 'countries' : 'country'} <span style="text-decoration-color: var(--color-red);">visa required</span>
 				</p>
 			{/if}
 		</div>
@@ -424,10 +423,6 @@
 		background-color: #626568;
 	}
 
-	h2 {
-		font-size: 1.2rem;
-	}
-
 	.passport-image-wrapper {
 		width: 100px; /* Any width */
 		aspect-ratio: 1.42 / 1; /* Maintains the aspect ratio */
@@ -437,6 +432,11 @@
 	.visa-requirement-summary {
 		width: 100%;
 		height: 100%;
+	}
+
+	.visa-requirement-summary span {
+		text-decoration: underline;
+		text-decoration-thickness: 2px;
 	}
 
 	/* -------------------- Visa Country Filter -------------------- */
