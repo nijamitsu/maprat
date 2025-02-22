@@ -255,10 +255,10 @@
 					>
 						<div class="country-card-content">
 							<div class="country-details">
-								<h2 class="selected-country-title">
+								<h3 class="selected-country-title">
 									{country.Country}
 									{generateFlagEmoji(country.ISO)}
-								</h2>
+								</h3>
 
 								{#if visaRequirementData && visaRequirementData.length}
 									<div>
@@ -282,7 +282,7 @@
 								<img
 									src="/passport-images/{country.ISO}-passport.svg"
 									alt="{country.Country} passport"
-									onerror={(event) => (event.target.src = '/passport-images/default.svg')}
+									onerror={(event) => (event.target.src = '/passport-images/default-passport.svg')}
 								/>
 							</div>
 						</div>
