@@ -7,13 +7,17 @@
 
 	let mapContainer;
 	let mapManager = $state();
-	let { savedCities } = $props();
+	let { savedCities = $bindable() } = $props();
 	let projectionType = $state('globe');
 
 	function toggleProjection() {
 		projectionType = projectionType === 'globe' ? 'mercator' : 'globe';
 		mapManager.map.setProjection({ type: projectionType });
 	}
+
+	    function handleCityAddOnClick(newCity) {
+        savedCities = [...savedCities, newCity];
+    }
 
 	$effect(() => {
 		if (mapManager && savedCities) {
@@ -24,7 +28,7 @@
 	onMount(async () => {
 		if (savedCities) {
 			mapManager = new MapManager();
-			await mapManager.init(mapContainer, savedCities);
+			await mapManager.init(mapContainer, savedCities, handleCityAddOnClick);
 			await mapManager.initializeCountryBorders(savedCities);
 		}
 	});
@@ -82,7 +86,33 @@
 	}
 
 	:global(.maplibregl-ctrl-geolocate, .maplibregl-ctrl-group) {
-    	border-radius: var(--border-radius-medium) !important;
+		border-radius: var(--border-radius-medium) !important;
 		padding: 2px !important;
+	}
+
+	:global(.maplibregl-popup-anchor-bottom, .maplibregl-popup-tip) {
+		border-top-color: #303134 !important;
+	}
+
+	:global(.maplibregl-popup-content) {
+		background-color: #303134;
+		font-family: var(--font-family-primary);
+		font-size: var(--font-size-medium);
+		padding: var(--spacing-medium);
+		border-radius: var(--border-radius-medium);
+	}
+
+	:global(.popup-div span) {
+		font-weight: bold;
+	}
+
+	:global(.popup-button) {
+		background-color: transparent;
+		border: 0;
+		padding: 0;
+	}
+
+	:global(.popup-button:hover) {
+		text-decoration: underline;
 	}
 </style>

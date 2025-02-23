@@ -214,7 +214,7 @@
 			{#if selectedCountries.length}
 				{#if selectedCountries.length > 1}
 					<h3>
-						With
+						With your
 						{#each selectedCountries as country}
 							{generateFlagEmoji(country.ISO)}&nbsp;
 						{/each}passports, you can visit

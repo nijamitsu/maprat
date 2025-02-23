@@ -23,12 +23,12 @@
 </script>
 
 <svelte:head>
-	<title>Maprat: Track the countries you've visited and share your travel history</title>
+	<title>Maprat: Track the places you've visited and share your travel history</title>
 </svelte:head>
 
 {#if isInitialized}
 	<section class="main-wrapper">
-		<Map {savedCities} />
+		<Map bind:savedCities />
 		<ProgressBar {savedCities} />
 		<section class="citysearch-savedcities-wrapper">
 			{#if !savedCities.length}

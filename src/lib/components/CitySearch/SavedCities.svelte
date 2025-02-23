@@ -58,7 +58,6 @@
 		const cityIds = savedCities.map((city) => city.id);
 		const shareUrl = buildCityShareUrl(cityIds);
 
-		// Optional: Copy to clipboard
 		navigator.clipboard
 			.writeText(shareUrl)
 			.then(() => {

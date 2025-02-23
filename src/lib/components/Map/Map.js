@@ -1,5 +1,7 @@
 import maplibregl from 'maplibre-gl';
 import { GetVisitedUniqueCountriesISOs } from '$lib/utils/travelUtils';
+import { generateFlagEmoji } from '$lib/utils/generateFlagEmoji';
+import { saveCity } from '$lib/utils/storage';
 
 export default class MapManager {
 	constructor() {
@@ -11,7 +13,7 @@ export default class MapManager {
 
 		this.config = {
 			map: {
-				style: '/edited-positron.json',
+				style: 'edited-positron.json',
 				zoom: 1,
 				minZoom: 0,
 				center: [30, 40],
@@ -26,7 +28,7 @@ export default class MapManager {
 		};
 	}
 
-	async init(mapContainer, savedCities) {
+	async init(mapContainer, savedCities, onCityAddOnClick) {
 		try {
 			this.map = new maplibregl.Map({
 				container: mapContainer,
@@ -43,10 +45,113 @@ export default class MapManager {
 					this.map.setProjection({ type: 'globe' });
 				});
 
-				this.map.on('load', () => {
+				this.map.on('load', async () => {
 					this.previousCitiesCount = savedCities.length;
 					this.isInitialLoad = false;
+
+					// Cache the cities data on map initialization
+					try {
+						const response = await fetch('cities15000.json');
+						if (response.ok) {
+							this.citiesData = await response.json();
+						} else {
+							console.error('Failed to load cities15000.json:', response.statusText);
+						}
+					} catch (error) {
+						console.error('Error fetching cities15000.json:', error);
+					}
+
 					resolve(this.map);
+				});
+
+				// Register a click event listener with water detection before showing the popup
+				this.map.on('click', (event) => {
+					let closestCity = null;
+
+					// If a popup is already open, close it and do nothing else for this click.
+					if (this.currentPopup) {
+						this.currentPopup.remove();
+						this.currentPopup = null;
+						return;
+					}
+
+					// Check if the clicked point is over water by querying rendered features in the 'water' layer (adjust layer name as needed)
+					const waterFeatures = this.map.queryRenderedFeatures(event.point, { layers: ['water'] });
+					if (waterFeatures.length > 0) {
+						return; // Clicked on water; do nothing.
+					}
+
+					const { lng, lat } = event.lngLat;
+					let popupHTML = '';
+
+					if (this.citiesData && Array.isArray(this.citiesData)) {
+						let minDistance = Infinity;
+
+						// Use a simple Euclidean distance calculation
+						for (const city of this.citiesData) {
+							const dx = lat - city.latitude;
+							const dy = lng - city.longitude;
+							const distance = Math.sqrt(dx * dx + dy * dy);
+
+							if (distance < minDistance) {
+								minDistance = distance;
+								closestCity = city;
+							}
+						}
+
+						if (closestCity) {
+							popupHTML += `
+							<div class="popup-div">  
+								<div style="margin-bottom: var(--spacing-small)">
+									<p>Add<span> ${closestCity.name} ${generateFlagEmoji(closestCity.countryIso)}</span> to your visited cities?</p>
+								</div>
+								<div style="text-align: right;">	
+									<button class="popup-button popup-button-yes">Yes</button>
+									<button class="popup-button popup-button-no" style="margin-left: 8px;">No</button>
+								</div>
+							</div>
+							`;
+						}
+					}
+
+					// Create and store the popup in an instance variable
+					this.currentPopup = new maplibregl.Popup({ closeOnClick: true, closeButton: false })
+						.setLngLat([lng, lat])
+						.setHTML(popupHTML)
+						.addTo(this.map);
+
+					// Attach event listener to the "No" button to close the popup
+					const noButton = this.currentPopup.getElement().querySelector('.popup-button-no');
+					if (noButton) {
+						noButton.addEventListener('click', () => {
+							this.currentPopup.remove();
+							this.currentPopup = null;
+						});
+					}
+
+					const yesButton = this.currentPopup.getElement().querySelector('.popup-button-yes');
+					if (yesButton) {
+						yesButton.addEventListener('click', () => {
+							const closestCityData = {
+								name: closestCity.name,
+								id: closestCity.id,
+								countryIso: closestCity.countryIso,
+								coordinates: {
+									latitude: closestCity.latitude,
+									longitude: closestCity.longitude
+								},
+								stateCode: closestCity.stateCode
+							};
+
+							const success = saveCity(closestCityData);
+							if (success) {
+								onCityAddOnClick(closestCityData);
+							}
+
+							this.currentPopup.remove();
+							this.currentPopup = null;
+						});
+					}
 				});
 			});
 		} catch (error) {
@@ -77,7 +182,7 @@ export default class MapManager {
 		const marker = new maplibregl.Marker(this.config.marker)
 			.setLngLat([city.coordinates.longitude, city.coordinates.latitude])
 			.addTo(this.map);
-		
+
 		return marker;
 	}
 
