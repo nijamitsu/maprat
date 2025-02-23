@@ -67,6 +67,8 @@ export default class MapManager {
 				// Register a click event listener with water detection before showing the popup
 				this.map.on('click', (event) => {
 					let closestCity = null;
+					let minDistance = Infinity;
+					let isNearSavedCity = false;
 
 					// If a popup is already open, close it and do nothing else for this click.
 					if (this.currentPopup) {
@@ -77,15 +79,13 @@ export default class MapManager {
 
 					// Check if the clicked point is over water by querying rendered features in the 'water' layer (adjust layer name as needed)
 					const waterFeatures = this.map.queryRenderedFeatures(event.point, { layers: ['water'] });
-					if (waterFeatures.length > 0) {
-						return; // Clicked on water; do nothing.
-					}
+					if (waterFeatures.length > 0) return;
 
 					const { lng, lat } = event.lngLat;
 					let popupHTML = '';
 
 					if (this.citiesData && Array.isArray(this.citiesData)) {
-						let minDistance = Infinity;
+						const savedCityIds = new Set(savedCities.map((city) => city.id));
 
 						// Use a simple Euclidean distance calculation
 						for (const city of this.citiesData) {
@@ -95,11 +95,19 @@ export default class MapManager {
 
 							if (distance < minDistance) {
 								minDistance = distance;
-								closestCity = city;
+								closestCity = city; // Always store the closest city
+								isNearSavedCity = savedCityIds.has(city.id);
+								if (isNearSavedCity) break;
 							}
 						}
 
-						if (closestCity) {
+						if (isNearSavedCity && closestCity) {
+							popupHTML = `
+								<div class="popup-div">
+									<p>${closestCity.name} ${generateFlagEmoji(closestCity.countryIso)} is already in your visited cities.</p>
+								</div>
+							`;
+						} else if (closestCity) {
 							popupHTML += `
 							<div class="popup-div">  
 								<div style="margin-bottom: var(--spacing-small)">
