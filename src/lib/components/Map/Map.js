@@ -200,9 +200,9 @@ export default class MapManager {
 	handleMapClick(event, savedCities, onCityAddOnClick) {
 		if (!this.map?.isStyleLoaded()) return;
 
-		let closestCity = null;
-		let minDistance = Infinity;
-		let isNearSavedCity = false;
+		// Check if the clicked point is over water by querying rendered features
+		const waterFeatures = this.map.queryRenderedFeatures(event.point, { layers: ['water'] });
+		if (waterFeatures.length > 0) return;
 
 		// If a popup is already open, close it and do nothing else for this click.
 		if (this.currentPopup) {
@@ -211,9 +211,9 @@ export default class MapManager {
 			return;
 		}
 
-		// Check if the clicked point is over water by querying rendered features
-		const waterFeatures = this.map.queryRenderedFeatures(event.point, { layers: ['water'] });
-		if (waterFeatures.length > 0) return;
+		let closestCity = null;
+		let minDistance = Infinity;
+		let isNearSavedCity = false;
 
 		const { lng, lat } = event.lngLat;
 		let popupHTML = '';
@@ -226,7 +226,7 @@ export default class MapManager {
 				const dx = lat - city.latitude;
 				const dy = lng - city.longitude;
 				const distance = Math.sqrt(dx * dx + dy * dy);
-			
+
 				if (distance < minDistance) {
 					minDistance = distance;
 					closestCity = city;
