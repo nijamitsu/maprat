@@ -15,9 +15,9 @@
 		mapManager.map.setProjection({ type: projectionType });
 	}
 
-	    function handleCityAddOnClick(newCity) {
-        savedCities = [...savedCities, newCity];
-    }
+	function handleCityAddOnClick(newCity) {
+		savedCities = [...savedCities, newCity];
+	}
 
 	$effect(() => {
 		if (mapManager && savedCities) {
@@ -30,6 +30,10 @@
 			mapManager = new MapManager();
 			await mapManager.init(mapContainer, savedCities, handleCityAddOnClick);
 			await mapManager.initializeCountryBorders(savedCities);
+
+			mapManager.map.on('click', (event) => {
+				mapManager.handleMapClick(event, savedCities, handleCityAddOnClick);
+			});
 		}
 	});
 </script>

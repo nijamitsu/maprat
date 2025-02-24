@@ -63,104 +63,6 @@ export default class MapManager {
 
 					resolve(this.map);
 				});
-
-				// Register a click event listener with water detection before showing the popup
-				this.map.on('click', (event) => {
-					let closestCity = null;
-					let minDistance = Infinity;
-					let isNearSavedCity = false;
-
-					// If a popup is already open, close it and do nothing else for this click.
-					if (this.currentPopup) {
-						this.currentPopup.remove();
-						this.currentPopup = null;
-						return;
-					}
-
-					// Check if the clicked point is over water by querying rendered features in the 'water' layer (adjust layer name as needed)
-					const waterFeatures = this.map.queryRenderedFeatures(event.point, { layers: ['water'] });
-					if (waterFeatures.length > 0) return;
-
-					const { lng, lat } = event.lngLat;
-					let popupHTML = '';
-
-					if (this.citiesData && Array.isArray(this.citiesData)) {
-						const savedCityIds = new Set(savedCities.map((city) => city.id));
-
-						// Use a simple Euclidean distance calculation
-						for (const city of this.citiesData) {
-							const dx = lat - city.latitude;
-							const dy = lng - city.longitude;
-							const distance = Math.sqrt(dx * dx + dy * dy);
-
-							if (distance < minDistance) {
-								minDistance = distance;
-								closestCity = city; // Always store the closest city
-								isNearSavedCity = savedCityIds.has(city.id);
-								if (isNearSavedCity) break;
-							}
-						}
-
-						if (isNearSavedCity && closestCity) {
-							popupHTML = `
-								<div class="popup-div">
-									<p>${closestCity.name} ${generateFlagEmoji(closestCity.countryIso)} is already in your visited cities.</p>
-								</div>
-							`;
-						} else if (closestCity) {
-							popupHTML += `
-							<div class="popup-div">  
-								<div style="margin-bottom: var(--spacing-small)">
-									<p>Add<span> ${closestCity.name} ${generateFlagEmoji(closestCity.countryIso)}</span> to your visited cities?</p>
-								</div>
-								<div style="text-align: right;">	
-									<button class="popup-button popup-button-yes">Yes</button>
-									<button class="popup-button popup-button-no" style="margin-left: 8px;">No</button>
-								</div>
-							</div>
-							`;
-						}
-					}
-
-					// Create and store the popup in an instance variable
-					this.currentPopup = new maplibregl.Popup({ closeOnClick: true, closeButton: false })
-						.setLngLat([lng, lat])
-						.setHTML(popupHTML)
-						.addTo(this.map);
-
-					// Attach event listener to the "No" button to close the popup
-					const noButton = this.currentPopup.getElement().querySelector('.popup-button-no');
-					if (noButton) {
-						noButton.addEventListener('click', () => {
-							this.currentPopup.remove();
-							this.currentPopup = null;
-						});
-					}
-
-					const yesButton = this.currentPopup.getElement().querySelector('.popup-button-yes');
-					if (yesButton) {
-						yesButton.addEventListener('click', () => {
-							const closestCityData = {
-								name: closestCity.name,
-								id: closestCity.id,
-								countryIso: closestCity.countryIso,
-								coordinates: {
-									latitude: closestCity.latitude,
-									longitude: closestCity.longitude
-								},
-								stateCode: closestCity.stateCode
-							};
-
-							const success = saveCity(closestCityData);
-							if (success) {
-								onCityAddOnClick(closestCityData);
-							}
-
-							this.currentPopup.remove();
-							this.currentPopup = null;
-						});
-					}
-				});
 			});
 		} catch (error) {
 			console.error('Failed to initialize map:', error);
@@ -289,9 +191,110 @@ export default class MapManager {
 
 		this.map.flyTo({
 			center: [coordinates.longitude, coordinates.latitude],
-			zoom: 5,
+			zoom: 8,
 			duration: 1500,
 			essential: true
 		});
+	}
+
+	handleMapClick(event, savedCities, onCityAddOnClick) {
+		if (!this.map?.isStyleLoaded()) return;
+
+		let closestCity = null;
+		let minDistance = Infinity;
+		let isNearSavedCity = false;
+
+		// If a popup is already open, close it and do nothing else for this click.
+		if (this.currentPopup) {
+			this.currentPopup.remove();
+			this.currentPopup = null;
+			return;
+		}
+
+		// Check if the clicked point is over water by querying rendered features
+		const waterFeatures = this.map.queryRenderedFeatures(event.point, { layers: ['water'] });
+		if (waterFeatures.length > 0) return;
+
+		const { lng, lat } = event.lngLat;
+		let popupHTML = '';
+
+		if (this.citiesData && Array.isArray(this.citiesData)) {
+			const savedCityIds = new Set(savedCities.map((city) => city.id));
+
+			// Use a simple Euclidean distance calculation
+			for (const city of this.citiesData) {
+				const dx = lat - city.latitude;
+				const dy = lng - city.longitude;
+				const distance = Math.sqrt(dx * dx + dy * dy);
+			
+				if (distance < minDistance) {
+					minDistance = distance;
+					closestCity = city;
+				}
+			}
+
+			if (closestCity && savedCityIds.has(closestCity.id)) {
+				isNearSavedCity = true;
+			}
+
+			if (isNearSavedCity && closestCity) {
+				popupHTML = `
+				<div class="popup-div">
+					<p>${closestCity.name} ${generateFlagEmoji(closestCity.countryIso)} is already in your visited cities.</p>
+				</div>
+				`;
+			} else if (closestCity) {
+				popupHTML += `
+				<div class="popup-div">  
+					<div style="margin-bottom: var(--spacing-small)">
+					<p>Add<span> ${closestCity.name} ${generateFlagEmoji(closestCity.countryIso)}</span> to your visited cities?</p>
+					</div>
+					<div style="text-align: right;">	
+					<button class="popup-button popup-button-yes">Yes</button>
+					<button class="popup-button popup-button-no" style="margin-left: 8px;">No</button>
+					</div>
+				</div>
+				`;
+			}
+		}
+
+		// Create and store the popup in an instance variable
+		this.currentPopup = new maplibregl.Popup({ closeOnClick: true, closeButton: false })
+			.setLngLat([lng, lat])
+			.setHTML(popupHTML)
+			.addTo(this.map);
+
+		// Attach event listener to the "No" button to close the popup
+		const noButton = this.currentPopup.getElement().querySelector('.popup-button-no');
+		if (noButton) {
+			noButton.addEventListener('click', () => {
+				this.currentPopup.remove();
+				this.currentPopup = null;
+			});
+		}
+
+		const yesButton = this.currentPopup.getElement().querySelector('.popup-button-yes');
+		if (yesButton) {
+			yesButton.addEventListener('click', () => {
+				const closestCityData = {
+					name: closestCity.name,
+					id: closestCity.id,
+					countryIso: closestCity.countryIso,
+					coordinates: {
+						latitude: closestCity.latitude,
+						longitude: closestCity.longitude
+					},
+					stateCode: closestCity.stateCode
+				};
+
+				const success = saveCity(closestCityData);
+				if (success) {
+					onCityAddOnClick(closestCityData);
+				}
+
+				this.currentPopup.remove();
+				this.currentPopup = null;
+			});
+		}
 	}
 }
