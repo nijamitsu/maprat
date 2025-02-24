@@ -198,8 +198,6 @@ export default class MapManager {
 	}
 
 	handleMapClick(event, savedCities, onCityAddOnClick) {
-		if (!this.map?.isStyleLoaded()) return;
-
 		// Check if the clicked point is over water by querying rendered features
 		const waterFeatures = this.map.queryRenderedFeatures(event.point, { layers: ['water'] });
 		if (waterFeatures.length > 0) return;
