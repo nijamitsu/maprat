@@ -1,19 +1,30 @@
 <script>
 	import { page } from '$app/stores';
 
-	const shouldHighlight = (targetRoute) => targetRoute === $page.route.id;
+	const navLinks = [
+        { path: '/passport', label: 'Passport' },
+        { path: '/visa', label: 'Visa' },
+        { path: '/about', label: 'About' }
+    ];
+
+	const linkHighlight = (targetRoute) => targetRoute === $page.route.id;
 </script>
 
 <section>
 	<header>
-		<div class="header-text-wrapper">
-			<div class="left"><a class="rat-home-link" href="/">Maprat <span>🐀</span></a></div>
-			<div class="right">
-				<a href="/passport" class:text-underline={shouldHighlight('/passport')}> Passport </a>
-				<a href="/about" class:text-underline={shouldHighlight('/about')}> About </a>
-			</div>
-		</div>
-	</header>
+        <div class="header-text-wrapper">
+            <div class="left">
+                <a href="/">Maprat <span>🐀</span></a>
+            </div>
+            <div class="right">
+                {#each navLinks as link}
+                    <a href={link.path} class:text-underline={linkHighlight(link.path)}>
+                        {link.label}
+                    </a>
+                {/each}
+            </div>
+        </div>
+    </header>
 </section>
 
 <style>

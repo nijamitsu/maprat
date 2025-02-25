@@ -432,6 +432,9 @@
 	.visa-requirement-summary {
 		width: 100%;
 		height: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-small);
 	}
 
 	.visa-requirement-summary span {

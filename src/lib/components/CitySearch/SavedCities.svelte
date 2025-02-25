@@ -71,7 +71,7 @@
 </script>
 
 <div class="saved-cities-wrapper">
-	<div class="percentage-counter">
+	<div class="travel-stats">
 		<h3>
 			{#if currentRoute !== '/me'}
 				You've seen
@@ -156,7 +156,7 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		margin-top: var(--spacing-xl);
+		margin-top: var(--spacing-xlarge);
 		gap: var(--spacing-large);
 	}
 
@@ -240,8 +240,14 @@
 		text-decoration: underline;
 	}
 
+	.travel-stats {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-small);
+	}
+
 	/* 4. Animation Styles */
-	.percentage-counter h3 {
+	.travel-stats h3 {
 		white-space: nowrap;
 	}
 	.percentage-wrapper {
