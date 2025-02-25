@@ -32,7 +32,6 @@
 		top: 50%;
 		transform: translateY(-50%);
 		cursor: text;
-
 		user-select: none;
 		-webkit-user-select: none; /* Safari */
 		-moz-user-select: none; /* Firefox */
