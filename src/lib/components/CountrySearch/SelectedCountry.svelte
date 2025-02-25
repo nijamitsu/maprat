@@ -223,24 +223,24 @@
 					<h3>With your {generateFlagEmoji(selectedCountries[0].ISO)} passport, you can visit</h3>
 				{/if}
 				<p>
-					{filteredCounts.visaFreeCount}
-					{filteredCounts.visaFreeCount > 1 ? 'countries' : 'country'} <span style="text-decoration-color: var(--color-green);">visa free</span>
+					{computeVisaCounts().visaFreeCount}
+					{computeVisaCounts().visaFreeCount > 1 ? 'countries' : 'country'} <span style="text-decoration-color: var(--color-green);">visa free</span>
 				</p>
 				<p>
-					{filteredCounts.etaCount}
-					{filteredCounts.etaCount > 1 ? 'countries' : 'country'} with an <span style="text-decoration-color: var(--color-blue);">eta</span>
+					{computeVisaCounts().etaCount}
+					{computeVisaCounts().etaCount > 1 ? 'countries' : 'country'} with an <span style="text-decoration-color: var(--color-blue);">eta</span>
 				</p>
 				<p>
-					{filteredCounts.visaOnArrivalCount}
-					{filteredCounts.visaOnArrivalCount > 1 ? 'countries' : 'country'} with a <span style="text-decoration-color: var(--color-blue);">visa on arrival</span>
+					{computeVisaCounts().visaOnArrivalCount}
+					{computeVisaCounts().visaOnArrivalCount > 1 ? 'countries' : 'country'} with a <span style="text-decoration-color: var(--color-blue);">visa on arrival</span>
 				</p>
 				<p>
-					{filteredCounts.eVisaCount}
-					{filteredCounts.eVisaCount > 1 ? 'countries' : 'country'} with an <span style="text-decoration-color: var(--color-yellow);">e-visa</span>
+					{computeVisaCounts().eVisaCount}
+					{computeVisaCounts().eVisaCount > 1 ? 'countries' : 'country'} with an <span style="text-decoration-color: var(--color-yellow);">e-visa</span>
 				</p>
 				<p>
-					{filteredCounts.visaRequiredCount}
-					{filteredCounts.visaRequiredCount > 1 ? 'countries' : 'country'} <span style="text-decoration-color: var(--color-red);">visa required</span>
+					{computeVisaCounts().visaRequiredCount}
+					{computeVisaCounts().visaRequiredCount > 1 ? 'countries' : 'country'} <span style="text-decoration-color: var(--color-red);">visa required</span>
 				</p>
 			{/if}
 		</div>

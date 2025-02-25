@@ -2,10 +2,10 @@ import maplibregl from 'maplibre-gl';
 import { createJsonLoader } from '$lib/utils/createJsonLoader';
 
 const COLORS = {
-	GREEN: '#5bc980',
-	YELLOW: '#e9d875',
-	BLUE: '#559dd6',
-	RED: '#c6335f',
+	GREEN: '#1FAA59',
+	YELLOW: '#E1C16E',
+	BLUE: '#2D2DCF',
+	RED: '#D72638',
 	GRAY: '#808080',
 	BLACK: '#000000'
 };
@@ -57,20 +57,20 @@ export default class MapManager {
 	constructor() {
 		this.map = null;
 		this.countriesGeoJSON = null;
-		this.countryFeaturesMap = {}; // Pre-built lookup for country features by ISO
+		this.countryFeaturesMap = {};
 		this.isInitialized = false;
 
 		this.config = {
 			map: {
-				style: '/passport-positron.json',
-				zoom: 1,
+				style: 'passport-positron.json',
+				zoom: 0,
 				minZoom: 0,
-				maxZoom: 4,
+				maxZoom: 3,
 				center: [30, 40],
 				canvasContextAttributes: { antialias: true }
 			},
 			polygon: {
-				fill_opacity: 0.7
+				fill_opacity: 0.9
 			}
 		};
 
