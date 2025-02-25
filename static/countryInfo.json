@@ -1752,18 +1752,6 @@
     "Languages": "pl"
   },
   {
-    "ISO": "PR",
-    "ISO3": "PRI",
-    "Country": "Puerto Rico",
-    "Capital": "San Juan",
-    "Area(in sq km)": 9104,
-    "Population": 3195153,
-    "Continent": "NA",
-    "CurrencyCode": "USD",
-    "CurrencyName": "Dollar",
-    "Languages": "en-PR,es-PR"
-  },
-  {
     "ISO": "PS",
     "ISO3": "PSE",
     "Country": "Palestinian Territory",
