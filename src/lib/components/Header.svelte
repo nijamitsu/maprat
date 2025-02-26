@@ -33,7 +33,7 @@
 	<header>
 		<div class="header-text-wrapper">
 			<div class="left">
-				<a href="/">
+				<a href="/" onclick={menuOpen ? toggleMenu : undefined}>
 					<svg
 						class="logo"
 						width="20"
@@ -60,11 +60,16 @@
 					onclick={toggleMenu}
 					aria-label="Toggle menu"
 				>
-					<svg class="hamburger-icon" width="20" height="20" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						class="hamburger-icon"
+						width="20"
+						height="20"
+						viewBox="0 0 40 40"
+						xmlns="http://www.w3.org/2000/svg"
+					>
 						<rect x="5" y="10" width="30" height="3" rx="1.5" fill="currentColor" />
 						<rect x="5" y="27" width="30" height="3" rx="1.5" fill="currentColor" />
 					</svg>
-
 				</button>
 			{:else}
 				<div class="right">
@@ -141,7 +146,6 @@
 		border: none;
 		cursor: pointer;
 		z-index: 1001;
-
 	}
 
 	.hamburger-icon {
@@ -149,16 +153,18 @@
 	}
 
 	.hamburger-icon rect {
-		transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+		transition:
+			transform 0.3s ease-in-out,
+			opacity 0.2s ease-in-out;
 		transform-origin: center;
-  transform-box: fill-box;
+		transform-box: fill-box;
 	}
 
 	.hamburger.open rect:nth-child(1) {
 		transform: translateY(8.5px) rotate(45deg);
 	}
 
-	.hamburger.open  rect:nth-child(2) {
+	.hamburger.open rect:nth-child(2) {
 		transform: translateY(-8.5px) rotate(-45deg);
 	}
 
