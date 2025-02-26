@@ -4,7 +4,7 @@ import { createJsonLoader } from '$lib/utils/createJsonLoader';
 const COLORS = {
 	GREEN: '#1FAA59',
 	YELLOW: '#E1C16E',
-	BLUE: '#2D2DCF',
+	BLUE: '#2176FF',
 	RED: '#D72638',
 	GRAY: '#808080',
 	BLACK: '#000000'

@@ -141,6 +141,7 @@
 
 	/* Hamburger menu styles */
 	.hamburger {
+		padding: 0;
 		position: relative;
 		background: none;
 		border: none;
