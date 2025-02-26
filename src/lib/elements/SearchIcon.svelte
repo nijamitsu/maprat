@@ -1,11 +1,4 @@
 <script>
-	/**
-	 * @typedef {Object} Props
-	 * @property {number} [size]
-	 * @property {string} [labelFor]
-	 */
-
-	/** @type {Props} */
 	let { size = 16, labelFor = '' } = $props();
 </script>
 

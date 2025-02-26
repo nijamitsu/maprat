@@ -8,10 +8,14 @@
 <section class="main-wrapper">
 	<section class="about-section">
 		<div class="about-div">
-			<i>Travel feels less like a desire for progress that pushes you forward and more like gravity
+			<br />
+			<br />
+			<i
+				>Travel feels less like a desire for progress that pushes you forward and more like gravity
 				that prevents you from staying. A call to adventure, to the unknown, and not only to see
 				someone specific or to visit a particular place. An act performed purely for its own sake,
-				serving no other purpose, existing solely for itself, like an essence.</i>
+				serving no other purpose, existing solely for itself, like an essence.</i
+			>
 			<br /><br />
 
 			I often find myself asking people about the places they've visited around the world, but I
@@ -24,6 +28,25 @@
 			<br /><br />
 
 			-H
+
+			<br /><br />
+
+			<div>
+				<svg
+					class="logo"
+					width="20"
+					height="20"
+					viewBox="0 0 160 160"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<circle cx="127.5" cy="40.5" r="32.5" fill="white" />
+					<circle cx="32.5" cy="40.5" r="32.5" fill="white" />
+					<circle cx="53" cy="104" r="18" fill="white" />
+					<circle cx="106" cy="104" r="18" fill="white" />
+					<circle cx="80" cy="143" r="10" fill="white" />
+				</svg>
+			</div>
 		</div>
 	</section>
 </section>
@@ -44,5 +67,9 @@
 		width: 100%;
 		max-width: var(--max-width-element);
 		margin-bottom: var(--spacing-large);
+	}
+
+	.logo {
+		margin: 0 auto;
 	}
 </style>
