@@ -133,34 +133,43 @@
 
 	/* Hamburger menu styles */
 	.hamburger {
+		position: relative; /* Establish a positioning context */
 		background: none;
 		border: none;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		width: 30px;
-		height: 18px;
+		width: 20px;
+		height: 14px;
 		cursor: pointer;
 		z-index: 1001;
 	}
 
+	/* Position each bar absolutely */
 	.bar {
-		height: 3px;
+		position: absolute;
+		left: 0;
 		width: 100%;
-		background-color: white;
+		height: 3px;
+		background-color: var(--color-primary);
 		border-radius: 3px;
 		transition:
 			transform 0.3s ease,
 			opacity 0.3s ease;
+		transform-origin: center;
+	}
+
+	.bar:nth-child(1) {
+		top: 0;
+	}
+	.bar:nth-child(2) {
+		bottom: 0;
 	}
 
 	/* Cross icon styles */
 	.hamburger.open .bar:nth-child(1) {
-		transform: translateY(6px) rotate(45deg);
+		transform: translateY(5.5px) rotate(45deg);
 	}
 
 	.hamburger.open .bar:nth-child(2) {
-		transform: translateY(-4px) rotate(-45deg);
+		transform: translateY(-5.5px) rotate(-45deg);
 	}
 
 	/* Mobile menu styles */
