@@ -60,8 +60,11 @@
 					onclick={toggleMenu}
 					aria-label="Toggle menu"
 				>
-					<span class="bar"></span>
-					<span class="bar"></span>
+					<svg class="hamburger-icon" width="20" height="20" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+						<rect x="5" y="10" width="30" height="3" rx="1.5" fill="currentColor" />
+						<rect x="5" y="27" width="30" height="3" rx="1.5" fill="currentColor" />
+					</svg>
+
 				</button>
 			{:else}
 				<div class="right">
@@ -133,43 +136,30 @@
 
 	/* Hamburger menu styles */
 	.hamburger {
-		position: relative; /* Establish a positioning context */
+		position: relative;
 		background: none;
 		border: none;
-		width: 20px;
-		height: 14px;
 		cursor: pointer;
 		z-index: 1001;
+
 	}
 
-	/* Position each bar absolutely */
-	.bar {
-		position: absolute;
-		left: 0;
-		width: 100%;
-		height: 3px;
-		background-color: var(--color-primary);
-		border-radius: 3px;
-		transition:
-			transform 0.3s ease,
-			opacity 0.3s ease;
+	.hamburger-icon {
+		transition: transform 0.3s ease-in-out;
+	}
+
+	.hamburger-icon rect {
+		transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
 		transform-origin: center;
+  transform-box: fill-box;
 	}
 
-	.bar:nth-child(1) {
-		top: 0;
-	}
-	.bar:nth-child(2) {
-		bottom: 0;
+	.hamburger.open rect:nth-child(1) {
+		transform: translateY(8.5px) rotate(45deg);
 	}
 
-	/* Cross icon styles */
-	.hamburger.open .bar:nth-child(1) {
-		transform: translateY(5.5px) rotate(45deg);
-	}
-
-	.hamburger.open .bar:nth-child(2) {
-		transform: translateY(-5.5px) rotate(-45deg);
+	.hamburger.open  rect:nth-child(2) {
+		transform: translateY(-8.5px) rotate(-45deg);
 	}
 
 	/* Mobile menu styles */
