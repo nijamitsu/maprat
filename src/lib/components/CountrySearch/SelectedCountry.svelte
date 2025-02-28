@@ -69,8 +69,8 @@
 	function computeVisaCountsGeneric(data, valueAccessor) {
 		const counts = {
 			visaFreeCount: 0,
-			visaOnArrivalCount: 0,
 			etaCount: 0,
+			visaOnArrivalCount: 0,
 			eVisaCount: 0,
 			visaRequiredCount: 0
 		};
@@ -210,41 +210,51 @@
 
 <div class="selected-country-wrapper">
 	<div class="selected-country-container">
-		<div class="visa-requirement-summary">
-			{#if selectedCountries.length}
-				{#if selectedCountries.length > 1}
-					<h3>
-						With your
-						{#each selectedCountries as country}
-							{generateFlagEmoji(country.ISO)}&nbsp;
-						{/each}passports, you can visit
-					</h3>
-				{:else}
-					<h3>With your {generateFlagEmoji(selectedCountries[0].ISO)} passport, you can visit</h3>
-				{/if}
+		{#if selectedCountries.length > 1}
+			<div class="visa-requirement-summary">
+				<h3>
+					With your
+					{#each selectedCountries as country}
+						{generateFlagEmoji(country.ISO)}&nbsp;
+					{/each}passports, you can visit
+				</h3>
 				<p>
 					{computeVisaCounts().visaFreeCount}
-					{computeVisaCounts().visaFreeCount > 1 ? 'countries' : 'country'} <span style="text-decoration-color: var(--color-green);">visa free</span>
+					{computeVisaCounts().visaFreeCount > 1 ? 'countries' : 'country'}
+					<span class="span-underline" style="text-decoration-color: var(--color-green);"
+						>visa free</span
+					>
 				</p>
 				<p>
-					{computeVisaCounts().etaCount}
-					{computeVisaCounts().etaCount > 1 ? 'countries' : 'country'} with an <span style="text-decoration-color: var(--color-blue);">eta</span>
-				</p>
-				<p>
-					{computeVisaCounts().visaOnArrivalCount}
-					{computeVisaCounts().visaOnArrivalCount > 1 ? 'countries' : 'country'} with a <span style="text-decoration-color: var(--color-blue);">visa on arrival</span>
+					{computeVisaCounts().etaCount + computeVisaCounts().visaOnArrivalCount}
+					{computeVisaCounts().etaCount > 1 ? 'countries' : 'country'} with a
+					<span class="span-underline" style="text-decoration-color: var(--color-blue);"
+						>visa on arrival or eta</span
+					>
 				</p>
 				<p>
 					{computeVisaCounts().eVisaCount}
-					{computeVisaCounts().eVisaCount > 1 ? 'countries' : 'country'} with an <span style="text-decoration-color: var(--color-yellow);">e-visa</span>
+					{computeVisaCounts().eVisaCount > 1 ? 'countries' : 'country'} with an
+					<span class="span-underline" style="text-decoration-color: var(--color-yellow);"
+						>e-visa</span
+					>
 				</p>
 				<p>
 					{computeVisaCounts().visaRequiredCount}
-					{computeVisaCounts().visaRequiredCount > 1 ? 'countries' : 'country'} <span style="text-decoration-color: var(--color-red);">visa required</span>
+					{computeVisaCounts().visaRequiredCount > 1 ? 'countries' : 'country'}
+					<span class="span-underline" style="text-decoration-color: var(--color-red);"
+						>visa required</span
+					>
 				</p>
-			{/if}
-		</div>
-		<div class="country-card-wrapper">
+				<p>
+					Combined mobility score: {computeVisaCounts().visaFreeCount +
+						computeVisaCounts().etaCount +
+						computeVisaCounts().visaOnArrivalCount +
+						computeVisaCounts().eVisaCount}/199
+				</p>
+			</div>
+		{/if}
+		<div class="country-card-wrapper {selectedCountries.length > 1 ? 'multiple-cards' : ''}">
 			{#each [...selectedCountries].reverse() as country, i (country.ISO)}
 				<div class="country-card">
 					<button
@@ -258,7 +268,55 @@
 									{country.Country}
 									{generateFlagEmoji(country.ISO)}
 								</h3>
+								{#if visaRequirementData && visaRequirementData.length}
+									<div>
+										<span class="span-underline" style="text-decoration-color: var(--color-green);"
+											>Visa free:</span
+										>
+										{computeVisaCountsGeneric(
+											Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
+											(item) => item.value
+										).visaFreeCount}
+									</div>
+								{/if}
+								{#if visaRequirementData && visaRequirementData.length}
+									<div>
+										<span class="span-underline" style="text-decoration-color: var(--color-blue);"
+											>Visa on arrival or eta:</span
+										>
+										{computeVisaCountsGeneric(
+											Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
+											(item) => item.value
+										).visaOnArrivalCount +
+											computeVisaCountsGeneric(
+												Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
+												(item) => item.value
+											).etaCount}
+									</div>
+								{/if}
+								{#if visaRequirementData && visaRequirementData.length}
+									<div>
+										<span class="span-underline" style="text-decoration-color: var(--color-yellow);"
+											>E-visa:</span
+										>
+										{computeVisaCountsGeneric(
+											Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
+											(item) => item.value
+										).eVisaCount}
+									</div>
+								{/if}
+								{#if visaRequirementData && visaRequirementData.length}
+									<div>
+										<span class="span-underline" style="text-decoration-color: var(--color-red);"
+											>Visa required:</span
+										>
 
+										{computeVisaCountsGeneric(
+											Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
+											(item) => item.value
+										).visaRequiredCount}
+									</div>
+								{/if}
 								{#if visaRequirementData && visaRequirementData.length}
 									<div>
 										Mobility score: {computeMobilityScore(
@@ -268,12 +326,6 @@
 								{/if}
 								<div>
 									Population: {country.Population.toLocaleString()}
-								</div>
-								<div>
-									Capital: {country.Capital}
-								</div>
-								<div>
-									Currency: {country.CurrencyName} ({country.CurrencyCode})
 								</div>
 							</div>
 
@@ -364,7 +416,7 @@
 		width: 100%;
 	}
 
-	.country-card-wrapper {
+	.country-card-wrapper.multiple-cards {
 		margin-top: var(--spacing-large);
 	}
 
@@ -391,6 +443,12 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: start;
+	}
+
+	.country-details {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-small);
 	}
 
 	.country-card-button[aria-pressed='true'] {
@@ -437,7 +495,7 @@
 		gap: var(--spacing-small);
 	}
 
-	.visa-requirement-summary span {
+	.span-underline {
 		text-decoration: underline;
 		text-decoration-thickness: 2px;
 	}
