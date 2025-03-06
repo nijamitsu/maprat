@@ -213,7 +213,7 @@
 		{#if selectedCountries.length > 1}
 			<div class="visa-requirement-summary">
 				<h3>
-					With your
+					With the combination of
 					{#each selectedCountries as country}
 						{generateFlagEmoji(country.ISO)}&nbsp;
 					{/each}passports, you can visit
@@ -333,7 +333,7 @@
 								<img
 									src="/passport-images/{country.ISO}-passport.svg"
 									alt="{country.Country} passport"
-									onerror={(event) => (event.target.src = '/passport-images/default-passport.svg')}
+									onerror={(event) => (event.target.style.display = 'none')}
 								/>
 							</div>
 						</div>
