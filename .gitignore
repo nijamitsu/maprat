@@ -21,4 +21,8 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+src/lib/components/CircularProgressBar.svelte
 .qodo/history.sqlite
+src/routes/\[username]/+page.js
+src/routes/\[username]/+page.svelte
