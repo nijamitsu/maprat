@@ -1,7 +1,7 @@
 <script>
 	// Svelte built-ins
-	import { flip } from 'svelte/animate';
 	import { page } from '$app/stores';
+	import { flip } from 'svelte/animate';
 
 	// Internal utilities
 	import {
@@ -11,7 +11,6 @@
 		formatDistance
 	} from '$lib/utils/travelUtils';
 	import { removeCity, clearAllSavedCities } from '$lib/utils/storage';
-	import { buildCityShareUrl } from '$lib/utils/urlStorage';
 	import { generateFlagEmoji } from '$lib/utils/generateFlagEmoji';
 
 	// Internal components
@@ -56,7 +55,8 @@
 
 	function handleShareTravelHistory() {
 		const cityIds = savedCities.map((city) => city.id);
-		const shareUrl = buildCityShareUrl(cityIds);
+		const parameterValues = cityIds.join('-');
+		const shareUrl = $page.url.origin + "/me?" + "cid=" + parameterValues;
 
 		navigator.clipboard
 			.writeText(shareUrl)

@@ -12,7 +12,8 @@ export async function load({ fetch }) {
 	const countryInfoArr = await countryRes.json();
 
 	const countryInfoData = countryInfoArr.reduce((acc, country) => {
-		acc[country.ISO] = country.Country;
+		// Store the entire country object as is
+		acc[country.ISO] = country;
 		return acc;
 	}, {});
 

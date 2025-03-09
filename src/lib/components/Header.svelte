@@ -5,14 +5,15 @@
 
 	const navLinks = [
 		{ path: '/passport', label: 'Passport' },
-		{ path: '/visa', label: 'Visa' },
+		{ path: '/visa-faq', label: 'Visa' },
 		{ path: '/about', label: 'About' }
 	];
 
 	const linkHighlight = (targetRoute) => targetRoute === $page.route.id;
 
-	let menuOpen = false;
-	let isMobile = false;
+	let isInitialized = $state(false);
+	let menuOpen = $state(false);
+	let isMobile = $state(false);
 
 	function toggleMenu() {
 		menuOpen = !menuOpen;
@@ -23,78 +24,85 @@
 	}
 
 	onMount(() => {
+		isInitialized = true;
 		checkMobile();
 		window.addEventListener('resize', checkMobile);
 		return () => window.removeEventListener('resize', checkMobile);
 	});
 </script>
 
-<section>
-	<header>
-		<div class="header-text-wrapper">
-			<div class="left">
-				<a href="/" onclick={menuOpen ? toggleMenu : undefined}>
-					<svg
-						class="logo"
-						width="20"
-						height="20"
-						viewBox="0 0 160 160"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<circle cx="127.5" cy="40.5" r="32.5" fill="white" />
-						<circle cx="32.5" cy="40.5" r="32.5" fill="white" />
-						<circle cx="53" cy="104" r="18" fill="white" />
-						<circle cx="106" cy="104" r="18" fill="white" />
-						<circle cx="80" cy="143" r="10" fill="white" />
-					</svg>
+{#if isInitialized}
+	<section>
+		<header>
+			<div class="header-text-wrapper">
+				<div class="left">
+					<a href="/" onclick={menuOpen ? toggleMenu : undefined}>
+						<svg
+							class="logo"
+							width="20"
+							height="20"
+							viewBox="0 0 160 160"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<circle cx="127.5" cy="40.5" r="32.5" fill="white" />
+							<circle cx="32.5" cy="40.5" r="32.5" fill="white" />
+							<circle cx="53" cy="104" r="18" fill="white" />
+							<circle cx="106" cy="104" r="18" fill="white" />
+							<circle cx="80" cy="143" r="10" fill="white" />
+						</svg>
 
-					Maprat</a
-				>
+						Maprat</a
+					>
+				</div>
+
+				{#if isMobile}
+					<button
+						class="hamburger"
+						class:open={menuOpen}
+						onclick={toggleMenu}
+						aria-label="Toggle menu"
+					>
+						<svg
+							class="hamburger-icon"
+							width="20"
+							height="20"
+							viewBox="0 0 40 40"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<rect x="5" y="10" width="30" height="3" rx="1.5" fill="currentColor" />
+							<rect x="5" y="27" width="30" height="3" rx="1.5" fill="currentColor" />
+						</svg>
+					</button>
+				{:else}
+					<div class="right">
+						{#each navLinks as link}
+							<a href={link.path} class:text-underline={linkHighlight(link.path)}>
+								{link.label}
+							</a>
+						{/each}
+					</div>
+				{/if}
 			</div>
+		</header>
 
-			{#if isMobile}
-				<button
-					class="hamburger"
-					class:open={menuOpen}
-					onclick={toggleMenu}
-					aria-label="Toggle menu"
-				>
-					<svg
-						class="hamburger-icon"
-						width="20"
-						height="20"
-						viewBox="0 0 40 40"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<rect x="5" y="10" width="30" height="3" rx="1.5" fill="currentColor" />
-						<rect x="5" y="27" width="30" height="3" rx="1.5" fill="currentColor" />
-					</svg>
-				</button>
-			{:else}
-				<div class="right">
+		{#if isMobile && menuOpen}
+			<div class="mobile-menu" transition:slide={{ duration: 300 }}>
+				<div class="mobile-menu-links">
 					{#each navLinks as link}
-						<a href={link.path} class:text-underline={linkHighlight(link.path)}>
+						<a
+							href={link.path}
+							class:text-underline={linkHighlight(link.path)}
+							onclick={toggleMenu}
+						>
 							{link.label}
 						</a>
 					{/each}
 				</div>
-			{/if}
-		</div>
-	</header>
-
-	{#if isMobile && menuOpen}
-		<div class="mobile-menu" transition:slide={{ duration: 300 }}>
-			<div class="mobile-menu-links">
-				{#each navLinks as link}
-					<a href={link.path} class:text-underline={linkHighlight(link.path)} onclick={toggleMenu}>
-						{link.label}
-					</a>
-				{/each}
 			</div>
-		</div>
-	{/if}
-</section>
+		{/if}
+	</section>
+{/if}
 
 <style>
 	header {

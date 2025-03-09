@@ -1,20 +1,23 @@
 <script>
 	// Svelte built-ins
 	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	// Internal components
-	import PassportMap from '$lib/components/Map/PassportMap/PassportMap.svelte';
+	import PassportMap from '$lib/components/PassportMap/PassportMap.svelte';
 	import CountrySearch from '$lib/components/CountrySearch/CountrySearch.svelte';
 	import SelectedCountry from '$lib/components/CountrySearch/SelectedCountry.svelte';
 	import { getMatchingData } from '$lib/utils/storage';
 
+	let { data } = $props();
+	const visaMatrixData = data.visaMatrixData;
+	const countryInfoData = data.countryInfoData;
+
 	let isInitialized = $state(false);
 	let selectedCountries = $state([]);
 	let visaRequirementData = $state();
-	let { data } = $props();
-
-	let visaMatrixData = $state(data.visaMatrixData);
-	let countryInfoData = $state(data.countryInfoData);
+	let countriesParam = $state($page.url.searchParams.get('countries'));
 
 	let combinedVisaRequirementData = $derived(combineVisaRequirementData(visaRequirementData));
 
@@ -61,18 +64,64 @@
 		return combinedVisaRequirementData;
 	}
 
-	$effect(() => {
-		if (visaMatrixData && selectedCountries && selectedCountries.length) {
-			visaRequirementData = selectedCountries.map((country) => {
-				return getMatchingData(visaMatrixData, {
-					fieldName: 'Passport',
-					matchValue: country.ISO
-				});
+	function updateUrl() {
+		if (selectedCountries.length) {
+			const countryCodes = selectedCountries.map((country) => country.ISO);
+			goto(`/passport?countries=${countryCodes.join('-')}`, {
+				replaceState: true,
+				noScroll: true
 			});
+		} else {
+			goto('/passport', {
+				replaceState: true,
+				noScroll: true
+			});
+		}
+	}
+
+	function updateSelectedCountries() {
+		if (countriesParam) {
+			const countryISOCodes = countriesParam.split('-');
+
+			// Remove duplicates using Set
+			const uniqueISOCodes = [...new Set(countryISOCodes)];
+
+			// Limit to maximum of 5 countries.
+			const limitedCountryCodes = uniqueISOCodes.slice(0, 5);
+
+			// Validate ISO codes and map to the required structure.
+			selectedCountries = limitedCountryCodes
+				.filter((code) => /^[A-Z]{2}$/.test(code) && countryInfoData[code])
+				.map((code) => ({
+					ISO: code,
+					Country: countryInfoData[code].Country,
+					Population: countryInfoData[code].Population
+				}));
+		}
+	}
+
+	$effect(() => {
+		if (!selectedCountries.length) {
+			visaRequirementData = undefined;
+			return;
+		}
+
+		visaRequirementData = selectedCountries.map((country) =>
+			getMatchingData(visaMatrixData, {
+				fieldName: 'Passport',
+				matchValue: country.ISO
+			})
+		);
+	});
+
+	$effect(() => {
+		if (isInitialized) {
+			updateUrl();
 		}
 	});
 
 	onMount(() => {
+		updateSelectedCountries();
 		isInitialized = true;
 	});
 </script>

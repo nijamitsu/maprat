@@ -1,9 +1,6 @@
 <script>
-	import { onMount } from 'svelte';
-
-	import { createJsonLoader } from '$lib/utils/createJsonLoader';
 	import { generateFlagEmoji } from '$lib/utils/generateFlagEmoji';
-	import { isTextMatch, sortBySearchMatch, normalizeText } from '$lib/utils/textFilter';
+	import { isTextMatch, sortBySearchMatch } from '$lib/utils/textFilter';
 
 	const VISA_CONFIG = {
 		PASSPORT: { type: -1, color: 'text-gray' },
@@ -104,7 +101,6 @@
 			case VISA_CONFIG.FREE.type:
 				return visa.category === 'visaFree';
 			case VISA_CONFIG.ON_ARRIVAL.type:
-				// Accept on arrival OR ETA when filter is on arrival (blue).
 				return visa.category === 'onArrival' || visa.category === 'eta';
 			case VISA_CONFIG.E_VISA.type:
 				return visa.category === 'eVisa';
@@ -200,7 +196,7 @@
 	let filteredVisaData = $derived(
 		combinedVisaRequirementData
 			? Object.entries(combinedVisaRequirementData).filter(([countryIso, data]) =>
-					isTextMatch(countryIso, countryFilterText, countryInfoData)
+					isTextMatch(countryInfoData[countryIso].Country, countryFilterText)
 				)
 			: []
 	);
@@ -221,30 +217,22 @@
 				<p>
 					{computeVisaCounts().visaFreeCount}
 					{computeVisaCounts().visaFreeCount > 1 ? 'countries' : 'country'}
-					<span class="span-underline" style="text-decoration-color: var(--color-green);"
-						>visa free</span
-					>
+					<span class="span-underline">visa free</span>
 				</p>
 				<p>
 					{computeVisaCounts().etaCount + computeVisaCounts().visaOnArrivalCount}
 					{computeVisaCounts().etaCount > 1 ? 'countries' : 'country'} with a
-					<span class="span-underline" style="text-decoration-color: var(--color-blue);"
-						>visa on arrival or eta</span
-					>
+					<span class="span-underline">visa on arrival or eta</span>
 				</p>
 				<p>
 					{computeVisaCounts().eVisaCount}
 					{computeVisaCounts().eVisaCount > 1 ? 'countries' : 'country'} with an
-					<span class="span-underline" style="text-decoration-color: var(--color-yellow);"
-						>e-visa</span
-					>
+					<span class="span-underline">e-visa</span>
 				</p>
 				<p>
 					{computeVisaCounts().visaRequiredCount}
 					{computeVisaCounts().visaRequiredCount > 1 ? 'countries' : 'country'}
-					<span class="span-underline" style="text-decoration-color: var(--color-red);"
-						>visa required</span
-					>
+					<span class="span-underline">visa required</span>
 				</p>
 				<p>
 					Combined mobility score: {computeVisaCounts().visaFreeCount +
@@ -270,20 +258,15 @@
 								</h3>
 								{#if visaRequirementData && visaRequirementData.length}
 									<div>
-										<span class="span-underline" style="text-decoration-color: var(--color-green);"
-											>Visa free:</span
-										>
+										<span class="span-underline">Visa free:</span>
 										{computeVisaCountsGeneric(
 											Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
 											(item) => item.value
 										).visaFreeCount}
 									</div>
-								{/if}
-								{#if visaRequirementData && visaRequirementData.length}
+
 									<div>
-										<span class="span-underline" style="text-decoration-color: var(--color-blue);"
-											>Visa on arrival or eta:</span
-										>
+										<span class="span-underline">Visa on arrival or eta:</span>
 										{computeVisaCountsGeneric(
 											Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
 											(item) => item.value
@@ -293,31 +276,24 @@
 												(item) => item.value
 											).etaCount}
 									</div>
-								{/if}
-								{#if visaRequirementData && visaRequirementData.length}
+
 									<div>
-										<span class="span-underline" style="text-decoration-color: var(--color-yellow);"
-											>E-visa:</span
-										>
+										<span class="span-underline">E-visa:</span>
 										{computeVisaCountsGeneric(
 											Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
 											(item) => item.value
 										).eVisaCount}
 									</div>
-								{/if}
-								{#if visaRequirementData && visaRequirementData.length}
+
 									<div>
-										<span class="span-underline" style="text-decoration-color: var(--color-red);"
-											>Visa required:</span
-										>
+										<span class="span-underline">Visa required:</span>
 
 										{computeVisaCountsGeneric(
 											Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
 											(item) => item.value
 										).visaRequiredCount}
 									</div>
-								{/if}
-								{#if visaRequirementData && visaRequirementData.length}
+
 									<div>
 										Mobility score: {computeMobilityScore(
 											visaRequirementData[selectedCountries.length - 1 - i]
@@ -349,6 +325,7 @@
 				</div>
 			{/each}
 		</div>
+
 		<div class="visa-country-filter">
 			<input
 				type="search"
@@ -369,29 +346,29 @@
 						class="bg-{option.color} {selectedFilter === option.value ? 'selected' : ''}"
 						value={option.value}
 						onclick={() => handleFilterClick(option.value)}
-					>
-						{[
-							filteredCounts.visaFreeCount,
-							filteredCounts.visaOnArrivalCount + filteredCounts.etaCount,
-							filteredCounts.eVisaCount,
-							filteredCounts.visaRequiredCount
-						][i]}
+						><span>
+							{[
+								filteredCounts.visaFreeCount,
+								filteredCounts.visaOnArrivalCount + filteredCounts.etaCount,
+								filteredCounts.eVisaCount,
+								filteredCounts.visaRequiredCount
+							][i]}</span
+						><span>{option.color === 'blue' ? 'voa or eta' : option.value}</span>
 					</button>
 				{/each}
 			</div>
 		</div>
-
 		<div class="selected-country-body">
 			<div class="country-visa-info">
 				{#if combinedVisaRequirementData}
-					{#each sortBySearchMatch(Object.entries(combinedVisaRequirementData), countryFilterText, countryInfoData) as [countryIso, data]}
-						{#if isVisaMatch(data.value, selectedFilter) && isTextMatch(countryIso, countryFilterText, countryInfoData)}
+					{#each sortBySearchMatch(Object.entries(combinedVisaRequirementData), countryFilterText, (iso) => countryInfoData[iso].Country) as [countryIso, data]}
+						{#if isVisaMatch(data.value, selectedFilter) && isTextMatch(countryInfoData[countryIso].Country, countryFilterText)}
 							<div class="visa-row">
 								<div class="country-name">
-									{countryInfoData[countryIso]}
+									{countryInfoData[countryIso].Country}
 									{generateFlagEmoji(countryIso)}
 								</div>
-								<div class="visa-requirement {getVisaRequirementColorClass(data.value)}">
+								<div class="visa-requirement">
 									{getVisaText(data.value)}
 								</div>
 							</div>
@@ -495,11 +472,6 @@
 		gap: var(--spacing-small);
 	}
 
-	.span-underline {
-		text-decoration: underline;
-		text-decoration-thickness: 2px;
-	}
-
 	/* -------------------- Visa Country Filter -------------------- */
 
 	.visa-country-filter {
@@ -533,12 +505,17 @@
 		margin: 0;
 		border: none;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		padding: 0;
 		opacity: 0.95;
 		transition: transform var(--transition-standard);
 		font-size: var(--font-size-small);
+	}
+
+	.color-legend-wrapper button span {
+		line-height: normal;
 	}
 
 	.color-legend-wrapper button:first-child {
