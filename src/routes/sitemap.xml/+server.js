@@ -3,7 +3,7 @@ export async function GET() {
     const routes = [
         { path: '/', priority: 1.0 },
         { path: '/passport', priority: 0.9 },
-        { path: '/visa', priority: 0.8 },
+        { path: '/visa-faq', priority: 0.8 },
         { path: '/about', priority: 0.7 },
     ];
     const lastmod = new Date().toISOString().split('T')[0];
