@@ -191,7 +191,7 @@ export default class MapManager {
 
 		this.map.flyTo({
 			center: [coordinates.longitude, coordinates.latitude],
-			zoom: 8,
+			zoom: 2,
 			duration: 1500,
 			essential: true
 		});

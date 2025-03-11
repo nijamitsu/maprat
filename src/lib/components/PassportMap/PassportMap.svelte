@@ -55,7 +55,7 @@
 	.map-wrapper {
 		position: relative;
 		width: 100%;
-		height: 400px;
+		height: 380px;
 	}
 
 	#map {
