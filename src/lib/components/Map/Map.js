@@ -189,9 +189,12 @@ export default class MapManager {
 	flyToLocation(coordinates) {
 		if (!this.map) return;
 
+		const currentZoom = this.map.getZoom();
+		const targetZoom = currentZoom > 2 ? currentZoom : 2;
+
 		this.map.flyTo({
 			center: [coordinates.longitude, coordinates.latitude],
-			zoom: 2,
+			zoom: targetZoom,
 			duration: 1500,
 			essential: true
 		});
