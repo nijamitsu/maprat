@@ -62,6 +62,18 @@
 		width: 100%;
 	}
 
+	:global(#map canvas) {
+        cursor: default;
+    }
+
+	:global(#map canvas:click) {
+        cursor: grabbing;
+    }
+
+	:global(#map canvas:active) {
+        cursor: grabbing;
+    }
+
 	.project-button {
 		display: block;
 		position: absolute;
@@ -120,6 +132,7 @@
 
 	:global(.maplibregl-popup-content) {
 		background-color: #303134;
+		box-shadow: 0 0 10px 2px rgba(192, 192, 192, 0.2);
 		font-family: var(--font-family-primary);
 		font-size: var(--font-size-medium);
 		padding: var(--spacing-medium);
