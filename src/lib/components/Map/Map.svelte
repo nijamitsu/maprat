@@ -63,16 +63,12 @@
 	}
 
 	:global(#map canvas) {
-        cursor: default;
-    }
-
-	:global(#map canvas:click) {
-        cursor: grabbing;
-    }
+		cursor: default;
+	}
 
 	:global(#map canvas:active) {
-        cursor: grabbing;
-    }
+		cursor: grabbing;
+	}
 
 	.project-button {
 		display: block;
