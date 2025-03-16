@@ -234,14 +234,6 @@
 					{computeVisaCounts().visaRequiredCount > 1 ? 'countries' : 'country'}
 					<span class="span-underline">visa required</span>
 				</p>
-				<!--
-				<p>
-					Combined mobility score: {computeVisaCounts().visaFreeCount +
-						computeVisaCounts().etaCount +
-						computeVisaCounts().visaOnArrivalCount +
-						computeVisaCounts().eVisaCount}/199
-				</p>
-				-->
 				<p>
 					Combined world reach: {Math.round(
 						((computeVisaCounts().visaFreeCount +
@@ -305,13 +297,6 @@
 											(item) => item.value
 										).visaRequiredCount}
 									</div>
-									<!--
-									<div>
-										 Mobility score: {computeMobilityScore(
-											visaRequirementData[selectedCountries.length - 1 - i]
-										)}/199	
-									</div>
-									-->
 									<div>
 										World reach: {Math.round(
 											((computeVisaCountsGeneric(
