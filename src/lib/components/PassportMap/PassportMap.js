@@ -91,6 +91,14 @@ export default class MapManager {
 			this.map.touchZoomRotate.disableRotation();
 			this.map.touchPitch.disable();
 
+			// Immediately set the attribution control to compact
+			this.map.on('style.load', () => {
+				const attributionControl = document.querySelector('.maplibregl-ctrl-attrib');
+				if (attributionControl) {
+					attributionControl.classList.remove('maplibregl-compact-show');
+				}
+			});
+
 			// Set projection when style is loaded
 			this.map.on('style.load', () => {
 				this.map.setProjection({ type: 'mercator' });
