@@ -65,7 +65,7 @@ export default class MapManager {
 				style: 'passport-positron.json',
 				zoom: 0,
 				minZoom: 0,
-				maxZoom: 3,
+				maxZoom: 4,
 				center: [30, 40],
 				canvasContextAttributes: { antialias: true }
 			},
