@@ -63,7 +63,7 @@ export default class MapManager {
 		this.config = {
 			map: {
 				style: 'passport-positron.json',
-				zoom: 0,
+				zoom: 1,
 				minZoom: 0,
 				maxZoom: 4,
 				center: [30, 40],
