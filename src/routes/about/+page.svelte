@@ -28,25 +28,6 @@
 			<br /><br />
 
 			-H
-
-			<br /><br />
-
-			<div>
-				<svg
-					class="logo"
-					width="20"
-					height="20"
-					viewBox="0 0 160 160"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<circle cx="127.5" cy="40.5" r="32.5" fill="white" />
-					<circle cx="32.5" cy="40.5" r="32.5" fill="white" />
-					<circle cx="53" cy="104" r="18" fill="white" />
-					<circle cx="106" cy="104" r="18" fill="white" />
-					<circle cx="80" cy="143" r="10" fill="white" />
-				</svg>
-			</div>
 		</div>
 	</section>
 </section>
@@ -67,9 +48,5 @@
 		width: 100%;
 		max-width: var(--max-width-element);
 		margin-bottom: var(--spacing-large);
-	}
-
-	.logo {
-		margin: 0 auto;
 	}
 </style>
