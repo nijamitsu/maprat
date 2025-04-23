@@ -15,7 +15,7 @@
 				A visa is an official document that allows the holder to enter, stay, or leave a country for
 				a certain period of time. It is issued by the destination country's government and may
 				include rules about the duration of stay, permitted activities, and areas within the country
-				that the individual may enter. Visas are often required for travel, work, study, or transit
+				that the individual may enter. Visas are often required for <a href="/">travel</a>, work, study, or transit
 				through a country.
 			</p>
 			<br />
@@ -44,7 +44,7 @@
 			<p>
 				Visa free means you can enter, stay, or transit through a country without needing a visa.
 				You can usually stay for a short time for tourism, business, or transit, but you still need
-				a valid passport or ID.
+				a valid <a href="/passport">passport</a> or ID.
 			</p>
 			<br />
 			<h2 id="what-is-visa-on-arrival">What is visa on arrival?</h2>
