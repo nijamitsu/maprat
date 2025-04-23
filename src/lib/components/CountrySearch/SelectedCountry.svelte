@@ -1,4 +1,6 @@
 <script>
+	import InfoIcon from '$lib/elements/InfoIcon.svelte';
+
 	import { generateFlagEmoji } from '$lib/utils/generateFlagEmoji';
 	import { isTextMatch, sortBySearchMatch } from '$lib/utils/textFilter';
 
@@ -262,7 +264,9 @@
 								</h3>
 								{#if visaRequirementData && visaRequirementData.length}
 									<div>
-										<span class="span-underline">Visa free:</span>
+										<span class="span-underline"
+											>Visa free:</span
+										>
 										{computeVisaCountsGeneric(
 											Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
 											(item) => item.value
@@ -270,7 +274,11 @@
 									</div>
 
 									<div>
-										<span class="span-underline">Visa on arrival or eta:</span>
+										<span class="span-underline"
+											>Visa on arrival<a href="/visa-faq"><InfoIcon /></a> or eta<a href="/visa-faq"
+												><InfoIcon /></a
+											>:</span
+										>
 										{computeVisaCountsGeneric(
 											Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
 											(item) => item.value
@@ -282,7 +290,7 @@
 									</div>
 
 									<div>
-										<span class="span-underline">E-visa:</span>
+										<span class="span-underline">E-visa<a href="/visa-faq"><InfoIcon /></a>:</span>
 										{computeVisaCountsGeneric(
 											Object.values(visaRequirementData[selectedCountries.length - 1 - i] || {}),
 											(item) => item.value
