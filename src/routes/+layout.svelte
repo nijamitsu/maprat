@@ -14,10 +14,6 @@
 
 <svelte:head>
 	<title>Maprat: Track the places you've visited and share your travel history</title>
-	<meta
-		name="description"
-		content="Track the countries and cities you've visited, share your travel history with friends."
-	/>
 </svelte:head>
 
 <main>
