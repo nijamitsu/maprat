@@ -31,78 +31,72 @@
 	});
 </script>
 
-{#if isInitialized}
-	<section>
-		<header>
-			<div class="header-text-wrapper">
-				<div class="left">
-					<a href="/" onclick={menuOpen ? toggleMenu : undefined}>
-						<svg
-							class="logo"
-							width="20"
-							height="20"
-							viewBox="0 0 160 160"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<circle cx="127.5" cy="40.5" r="32.5" fill="white" />
-							<circle cx="32.5" cy="40.5" r="32.5" fill="white" />
-							<circle cx="53" cy="104" r="18" fill="white" />
-							<circle cx="106" cy="104" r="18" fill="white" />
-							<circle cx="80" cy="143" r="10" fill="white" />
-						</svg>
-
-						Maprat</a
+<section>
+	<header>
+		<div class="header-text-wrapper">
+			<div class="left">
+				<a href="/" onclick={menuOpen ? toggleMenu : undefined}>
+					<svg
+						class="logo"
+						width="20"
+						height="20"
+						viewBox="0 0 160 160"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
 					>
-				</div>
+						<circle cx="127.5" cy="40.5" r="32.5" fill="white" />
+						<circle cx="32.5" cy="40.5" r="32.5" fill="white" />
+						<circle cx="53" cy="104" r="18" fill="white" />
+						<circle cx="106" cy="104" r="18" fill="white" />
+						<circle cx="80" cy="143" r="10" fill="white" />
+					</svg>
 
-				{#if isMobile}
-					<button
-						class="hamburger"
-						class:open={menuOpen}
-						onclick={toggleMenu}
-						aria-label="Toggle menu"
-					>
-						<svg
-							class="hamburger-icon"
-							width="20"
-							height="20"
-							viewBox="0 0 40 40"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<rect x="5" y="10" width="30" height="3" rx="1.5" fill="currentColor" />
-							<rect x="5" y="27" width="30" height="3" rx="1.5" fill="currentColor" />
-						</svg>
-					</button>
-				{:else}
-					<div class="right">
-						{#each navLinks as link}
-							<a href={link.path} class:text-underline={linkHighlight(link.path)}>
-								{link.label}
-							</a>
-						{/each}
-					</div>
-				{/if}
+					Maprat</a
+				>
 			</div>
-		</header>
 
-		{#if isMobile && menuOpen}
-			<div class="mobile-menu" transition:slide={{ duration: 300 }}>
-				<div class="mobile-menu-links">
+			{#if isMobile}
+				<button
+					class="hamburger"
+					class:open={menuOpen}
+					onclick={toggleMenu}
+					aria-label="Toggle menu"
+				>
+					<svg
+						class="hamburger-icon"
+						width="20"
+						height="20"
+						viewBox="0 0 40 40"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<rect x="5" y="10" width="30" height="3" rx="1.5" fill="currentColor" />
+						<rect x="5" y="27" width="30" height="3" rx="1.5" fill="currentColor" />
+					</svg>
+				</button>
+			{:else}
+				<div class="right">
 					{#each navLinks as link}
-						<a
-							href={link.path}
-							class:text-underline={linkHighlight(link.path)}
-							onclick={toggleMenu}
-						>
+						<a href={link.path} class:text-underline={linkHighlight(link.path)}>
 							{link.label}
 						</a>
 					{/each}
 				</div>
+			{/if}
+		</div>
+	</header>
+
+	{#if isMobile && menuOpen}
+		<div class="mobile-menu" transition:slide={{ duration: 300 }}>
+			<div class="mobile-menu-links">
+				{#each navLinks as link}
+					<a href={link.path} class:text-underline={linkHighlight(link.path)} onclick={toggleMenu}>
+						{link.label}
+					</a>
+				{/each}
 			</div>
-		{/if}
-	</section>
-{/if}
+		</div>
+	{/if}
+</section>
 
 <style>
 	header {
