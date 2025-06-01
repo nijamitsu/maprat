@@ -5,7 +5,7 @@
 	<title>Everything you need to know about visas - Maprat</title>
 	<meta
 		name="description"
-		content="Get clear answers to common visa questions. Learn about visa types, application tips, and travel requirements with Maprat's comprehensive visa FAQ."
+		content="Learn everything about different types of visas including tourist, business, student, and visa-free entry. Get clarity before you travel."
 	/>
 </svelte:head>
 
