@@ -128,6 +128,8 @@
 
 <svelte:head>
 	<title>Find out if your passport needs a visa for any destination - Maprat</title>
+	<meta name="description" content="Check visa requirements for any destination based on your passport. Maprat makes it easy to plan your travels with up-to-date visa information.">
+
 </svelte:head>
 
 {#if isInitialized}

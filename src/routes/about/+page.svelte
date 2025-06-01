@@ -3,6 +3,7 @@
 
 <svelte:head>
 	<title>About - Maprat</title>
+	<meta name="description" content="Maprat was created to help travelers easily save and share the places they've visited. Learn why this tool was built for wanderers and globetrotters.">
 </svelte:head>
 
 <section class="main-wrapper">

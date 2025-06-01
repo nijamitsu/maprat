@@ -24,6 +24,8 @@
 
 <svelte:head>
 	<title>Maprat: Track the places you've visited and share your travel history</title>
+	<meta name="description" content="Maprat helps you track the places you've visited and share your travel history with others through a visual, interactive map.">
+
 </svelte:head>
 
 {#if isInitialized}

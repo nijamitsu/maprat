@@ -3,6 +3,10 @@
 
 <svelte:head>
 	<title>Everything you need to know about visas - Maprat</title>
+	<meta
+		name="description"
+		content="Get clear answers to common visa questions. Learn about visa types, application tips, and travel requirements with Maprat's comprehensive visa FAQ."
+	/>
 </svelte:head>
 
 <section class="main-wrapper">
@@ -15,8 +19,8 @@
 				A visa is an official document that allows the holder to enter, stay, or leave a country for
 				a certain period of time. It is issued by the destination country's government and may
 				include rules about the duration of stay, permitted activities, and areas within the country
-				that the individual may enter. Visas are often required for <a href="/">travel</a>, work, study, or transit
-				through a country.
+				that the individual may enter. Visas are often required for <a href="/">travel</a>, work,
+				study, or transit through a country.
 			</p>
 			<br />
 			<h2 id="what-is-tourist-visa">What is a tourist visa?</h2>
