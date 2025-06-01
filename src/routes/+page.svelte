@@ -33,7 +33,7 @@
 <h1 class="visually-hidden">
 	Maprat: Track the places you've visited and share your travel history
 </h1>
-{#if isInitialized}
+
 	<section class="main-wrapper">
 		<Map bind:savedCities />
 		<ProgressBar {savedCities} />
@@ -49,7 +49,7 @@
 			</div>
 		</section>
 	</section>
-{/if}
+
 
 <style>
 	.main-wrapper {

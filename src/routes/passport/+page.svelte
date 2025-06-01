@@ -132,7 +132,7 @@
 
 </svelte:head>
 
-{#if isInitialized}
+
 	<section class="main-wrapper">
 		<PassportMap {selectedCountries} {combinedVisaRequirementData} />
 		<div class="divider"></div>
@@ -156,7 +156,7 @@
 			</div>
 		</section>
 	</section>
-{/if}
+
 
 <style>
 	.main-wrapper {

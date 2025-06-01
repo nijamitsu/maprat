@@ -24,7 +24,7 @@
 	});
 </script>
 
-{#if isInitialized}
+
 	<section class="main-wrapper">
 		<Map {savedCities} />
 		<ProgressBar {savedCities} />
@@ -36,7 +36,7 @@
 			</div>
 		</section>
 	</section>
-{/if}
+
 
 <style>
 	.main-wrapper {
