@@ -9,7 +9,7 @@
 <section class="main-wrapper">
 	<section class="about-section">
 		<div class="about-div">
-			<br />
+			<h1>About Maprat</h1>
 			<br />
 			<i
 				>Travel feels less like a desire for progress that pushes you forward and more like gravity

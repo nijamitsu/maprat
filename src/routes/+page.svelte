@@ -24,10 +24,15 @@
 
 <svelte:head>
 	<title>Maprat: Track the places you've visited and share your travel history</title>
-	<meta name="description" content="Maprat helps you track the places you've visited and share your travel history with others through a visual, interactive map.">
-
+	<meta
+		name="description"
+		content="Maprat helps you track the places you've visited and share your travel history with others through a visual, interactive map."
+	/>
 </svelte:head>
 
+<h1 class="visually-hidden">
+	Maprat: Track the places you've visited and share your travel history
+</h1>
 {#if isInitialized}
 	<section class="main-wrapper">
 		<Map bind:savedCities />
@@ -66,5 +71,17 @@
 		width: 100%;
 		max-width: var(--max-width-element);
 		margin-bottom: var(--spacing-large);
+	}
+
+	.visually-hidden {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
 	}
 </style>
