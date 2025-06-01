@@ -129,17 +129,18 @@
 <svelte:head>
 	<title>Find out if your passport needs a visa for any destination - Maprat</title>
 	<meta name="description" content="Check visa requirements for any destination based on your passport. Maprat makes it easy to plan your travels with up-to-date visa information.">
-
 </svelte:head>
 
-
+<h1 class="visually-hidden">
+	Find out if your passport needs a visa for any destination
+</h1>
 	<section class="main-wrapper">
 		<PassportMap {selectedCountries} {combinedVisaRequirementData} />
 		<div class="divider"></div>
 		<section class="main-container">
 			{#if !selectedCountries.length}
 				<div class="welcome-copy">
-					<h1>Explore visa requirements for your passport on the map.</h1>
+					<h2>Explore visa requirements for your passport on the map.</h2>
 				</div>
 			{/if}
 			<div class="countrysearch-savedcountry">
@@ -176,6 +177,18 @@
 		text-align: center;
 	}
 
+	.visually-hidden {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
 	.countrysearch-savedcountry {
 		width: 100%;
 		max-width: var(--max-width-element);
@@ -187,7 +200,7 @@
 		margin-bottom: var(--spacing-large);
 	}
 
-	.welcome-copy h1 {
+	.welcome-copy h2 {
 		font-size: clamp(1rem, 2vw + 1rem, var(--font-size-large));
 		color: var(--color-primary);
 	}
