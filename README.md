@@ -4,13 +4,11 @@
 
 🌍 [Visit Maprat.com](https://maprat.com)
 
-### Travel History View  
-![Travel History 1](readme-images/travel-1.jpeg)  
-![Travel History 2](readme-images/travel-2.jpeg)
+### Travel History
+![Travel History 1](readme-images/travel-1.jpeg)
 
 ### Visa Requirements View  
 ![Visa Requirements 1](readme-images/visa-1.jpeg)  
-![Visa Requirements 2](readme-images/visa-2.jpeg)
 
 ## Features
 
