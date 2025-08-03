@@ -1,38 +1,41 @@
-# sv
+# Maprat.com – Geospatial Data Visualization Project
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+**Maprat.com** is an interactive web app for visualizing global travel history and passport visa requirements using both 2D and 3D globe views.
 
-## Creating a project
+🌍 [Visit Maprat.com](https://maprat.com)
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Travel History View  
+![Travel History 1](readme-images/travel-1.png)  
+![Travel History 2](readme-images/travel-2.png)
 
-```bash
-# create a new project in the current directory
-npx sv create
+### Visa Requirements View  
+![Visa Requirements 1](readme-images/visa-1.png)  
+![Visa Requirements 2](readme-images/visa-2.png)
 
-# create a new project in my-app
-npx sv create my-app
-```
+## Features
 
-## Developing
+- 🌐 **Travel History**  
+  Add cities by typing their names or clicking the map to track your travels.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- 🛂 **Passport Requirements**  
+  - Enter a country to see its visa requirements, both on the map and in a filterable list.  
+  - Combine up to 5 passports to visualize visa-free access across countries.
 
-```bash
-npm run dev
+- 🧭 **Interactive Globes**  
+  Toggle between 2D and 3D globe visualizations.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Built With
 
-## Building
+- [Svelte](https://svelte.dev)  
+- [MapLibre](https://maplibre.org)  
+- [GeoNames](https://www.geonames.org)  
+- [Natural Earth](https://www.naturalearthdata.com)  
+- [2025 Passport Index Dataset](https://github.com/ilyankou/passport-index-dataset)
 
-To create a production version of your app:
+## Disclaimer
 
-```bash
-npm run build
-```
+Visa requirement data may not be up to date and is for demonstration purposes only.
 
-You can preview the production build with `npm run preview`.
+## License
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+All rights reserved. This project is not open source.
