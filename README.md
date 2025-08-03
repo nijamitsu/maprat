@@ -1,16 +1,16 @@
-# Maprat.com – Geospatial Data Visualization Project
+# Maprat.com - Geospatial Data Visualization Project
 
 **Maprat.com** is an interactive web app for visualizing global travel history and passport visa requirements using both 2D and 3D globe views.
 
 🌍 [Visit Maprat.com](https://maprat.com)
 
 ### Travel History View  
-![Travel History 1](readme-images/travel-1.png)  
-![Travel History 2](readme-images/travel-2.png)
+![Travel History 1](readme-images/travel-1.jpeg)  
+![Travel History 2](readme-images/travel-2.jpeg)
 
 ### Visa Requirements View  
-![Visa Requirements 1](readme-images/visa-1.png)  
-![Visa Requirements 2](readme-images/visa-2.png)
+![Visa Requirements 1](readme-images/visa-1.jpeg)  
+![Visa Requirements 2](readme-images/visa-2.jpeg)
 
 ## Features
 
